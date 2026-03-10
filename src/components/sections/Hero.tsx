@@ -1,14 +1,62 @@
 'use client';
+import { useState, useEffect, useCallback } from 'react';
+import Image from 'next/image';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
 import CountUp from '@/components/animations/CountUp';
 import styles from './Hero.module.css';
 
+const heroSlides = [
+  '/images/facility/exterior-front-wide.jpg',
+  '/images/facility/exterior-loading-docks.jpg',
+  '/images/warehouse/interior-workers.jpg',
+];
+
 export default function Hero() {
   const t = useTranslations('hero');
+  const [current, setCurrent] = useState(0);
+  const [prev, setPrev] = useState<number | null>(null);
+
+  const goNext = useCallback(() => {
+    setPrev(current);
+    setCurrent((c) => (c + 1) % heroSlides.length);
+  }, [current]);
+
+  useEffect(() => {
+    const id = setInterval(goNext, 4000);
+    return () => clearInterval(id);
+  }, [goNext]);
+
+  // Clear prev after transition ends
+  useEffect(() => {
+    if (prev === null) return;
+    const id = setTimeout(() => setPrev(null), 800);
+    return () => clearTimeout(id);
+  }, [prev]);
 
   return (
     <section className={styles.hero}>
+      {/* Background slideshow */}
+      <div className={styles.slideshow}>
+        {heroSlides.map((src, i) => (
+          <div
+            key={src}
+            className={`${styles.slide} ${
+              i === current ? styles.slideActive : ''
+            } ${i === prev ? styles.slideExit : ''}`}
+          >
+            <Image
+              src={src}
+              alt=""
+              fill
+              sizes="100vw"
+              style={{ objectFit: 'cover' }}
+              priority={i === 0}
+            />
+          </div>
+        ))}
+      </div>
+
       <div className={styles.heroBg} />
       <div className={styles.heroGridOverlay} />
       <div className={styles.heroGlow} />
