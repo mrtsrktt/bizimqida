@@ -85,6 +85,13 @@ export default function Navbar() {
               {t('career')}
             </Link>
           </li>
+
+          {/* Apply */}
+          <li className={styles['nav-item']}>
+            <Link href="/apply" className={styles['nav-link']}>
+              {t('apply')}
+            </Link>
+          </li>
         </ul>
 
         {/* Desktop CTA */}
@@ -129,6 +136,9 @@ export default function Navbar() {
         </Link>
         <Link href="/career" onClick={() => setMobileOpen(false)}>
           {t('career')}
+        </Link>
+        <Link href="/apply" onClick={() => setMobileOpen(false)}>
+          {t('apply')}
         </Link>
         <Link href="/contact" className={styles['mobile-cta']} onClick={() => setMobileOpen(false)}>
           {t('contact')}

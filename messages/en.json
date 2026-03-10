@@ -14,7 +14,8 @@
     "brands": "Brands",
     "distribution": "Distribution",
     "career": "Career",
-    "contact": "Contact"
+    "contact": "Contact",
+    "apply": "Apply"
   },
   "hero": {
     "eyebrow": "Nakhchivan's Leading Food Company",
@@ -159,6 +160,28 @@
     "subjectPartnership": "Business Partnership",
     "subjectCareer": "Career Application",
     "subjectGeneral": "General Information"
+  },
+  "apply": {
+    "eyebrow": "Customer Application",
+    "title": "Want to",
+    "titleEmphasis": "Work",
+    "titleSuffix": "With Us?",
+    "description": "Leverage Bizim Qida's reliable distribution network for your market, restaurant, hotel, or wholesale outlet. Fill out the application form and we'll get back to you shortly.",
+    "formBusinessName": "Business Name",
+    "formBusinessType": "Business Type",
+    "typeMarket": "Market",
+    "typeRestaurant": "Restaurant",
+    "typeHotel": "Hotel",
+    "typeCafe": "Cafe",
+    "typeOther": "Other",
+    "formContactName": "Contact Person",
+    "formPhone": "Phone",
+    "formEmail": "Email",
+    "formAddress": "Address",
+    "formMessage": "Message / Notes",
+    "formSubmit": "Submit Application",
+    "successTitle": "Application Received!",
+    "successMessage": "We will contact you as soon as possible. Thank you."
   },
   "footer": {
     "description": "Nakhchivan's leading food distribution company, a Sürkit Holding subsidiary.",

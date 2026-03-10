@@ -14,7 +14,8 @@
     "brands": "Brendlər",
     "distribution": "Paylama",
     "career": "Karyera",
-    "contact": "Əlaqə"
+    "contact": "Əlaqə",
+    "apply": "Müraciət"
   },
   "hero": {
     "eyebrow": "Naxçıvanın Lider Ərzaq Şirkəti",
@@ -159,6 +160,28 @@
     "subjectPartnership": "İş Ortaqlığı",
     "subjectCareer": "Karyera Müraciəti",
     "subjectGeneral": "Ümumi Məlumat"
+  },
+  "apply": {
+    "eyebrow": "Müştəri Müraciəti",
+    "title": "Bizimlə",
+    "titleEmphasis": "İşləmək",
+    "titleSuffix": "İstəyirsiniz?",
+    "description": "Market, restoran, otel və ya topdan satış məntəqəniz üçün Bizim Qida-nın etibarlı paylama şəbəkəsindən yararlanın. Müraciət formasını doldurun, sizinlə ən qısa zamanda əlaqə saxlayaq.",
+    "formBusinessName": "Müəssisə Adı",
+    "formBusinessType": "Müəssisə Növü",
+    "typeMarket": "Market",
+    "typeRestaurant": "Restoran",
+    "typeHotel": "Otel",
+    "typeCafe": "Kafe",
+    "typeOther": "Digər",
+    "formContactName": "Səlahiyyətli Şəxs",
+    "formPhone": "Telefon",
+    "formEmail": "E-mail",
+    "formAddress": "Ünvan",
+    "formMessage": "Mesaj / Qeyd",
+    "formSubmit": "Müraciəti Göndər",
+    "successTitle": "Müraciətiniz Qəbul Edildi!",
+    "successMessage": "Ən qısa zamanda sizinlə əlaqə saxlayacağıq. Təşəkkür edirik."
   },
   "footer": {
     "description": "Naxçıvanın lider ərzaq paylama şirkəti. Sürkit Holdinq bünyəsindədir.",

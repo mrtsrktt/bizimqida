@@ -14,7 +14,8 @@
     "brands": "Бренды",
     "distribution": "Дистрибуция",
     "career": "Карьера",
-    "contact": "Контакт"
+    "contact": "Контакт",
+    "apply": "Заявка"
   },
   "hero": {
     "eyebrow": "Ведущая продовольственная компания",
@@ -159,6 +160,28 @@
     "subjectPartnership": "Деловое партнёрство",
     "subjectCareer": "Заявка на вакансию",
     "subjectGeneral": "Общая информация"
+  },
+  "apply": {
+    "eyebrow": "Заявка клиента",
+    "title": "Хотите",
+    "titleEmphasis": "работать",
+    "titleSuffix": "с нами?",
+    "description": "Воспользуйтесь надёжной дистрибуторской сетью Bizim Qida для вашего магазина, ресторана, отеля или оптовой точки. Заполните форму заявки, и мы свяжемся с вами в ближайшее время.",
+    "formBusinessName": "Название предприятия",
+    "formBusinessType": "Тип предприятия",
+    "typeMarket": "Магазин",
+    "typeRestaurant": "Ресторан",
+    "typeHotel": "Отель",
+    "typeCafe": "Кафе",
+    "typeOther": "Другое",
+    "formContactName": "Контактное лицо",
+    "formPhone": "Телефон",
+    "formEmail": "Эл. почта",
+    "formAddress": "Адрес",
+    "formMessage": "Сообщение / Примечания",
+    "formSubmit": "Отправить заявку",
+    "successTitle": "Заявка принята!",
+    "successMessage": "Мы свяжемся с вами в ближайшее время. Спасибо."
   },
   "footer": {
     "description": "Ведущая компания по дистрибуции продовольствия, дочерняя компания Sürkit Holding.",

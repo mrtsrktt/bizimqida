@@ -1,0 +1,92 @@
+/* ============================================================
+   APPLY SECTION
+   ============================================================ */
+.applyWrap {
+  max-width: 680px;
+  margin: 0 auto;
+}
+
+.applyForm {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.formRow {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+
+.ff {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.ff label {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--text-soft);
+  font-weight: 400;
+}
+
+.ff input,
+.ff select,
+.ff textarea {
+  background: var(--off-white);
+  border: 1px solid var(--gray-light);
+  border-radius: 4px;
+  padding: 12px 16px;
+  color: var(--text);
+  font-family: var(--font-outfit, 'Outfit'), sans-serif;
+  font-size: 13px;
+  outline: none;
+  transition: border-color .2s;
+  resize: vertical;
+}
+
+.ff input:focus,
+.ff select:focus,
+.ff textarea:focus {
+  border-color: var(--gold);
+}
+
+/* Success message */
+.success {
+  text-align: center;
+  padding: 48px 24px;
+}
+
+.successIcon {
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: var(--gold-pale);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 28px;
+  margin: 0 auto 20px;
+}
+
+.success h3 {
+  font-family: var(--font-playfair, 'Playfair Display'), serif;
+  font-size: 28px;
+  color: var(--navy);
+  margin-bottom: 12px;
+}
+
+.success p {
+  font-size: 15px;
+  color: var(--text-soft);
+  line-height: 1.6;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .formRow {
+    grid-template-columns: 1fr;
+  }
+}

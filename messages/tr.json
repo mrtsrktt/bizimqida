@@ -14,7 +14,8 @@
     "brands": "Markalar",
     "distribution": "Dağıtım",
     "career": "Kariyer",
-    "contact": "İletişim"
+    "contact": "İletişim",
+    "apply": "Başvuru"
   },
   "hero": {
     "eyebrow": "Naxçıvan'ın Lider Gıda Şirketi",
@@ -159,6 +160,28 @@
     "subjectPartnership": "İş Ortaklığı",
     "subjectCareer": "Kariyer Başvurusu",
     "subjectGeneral": "Genel Bilgi"
+  },
+  "apply": {
+    "eyebrow": "Müşteri Başvurusu",
+    "title": "Bizimle",
+    "titleEmphasis": "Çalışmak",
+    "titleSuffix": "İster misiniz?",
+    "description": "Market, restoran, otel veya toptan satış noktanız için Bizim Qida'nın güvenilir dağıtım ağından yararlanın. Başvuru formunu doldurun, size en kısa sürede dönüş yapalım.",
+    "formBusinessName": "İşletme Adı",
+    "formBusinessType": "İşletme Türü",
+    "typeMarket": "Market",
+    "typeRestaurant": "Restoran",
+    "typeHotel": "Otel",
+    "typeCafe": "Cafe",
+    "typeOther": "Diğer",
+    "formContactName": "Yetkili Adı Soyadı",
+    "formPhone": "Telefon",
+    "formEmail": "E-mail",
+    "formAddress": "Adres",
+    "formMessage": "Mesaj / Not",
+    "formSubmit": "Başvuruyu Gönder",
+    "successTitle": "Başvurunuz Alındı!",
+    "successMessage": "En kısa sürede sizinle iletişime geçeceğiz. Teşekkür ederiz."
   },
   "footer": {
     "description": "Nahçıvan'ın lider gıda dağıtım şirketi. Sürkit Holding bünyesinde faaliyet göstermektedir.",

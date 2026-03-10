@@ -7,6 +7,7 @@ import BrandsGrid from '@/components/sections/BrandsGrid';
 import DistributionSection from '@/components/sections/DistributionSection';
 import NewsGrid from '@/components/sections/NewsGrid';
 import CareerSection from '@/components/sections/CareerSection';
+import ApplySection from '@/components/sections/ApplySection';
 import ContactSection from '@/components/sections/ContactSection';
 
 export default function HomePage() {
@@ -21,6 +22,7 @@ export default function HomePage() {
       <div id="distribution"><DistributionSection /></div>
       <div id="news"><NewsGrid /></div>
       <div id="career"><CareerSection /></div>
+      <div id="apply"><ApplySection /></div>
       <div id="contact"><ContactSection /></div>
     </>
   );
