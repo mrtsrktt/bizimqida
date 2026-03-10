@@ -2,17 +2,8 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import RevealOnScroll from '@/components/animations/RevealOnScroll';
+import NakhchivanMap from './NakhchivanMap';
 import styles from './DistributionSection.module.css';
-
-const regions = [
-  { name: 'Naxcivan Merkez', pct: 95 },
-  { name: 'Ordubad', pct: 80 },
-  { name: 'Serur', pct: 75 },
-  { name: 'Culfa', pct: 70 },
-  { name: 'Kengerli', pct: 65 },
-  { name: 'Babek', pct: 60 },
-  { name: 'Sederek', pct: 55 },
-];
 
 export default function DistributionSection() {
   const t = useTranslations('distribution');
@@ -53,25 +44,8 @@ export default function DistributionSection() {
           </div>
         </RevealOnScroll>
 
-        <RevealOnScroll>
-          <div className={styles.distMapCard}>
-            <h3>{t('mapTitle')}</h3>
-            <div className={styles.regionsGrid}>
-              {regions.map((r) => (
-                <div key={r.name} className={styles.regionRow}>
-                  <span className={styles.rrName}>{r.name}</span>
-                  <div className={styles.rrBar}>
-                    <div
-                      className={styles.rrFill}
-                      style={{ width: `${r.pct}%` }}
-                    />
-                  </div>
-                  <span className={styles.rrPct}>{r.pct}%</span>
-                </div>
-              ))}
-            </div>
-          </div>
-        </RevealOnScroll>
+        {/* Animated SVG Map */}
+        <NakhchivanMap />
 
         <RevealOnScroll>
           <div className={styles.fleetImage}>

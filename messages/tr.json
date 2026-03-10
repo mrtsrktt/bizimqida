@@ -116,7 +116,12 @@
     "fleetDesc": "Soğutmalı araçlar dahil tüm bölgelere günlük teslimat imkânı.",
     "warehouseTitle": "Büyük Depo Kapasitesi",
     "warehouseDesc": "Kuru, soğuk ve dondurulmuş ürünler için ayrı bölümlere sahip depo.",
-    "mapTitle": "Nahçıvan Dağıtım Bölgeleri"
+    "mapTitle": "Nahçıvan Dağıtım Bölgeleri",
+    "mapTooltipCoverage": "Kapsama Alanı",
+    "mapLegendHub": "Merkez Depo",
+    "mapLegendRoute": "Dağıtım Güzergahı",
+    "mapLegendCity": "Dağıtım Noktası",
+    "mapHoverPrompt": "Bölge detayları için haritaya tıklayın"
   },
   "news": {
     "eyebrow": "Haberler & Duyurular",

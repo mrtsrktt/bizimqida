@@ -116,7 +116,12 @@
     "fleetDesc": "Soyuducu vasitələr daxil bütün bölgələrə gündəlik çatdırılma.",
     "warehouseTitle": "Böyük Anbar Sahəsi",
     "warehouseDesc": "Quru, soyuq və dondurulmuş məhsullar üçün ayrıca bölmələr.",
-    "mapTitle": "Naxçıvan Paylama Bölgələri"
+    "mapTitle": "Naxçıvan Paylama Bölgələri",
+    "mapTooltipCoverage": "Əhatə Sahəsi",
+    "mapLegendHub": "Mərkəz Anbar",
+    "mapLegendRoute": "Paylama Marşrutu",
+    "mapLegendCity": "Paylama Nöqtəsi",
+    "mapHoverPrompt": "Bölgə detalları üçün xəritəyə klikləyin"
   },
   "news": {
     "eyebrow": "Xəbərlər & Elanlar",

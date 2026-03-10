@@ -116,7 +116,12 @@
     "fleetDesc": "Daily delivery capability including refrigerated vehicles across all regions.",
     "warehouseTitle": "Large Warehouse Capacity",
     "warehouseDesc": "Separate sections for dry, chilled, and frozen products.",
-    "mapTitle": "Nakhchivan Distribution Regions"
+    "mapTitle": "Nakhchivan Distribution Regions",
+    "mapTooltipCoverage": "Coverage Area",
+    "mapLegendHub": "Central Warehouse",
+    "mapLegendRoute": "Distribution Route",
+    "mapLegendCity": "Distribution Point",
+    "mapHoverPrompt": "Click on the map for region details"
   },
   "news": {
     "eyebrow": "News & Announcements",

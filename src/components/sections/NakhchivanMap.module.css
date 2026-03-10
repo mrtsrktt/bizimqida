@@ -1,0 +1,386 @@
+/* ============================================================
+   NAKHCHIVAN DISTRIBUTION MAP — Premium Animated SVG
+   ============================================================ */
+
+/* Keyframes */
+@keyframes hubPulse {
+  0%   { r: 16; opacity: 0.6; stroke-width: 1.5; }
+  100% { r: 36; opacity: 0; stroke-width: 0.5; }
+}
+
+@keyframes hubGlow {
+  0%   { opacity: 0.4; }
+  50%  { opacity: 1; }
+  100% { opacity: 0.4; }
+}
+
+@keyframes dotAppear {
+  0%   { r: 0; opacity: 0; }
+  60%  { r: 7; opacity: 1; }
+  100% { r: 5; opacity: 1; }
+}
+
+@keyframes labelFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+@keyframes outlineDraw {
+  from { stroke-dashoffset: 2200; }
+  to   { stroke-dashoffset: 0; }
+}
+
+@keyframes districtFadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+
+/* Container */
+.mapContainer {
+  background: linear-gradient(145deg, #060f22 0%, var(--navy) 40%, #0f2347 100%);
+  border-radius: 12px;
+  padding: 40px 48px 36px;
+  position: relative;
+  overflow: hidden;
+}
+
+.mapTitle {
+  font-family: var(--font-playfair, 'Playfair Display'), serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 8px;
+  position: relative;
+  z-index: 2;
+}
+
+/* Subtle grid overlay */
+.gridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200, 169, 81, 0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 169, 81, 0.025) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Corner glow */
+.mapContainer::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  right: -100px;
+  width: 350px;
+  height: 350px;
+  background: radial-gradient(circle, rgba(200, 169, 81, 0.06) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+.mapContainer::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 250px;
+  height: 250px;
+  background: radial-gradient(circle, rgba(200, 169, 81, 0.04) 0%, transparent 60%);
+  pointer-events: none;
+}
+
+/* SVG wrapper */
+.svgWrap {
+  position: relative;
+  z-index: 1;
+}
+
+.mapSvg {
+  width: 100%;
+  height: auto;
+  display: block;
+}
+
+/* Region outline */
+.regionOutline {
+  fill: none;
+  stroke: rgba(200, 169, 81, 0.3);
+  stroke-width: 1.5;
+  stroke-dasharray: 2200;
+  stroke-dashoffset: 2200;
+}
+
+.active .regionOutline {
+  animation: outlineDraw 1.5s ease-out forwards;
+}
+
+/* District boundaries */
+.districtBoundary {
+  fill: none;
+  stroke: rgba(200, 169, 81, 0.1);
+  stroke-width: 0.8;
+  stroke-dasharray: 4 4;
+  opacity: 0;
+}
+
+.active .districtBoundary {
+  animation: districtFadeIn 0.6s ease-out 0.5s forwards;
+}
+
+/* District fill areas */
+.districtArea {
+  fill: rgba(200, 169, 81, 0.02);
+  stroke: none;
+  cursor: pointer;
+  transition: fill 0.3s ease;
+}
+
+.districtArea:hover,
+.districtHighlight {
+  fill: rgba(200, 169, 81, 0.1);
+}
+
+/* Route lines from hub to cities */
+.routeLine {
+  stroke: rgba(200, 169, 81, 0.5);
+  stroke-width: 1.5;
+  fill: none;
+  transition: stroke-dashoffset 0.8s ease-out, stroke 0.3s, stroke-width 0.3s;
+}
+
+.routeHighlight {
+  stroke: rgba(200, 169, 81, 0.9);
+  stroke-width: 2.5;
+}
+
+/* Hub marker */
+.hubOuter {
+  fill: rgba(200, 169, 81, 0.12);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.active .hubOuter {
+  opacity: 1;
+  transition-delay: 0.8s;
+}
+
+.hubInner {
+  fill: var(--gold);
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.active .hubInner {
+  opacity: 1;
+  transition-delay: 0.8s;
+  animation: hubGlow 3s ease-in-out 1.2s infinite;
+}
+
+.hubPulse {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1.5;
+  opacity: 0;
+}
+
+.active .hubPulse {
+  animation: hubPulse 2.5s ease-out 1.2s infinite;
+}
+
+.hubPulse2 {
+  fill: none;
+  stroke: var(--gold);
+  stroke-width: 1;
+  opacity: 0;
+}
+
+.active .hubPulse2 {
+  animation: hubPulse 2.5s ease-out 2s infinite;
+}
+
+/* City dots */
+.cityDot {
+  fill: var(--gold-light);
+  r: 0;
+  opacity: 0;
+}
+
+.active .cityDot {
+  animation: dotAppear 0.5s ease-out forwards;
+}
+
+.cityDotHover {
+  fill: var(--gold);
+  filter: drop-shadow(0 0 6px rgba(200, 169, 81, 0.6));
+}
+
+/* City labels */
+.cityLabel {
+  font-size: 11px;
+  fill: rgba(255, 255, 255, 0.6);
+  text-anchor: middle;
+  font-family: var(--font-outfit, 'Outfit'), sans-serif;
+  font-weight: 400;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.active .cityLabel {
+  animation: labelFadeIn 0.4s ease-out forwards;
+}
+
+.hubLabel {
+  font-size: 13px;
+  fill: var(--gold);
+  font-weight: 600;
+  letter-spacing: 0.05em;
+}
+
+.labelHighlight {
+  fill: rgba(255, 255, 255, 0.95);
+}
+
+/* Hover info bar */
+.infoBar {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+  margin-top: 16px;
+  padding: 14px 24px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(200, 169, 81, 0.1);
+  border-radius: 8px;
+  min-height: 50px;
+  transition: all 0.3s ease;
+}
+
+.infoBarActive {
+  border-color: rgba(200, 169, 81, 0.25);
+  background: rgba(200, 169, 81, 0.06);
+}
+
+.infoCityName {
+  font-family: var(--font-playfair, 'Playfair Display'), serif;
+  font-size: 18px;
+  color: var(--gold);
+  font-weight: 600;
+}
+
+.infoPct {
+  font-family: var(--font-playfair, 'Playfair Display'), serif;
+  font-size: 28px;
+  font-weight: 700;
+  color: var(--white);
+}
+
+.infoLabel {
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.45);
+}
+
+.infoPrompt {
+  font-size: 13px;
+  color: rgba(255, 255, 255, 0.35);
+  font-style: italic;
+}
+
+.infoDivider {
+  width: 1px;
+  height: 28px;
+  background: rgba(200, 169, 81, 0.2);
+}
+
+/* Legend */
+.legend {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 32px;
+  margin-top: 16px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.4);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.legendHub {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gold);
+  box-shadow: 0 0 6px rgba(200, 169, 81, 0.5);
+}
+
+.legendRoute {
+  width: 24px;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, var(--gold));
+}
+
+.legendCity {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--gold-light);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .mapContainer {
+    padding: 28px 20px 24px;
+  }
+
+  .mapTitle {
+    font-size: 20px;
+  }
+
+  .cityLabel {
+    font-size: 9px;
+  }
+
+  .hubLabel {
+    font-size: 11px;
+  }
+
+  .legend {
+    gap: 16px;
+  }
+
+  .legendItem {
+    font-size: 10px;
+  }
+
+  .infoBar {
+    gap: 12px;
+    padding: 12px 16px;
+  }
+
+  .infoPct {
+    font-size: 22px;
+  }
+
+  .infoCityName {
+    font-size: 15px;
+  }
+}
+
+@media (max-width: 480px) {
+  .mapContainer {
+    padding: 20px 12px 16px;
+  }
+
+  .legend {
+    flex-direction: column;
+    gap: 8px;
+  }
+}
