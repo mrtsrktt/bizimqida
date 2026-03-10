@@ -1,0 +1,167 @@
+/* ============================================================
+   DISTRIBUTION SECTION
+   ============================================================ */
+.wrapper {
+  background: var(--navy);
+  overflow: hidden;
+  position: relative;
+}
+
+.diagTop {
+  height: 80px;
+  background: var(--white);
+  clip-path: polygon(0 0, 100% 0, 100% 30%, 0 100%);
+}
+
+.diagBottom {
+  height: 80px;
+  background: var(--off-white);
+  clip-path: polygon(0 0, 100% 70%, 100% 100%, 0 100%);
+}
+
+.inner {
+  padding: 40px 40px 80px;
+}
+
+.topGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 24px;
+  align-items: start;
+  margin-bottom: 20px;
+}
+
+/* Distribution feature points */
+.distPoints {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.dp {
+  display: flex;
+  gap: 20px;
+}
+
+.dpIcon {
+  width: 52px;
+  height: 52px;
+  flex-shrink: 0;
+  background: var(--gold-pale);
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 22px;
+}
+
+.dp h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 6px;
+}
+
+.dp p {
+  font-size: 13px;
+  color: var(--text-soft);
+  line-height: 1.65;
+  font-weight: 300;
+}
+
+/* Map card */
+.distMapCard {
+  background: var(--navy);
+  border-radius: 8px;
+  padding: 48px;
+  position: relative;
+  overflow: hidden;
+}
+
+.distMapCard::before {
+  content: '';
+  position: absolute;
+  top: -80px;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(200,169,81,0.07) 0%, transparent 60%);
+}
+
+.distMapCard h3 {
+  font-family: var(--font-playfair, 'Playfair Display'), serif;
+  font-size: 24px;
+  font-weight: 600;
+  color: var(--gold-light);
+  margin-bottom: 36px;
+}
+
+.regionsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px 60px;
+}
+
+.regionRow {
+  display: flex;
+  align-items: center;
+  padding: 13px 0;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+.regionRow:last-child {
+  border-bottom: none;
+}
+
+.rrName {
+  font-size: 13px;
+  color: rgba(255,255,255,0.75);
+  min-width: 130px;
+}
+
+.rrBar {
+  flex: 1;
+  height: 4px;
+  background: rgba(255,255,255,0.07);
+  border-radius: 2px;
+  margin: 0 16px;
+  overflow: hidden;
+}
+
+.rrFill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--gold), var(--gold-light));
+  border-radius: 2px;
+  transition: width 1s ease;
+}
+
+.rrPct {
+  font-size: 12px;
+  color: var(--gold);
+  font-weight: 500;
+  min-width: 36px;
+  text-align: right;
+}
+
+/* Fleet image */
+.fleetImage {
+  margin-top: 48px;
+  border-radius: 12px;
+  overflow: hidden;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .topGrid {
+    grid-template-columns: 1fr;
+  }
+  .regionsGrid {
+    grid-template-columns: 1fr;
+  }
+  .distMapCard {
+    padding: 28px;
+  }
+  .inner {
+    padding: 40px 20px 60px;
+  }
+}

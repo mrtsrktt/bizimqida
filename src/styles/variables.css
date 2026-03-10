@@ -1,0 +1,23 @@
+/* ============================================================
+   DESIGN SYSTEM — Surkit Holding Uyumlu Renk Paleti
+   Navy + Gold + White (Best Brands mimari duzeni)
+   ============================================================ */
+:root {
+  --navy:       #0D1E40;
+  --navy-deep:  #081429;
+  --navy-mid:   #162952;
+  --navy-soft:  #1E3A6E;
+  --gold:       #C8A951;
+  --gold-light: #E5CB7A;
+  --gold-pale:  #F5EDD0;
+  --white:      #FFFFFF;
+  --off-white:  #F7F8FA;
+  --gray-light: #EEF0F4;
+  --gray:       #C4C9D4;
+  --text:       #2A3347;
+  --text-soft:  #5A6479;
+  --accent:     #1A5C96;
+  --radius:     4px;
+  --shadow:     0 8px 40px rgba(13,30,64,0.12);
+  --shadow-lg:  0 20px 80px rgba(13,30,64,0.18);
+}

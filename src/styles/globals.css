@@ -1,0 +1,96 @@
+@import './variables.css';
+@import './animations.css';
+
+/* ============================================================
+   GLOBAL RESET
+   ============================================================ */
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{font-family:var(--font-outfit, 'Outfit'),sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
+img{max-width:100%;}
+a{text-decoration:none;color:inherit;}
+
+/* ============================================================
+   SECTION UTILITY
+   ============================================================ */
+.section{padding:100px 0;}
+.section-inner{max-width:1280px;margin:0 auto;padding:0 40px;}
+.section-bg-gray{background:var(--off-white);}
+.section-bg-navy{background:var(--navy);}
+.eyebrow{
+  display:inline-flex;align-items:center;gap:10px;
+  font-size:11px;letter-spacing:0.2em;text-transform:uppercase;
+  color:var(--gold);font-weight:500;margin-bottom:14px;
+}
+.eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--gold);}
+h2.section-h{
+  font-family:var(--font-playfair, 'Playfair Display'),serif;
+  font-size:clamp(32px,4vw,52px);font-weight:700;
+  line-height:1.1;color:var(--navy);margin-bottom:16px;
+}
+h2.section-h em{font-style:italic;color:var(--gold);}
+h2.section-h.light{color:var(--white);}
+.section-p{font-size:15px;line-height:1.8;color:var(--text-soft);font-weight:300;max-width:580px;}
+.section-p.light{color:rgba(255,255,255,0.6);}
+
+/* ============================================================
+   SCROLL REVEAL
+   ============================================================ */
+.reveal{opacity:0;transform:translateY(32px);transition:opacity .6s ease,transform .6s ease;}
+.reveal.visible{opacity:1;transform:translateY(0);}
+
+/* ============================================================
+   DIAGONAL DIVIDERS
+   ============================================================ */
+.diag-bottom-white::after{
+  content:'';display:block;height:80px;
+  background:var(--white);
+  clip-path:polygon(0 0,100% 60%,100% 100%,0 100%);
+  margin-top:-1px;
+}
+.diag-bottom-gray::after{
+  content:'';display:block;height:80px;
+  background:var(--off-white);
+  clip-path:polygon(0 0,100% 60%,100% 100%,0 100%);
+  margin-top:-1px;
+}
+.diag-top-white::before{
+  content:'';display:block;height:80px;
+  background:var(--white);
+  clip-path:polygon(0 0,100% 0,100% 40%,0 100%);
+  margin-bottom:-1px;
+}
+.diag-top-navy::before{
+  content:'';display:block;height:80px;
+  background:var(--navy);
+  clip-path:polygon(0 0,100% 0,100% 40%,0 100%);
+  margin-bottom:-1px;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+.btn-primary{
+  padding:14px 32px;background:var(--gold);color:var(--navy);
+  font-size:13px;font-weight:600;letter-spacing:0.08em;
+  text-transform:uppercase;border-radius:var(--radius);
+  transition:all .3s;display:inline-block;
+}
+.btn-primary:hover{background:var(--gold-light);transform:translateY(-2px);box-shadow:0 8px 24px rgba(200,169,81,0.35);}
+
+.btn-ghost{
+  padding:14px 32px;border:1px solid rgba(255,255,255,0.3);
+  color:var(--white);font-size:13px;font-weight:400;
+  letter-spacing:0.08em;text-transform:uppercase;
+  border-radius:var(--radius);transition:all .3s;display:inline-block;
+}
+.btn-ghost:hover{border-color:var(--gold);color:var(--gold);}
+
+.btn-nav{
+  padding:14px 32px;background:var(--navy);color:var(--white);
+  font-size:13px;font-weight:500;letter-spacing:0.06em;
+  text-transform:uppercase;border:none;
+  border-radius:var(--radius);cursor:pointer;
+  transition:all .3s;align-self:flex-start;
+}
+.btn-nav:hover{background:var(--gold);color:var(--navy);}

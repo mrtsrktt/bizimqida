@@ -1,0 +1,133 @@
+/* ============================================================
+   FOOTER
+   ============================================================ */
+.footer {
+  background: var(--navy-deep);
+  padding: 64px 0 0;
+  border-top: 1px solid rgba(255,255,255,0.05);
+}
+
+.footer-grid {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 2.2fr 1fr 1fr 1.2fr;
+  gap: 60px;
+  padding-bottom: 48px;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+
+/* Footer Brand (first column) */
+.footer-brand .logo-name {
+  color: var(--white);
+}
+
+.footer-brand p {
+  font-size: 13px;
+  color: rgba(255,255,255,0.4);
+  line-height: 1.7;
+  margin-top: 16px;
+  font-weight: 300;
+}
+
+/* Footer brand logo reuse */
+.footer-brand .nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.footer-brand .logo-hex {
+  width: 44px;
+  height: 44px;
+  background: linear-gradient(135deg, var(--navy), var(--navy-mid));
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--gold);
+  letter-spacing: 0;
+}
+
+.footer-brand .logo-text-wrap {
+  line-height: 1.15;
+}
+
+.footer-brand .logo-name span {
+  color: var(--gold);
+}
+
+/* Foot columns */
+.foot-col h5 {
+  font-size: 10px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.foot-col a {
+  display: block;
+  font-size: 13px;
+  color: rgba(255,255,255,0.45);
+  margin-bottom: 10px;
+  transition: color .2s;
+  text-decoration: none;
+}
+
+.foot-col a:hover {
+  color: var(--white);
+}
+
+/* Footer Bottom */
+.footer-bottom {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 20px 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.footer-bottom p,
+.footer-bottom span {
+  font-size: 12px;
+  color: rgba(255,255,255,0.25);
+}
+
+.surkit-ref {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 12px;
+  color: rgba(255,255,255,0.3);
+}
+
+.surkit-ref span {
+  color: var(--gold);
+  opacity: 0.7;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .footer-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    padding: 0 20px;
+    padding-bottom: 40px;
+  }
+
+  .footer-bottom {
+    padding: 20px;
+    flex-direction: column;
+    gap: 12px;
+    text-align: center;
+  }
+}

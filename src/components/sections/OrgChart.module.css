@@ -1,0 +1,295 @@
+/* ============================================================
+   OrgChart — Management Organization Chart
+   ============================================================ */
+
+.mgmtIntro {
+  text-align: center;
+}
+
+.mgmtIntro .sectionP {
+  margin: 0 auto;
+}
+
+/* Org chart wrapper — allows horizontal scroll on small screens */
+.orgWrap {
+  width: 100%;
+  overflow-x: auto;
+  padding: 20px 0;
+}
+
+.orgChart {
+  min-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0;
+}
+
+/* Tier row */
+.tier {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  position: relative;
+}
+
+/* Person Card */
+.pcard {
+  background: var(--white);
+  border: 1px solid var(--gray-light);
+  border-radius: 8px;
+  padding: 28px 24px;
+  text-align: center;
+  min-width: 180px;
+  max-width: 210px;
+  transition: all 0.3s;
+  position: relative;
+  overflow: hidden;
+}
+
+.pcard::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s;
+}
+
+.pcard:hover::after {
+  transform: scaleX(1);
+}
+
+.pcard:hover {
+  border-color: rgba(200, 169, 81, 0.4);
+  box-shadow: var(--shadow);
+}
+
+/* CEO variant */
+.ceo {
+  min-width: 220px;
+  max-width: 260px;
+  border-top: 3px solid var(--gold);
+  box-shadow: var(--shadow);
+}
+
+/* Avatar */
+.pcardAvatar {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+  margin: 0 auto 14px;
+  overflow: hidden;
+  background: linear-gradient(135deg, var(--navy-mid), var(--navy-soft));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: var(--font-playfair, 'Playfair Display'), serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--gold);
+  border: 2px solid var(--gold-pale);
+}
+
+.ceo .pcardAvatar {
+  width: 96px;
+  height: 96px;
+  font-size: 28px;
+}
+
+/* Tier 1 holding card — special navy background */
+.holding {
+  border-top-color: #081429;
+  background: var(--navy);
+  color: white;
+}
+
+.holding .pcardAvatar {
+  background: rgba(200, 169, 81, 0.15);
+  color: var(--gold);
+}
+
+.holding .pcardName {
+  color: white;
+}
+
+.holding .pcardDesc {
+  color: rgba(255, 255, 255, 0.5);
+}
+
+/* Name */
+.pcardName {
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 4px;
+}
+
+.ceo .pcardName {
+  font-size: 16px;
+}
+
+/* Title/Role */
+.pcardTitle {
+  font-size: 11px;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+  margin-bottom: 8px;
+}
+
+/* Description */
+.pcardDesc {
+  font-size: 12px;
+  color: var(--text-soft);
+  line-height: 1.5;
+}
+
+/* ============================================================
+   TREE CONNECTORS
+   ============================================================ */
+
+/* Single vertical connector */
+.connectorSingle {
+  display: flex;
+  justify-content: center;
+  height: 48px;
+}
+
+.connectorSingleLine {
+  width: 2px;
+  height: 48px;
+  background: linear-gradient(var(--gold), rgba(200, 169, 81, 0.4));
+}
+
+/* Multi connector: vertical from parent + horizontal bar + 4 vertical drops */
+.connectorMulti {
+  position: relative;
+  width: 880px;
+  height: 48px;
+  margin: 0 auto;
+}
+
+.connectorHBar {
+  position: absolute;
+  top: 0;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: rgba(200, 169, 81, 0.3);
+}
+
+.connectorDrop {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 48px;
+  background: rgba(200, 169, 81, 0.4);
+}
+
+.connectorCenterUp {
+  position: absolute;
+  top: -48px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 2px;
+  height: 48px;
+  background: linear-gradient(var(--gold), rgba(200, 169, 81, 0.3));
+}
+
+/* Lower tier connector (lighter opacity) */
+.connectorMultiLower {
+  position: relative;
+  width: 880px;
+  height: 48px;
+  margin: 0 auto;
+}
+
+.connectorHBarLower {
+  position: absolute;
+  top: 0;
+  left: 12.5%;
+  right: 12.5%;
+  height: 2px;
+  background: rgba(200, 169, 81, 0.15);
+}
+
+.connectorDropLower {
+  position: absolute;
+  top: 0;
+  width: 2px;
+  height: 48px;
+  background: rgba(200, 169, 81, 0.2);
+}
+
+/* Tier 3 directors — slightly smaller avatar override */
+.directorAvatar {
+  width: 64px !important;
+  height: 64px !important;
+  font-size: 18px !important;
+}
+
+/* Tier 4 department heads — compact cards */
+.deptCard {
+  min-width: 160px;
+  max-width: 180px;
+  padding: 20px 18px;
+}
+
+.deptAvatar {
+  width: 52px !important;
+  height: 52px !important;
+  font-size: 14px !important;
+  background: var(--gray-light) !important;
+  color: var(--navy) !important;
+}
+
+.deptName {
+  font-size: 12px !important;
+}
+
+.deptTitle {
+  font-size: 10px !important;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .orgChart {
+    min-width: auto;
+  }
+
+  .tier {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .connectorMulti,
+  .connectorMultiLower {
+    display: none;
+  }
+
+  .pcard {
+    min-width: auto;
+    max-width: 260px;
+    width: 100%;
+  }
+
+  .ceo {
+    min-width: auto;
+    max-width: 280px;
+    width: 100%;
+  }
+
+  .deptCard {
+    min-width: auto;
+    max-width: 220px;
+  }
+}

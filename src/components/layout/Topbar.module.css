@@ -1,0 +1,102 @@
+/* ============================================================
+   TOP INFO BAR — Best Brands gibi ince bilgi cubugu
+   ============================================================ */
+.topbar {
+  background: var(--navy-deep);
+  padding: 8px 0;
+  font-size: 12px;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.06em;
+}
+
+.topbar-inner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.topbar a {
+  color: rgba(255,255,255,0.6);
+  transition: color .2s;
+  text-decoration: none;
+}
+
+.topbar a:hover {
+  color: var(--gold);
+}
+
+.topbar-left {
+  display: flex;
+  gap: 24px;
+  align-items: center;
+}
+
+.topbar-right {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+}
+
+.topbar-social {
+  display: flex;
+  gap: 12px;
+}
+
+.topbar-social a {
+  width: 26px;
+  height: 26px;
+  border: 1px solid rgba(255,255,255,0.15);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  transition: all .2s;
+}
+
+.topbar-social a:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+.lang-switcher {
+  display: flex;
+  gap: 4px;
+}
+
+.lang-btn {
+  padding: 3px 9px;
+  background: none;
+  border: 1px solid transparent;
+  color: rgba(255,255,255,0.5);
+  font-family: 'Outfit', sans-serif;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.08em;
+  cursor: pointer;
+  border-radius: 2px;
+  transition: all .2s;
+}
+
+.lang-btn.active,
+.lang-btn:hover {
+  border-color: var(--gold);
+  color: var(--gold);
+}
+
+@media (max-width: 900px) {
+  .topbar-inner {
+    padding: 0 20px;
+    flex-wrap: wrap;
+    gap: 8px;
+    justify-content: center;
+  }
+
+  .topbar-left {
+    gap: 16px;
+    font-size: 11px;
+  }
+}

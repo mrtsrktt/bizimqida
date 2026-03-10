@@ -1,0 +1,231 @@
+/* ============================================================
+   HERO KEYFRAMES (scoped to this module)
+   ============================================================ */
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@keyframes heroPulse {
+  0% { background: linear-gradient(130deg, #081429 0%, #0D1E40 40%, #1E3A6E 100%); }
+  100% { background: linear-gradient(150deg, #0a1830 0%, #0f2347 40%, #162952 100%); }
+}
+@keyframes glowFloat {
+  0% { transform: translateY(0) scale(1); }
+  100% { transform: translateY(40px) scale(1.05); }
+}
+
+/* ============================================================
+   HERO — Full viewport, diagonal bottom cut
+   ============================================================ */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+}
+
+/* Animated gradient background */
+.heroBg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(130deg, var(--navy-deep) 0%, var(--navy) 40%, var(--navy-soft) 100%);
+  animation: heroPulse 8s ease-in-out infinite alternate;
+}
+
+.heroGridOverlay {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(200, 169, 81, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200, 169, 81, 0.04) 1px, transparent 1px);
+  background-size: 60px 60px;
+}
+
+.heroGlow {
+  position: absolute;
+  right: -200px;
+  top: -100px;
+  width: 700px;
+  height: 700px;
+  background: radial-gradient(circle, rgba(200, 169, 81, 0.08) 0%, transparent 65%);
+  animation: glowFloat 6s ease-in-out infinite alternate;
+}
+
+/* Diagonal bottom cut — rendered as a child div */
+.heroDiag {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 120px;
+  background: var(--white);
+  clip-path: polygon(0 80%, 100% 0%, 100% 100%, 0 100%);
+  z-index: 3;
+}
+
+.heroContent {
+  position: relative;
+  z-index: 2;
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  padding-top: 80px;
+  padding-bottom: 140px;
+}
+
+.heroEyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: slideUp 0.7s 0.2s forwards;
+}
+
+.heroEyebrow .dot {
+  width: 32px;
+  height: 1px;
+  background: var(--gold);
+}
+
+.heroEyebrow span {
+  font-size: 11px;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--gold);
+  font-weight: 500;
+}
+
+.heroH1 {
+  font-family: var(--font-playfair, 'Playfair Display'), serif;
+  font-size: clamp(42px, 5vw, 72px);
+  font-weight: 700;
+  line-height: 1.08;
+  color: var(--white);
+  margin-bottom: 24px;
+  opacity: 0;
+  animation: slideUp 0.7s 0.4s forwards;
+}
+
+.heroH1 em {
+  font-style: italic;
+  color: var(--gold-light);
+}
+
+.heroP {
+  font-size: 16px;
+  line-height: 1.75;
+  color: rgba(255, 255, 255, 0.65);
+  font-weight: 300;
+  max-width: 480px;
+  margin-bottom: 44px;
+  opacity: 0;
+  animation: slideUp 0.7s 0.6s forwards;
+}
+
+.heroActions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  opacity: 0;
+  animation: slideUp 0.7s 0.8s forwards;
+}
+
+/* Hero stat cards */
+.heroStats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 3px;
+  opacity: 0;
+  animation: fadeIn 0.9s 0.9s forwards;
+}
+
+.hstat {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.07);
+  backdrop-filter: blur(12px);
+  padding: 32px 28px;
+  transition: background 0.3s;
+}
+
+.hstat:hover {
+  background: rgba(255, 255, 255, 0.09);
+}
+
+.hstatN {
+  font-family: var(--font-playfair, 'Playfair Display'), serif;
+  font-size: 48px;
+  font-weight: 700;
+  color: var(--gold);
+  line-height: 1;
+  margin-bottom: 6px;
+}
+
+.hstatL {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+/* Holding strip */
+.holdingStrip {
+  background: var(--navy);
+  padding: 24px 0;
+}
+
+.holdingStripInner {
+  max-width: 1280px;
+  margin: 0 auto;
+  padding: 0 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.hsLine {
+  flex: 1;
+  max-width: 180px;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 169, 81, 0.3));
+}
+
+.hsLineR {
+  flex: 1;
+  max-width: 180px;
+  height: 1px;
+  background: linear-gradient(90deg, rgba(200, 169, 81, 0.3), transparent);
+}
+
+.holdingStrip p {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.55);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  text-align: center;
+}
+
+.holdingStrip strong {
+  color: var(--gold);
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .heroContent {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+}

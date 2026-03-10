@@ -1,0 +1,102 @@
+/* ============================================================
+   ServicesGrid — Services Section
+   ============================================================ */
+
+/* Diagonal transitions */
+.diagTop {
+  height: 80px;
+  background: var(--white);
+  clip-path: polygon(0 0, 100% 0, 100% 100%, 0 30%);
+}
+
+.diagBottom {
+  height: 80px;
+  background: var(--white);
+  clip-path: polygon(0 70%, 100% 0, 100% 100%, 0 100%);
+}
+
+/* Services grid */
+.svcGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 2px;
+  margin-top: 60px;
+}
+
+/* Service card */
+.svc {
+  background: var(--white);
+  padding: 44px 36px;
+  border-left: 2px solid transparent;
+  transition: all 0.3s;
+  cursor: default;
+  position: relative;
+  overflow: hidden;
+}
+
+.svc::before {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 3px;
+  background: var(--gold);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.4s ease;
+}
+
+.svc:hover::before {
+  transform: scaleX(1);
+}
+
+.svc:hover {
+  border-left-color: var(--gold);
+  background: var(--off-white);
+}
+
+/* Service number */
+.svcNum {
+  font-family: var(--font-playfair, 'Playfair Display'), serif;
+  font-size: 56px;
+  font-weight: 700;
+  color: rgba(13, 30, 64, 0.06);
+  line-height: 1;
+  margin-bottom: 20px;
+}
+
+/* Service title */
+.svcTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--navy);
+  margin-bottom: 10px;
+}
+
+/* Service description */
+.svcDesc {
+  font-size: 13px;
+  color: var(--text-soft);
+  line-height: 1.7;
+  font-weight: 300;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 900px) {
+  .svcGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+@media (max-width: 600px) {
+  .svcGrid {
+    grid-template-columns: 1fr;
+  }
+
+  .svc {
+    padding: 32px 24px;
+  }
+}
