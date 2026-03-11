@@ -93,27 +93,27 @@ export default function Hero() {
           <div className={styles.heroStats}>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
-                <CountUp target={25} suffix="+" />
+                <CountUp target={1995} />
               </div>
-              <div className={styles.hstatL}>{t('statYears')}</div>
+              <div className={styles.hstatL}>{t('statFounded')}</div>
             </div>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
-                <CountUp target={500} suffix="+" />
-              </div>
-              <div className={styles.hstatL}>{t('statClients')}</div>
-            </div>
-            <div className={styles.hstat}>
-              <div className={styles.hstatN}>
-                <CountUp target={1200} suffix="+" />
+                <CountUp target={1500} suffix="+" />
               </div>
               <div className={styles.hstatL}>{t('statProducts')}</div>
             </div>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
-                <CountUp target={7} />
+                <CountUp target={35} />
               </div>
-              <div className={styles.hstatL}>{t('statZones')}</div>
+              <div className={styles.hstatL}>{t('statVehicles')}</div>
+            </div>
+            <div className={styles.hstat}>
+              <div className={styles.hstatN}>
+                <CountUp target={70} />
+              </div>
+              <div className={styles.hstatL}>{t('statStaff')}</div>
             </div>
           </div>
         </div>

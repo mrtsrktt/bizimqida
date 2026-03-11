@@ -24,10 +24,10 @@
     "description": "Sürkit Holdinq çərçivəsində Naxçıvanın ən böyük ərzaq paylama şirkəti kimi 25 illik təcrübəmizlə regionun ərzaq təchizat zəncirini gücləndiririk.",
     "ctaPrimary": "Bizi Tanıyın",
     "ctaSecondary": "Əlaqə Saxla",
-    "statYears": "İllik Təcrübə",
-    "statClients": "Aktiv Müştəri",
+    "statFounded": "Quruluş İli",
     "statProducts": "Məhsul Çeşidi",
-    "statZones": "Paylama Bölgəsi"
+    "statVehicles": "Nəqliyyat Sayı",
+    "statStaff": "Personal Sayı"
   },
   "holdingStrip": {
     "text": "Bölgənin lider qida tədarük zənciri Bizim Qida MMC · Bir {holding} iştirakıdır."

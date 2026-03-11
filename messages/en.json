@@ -24,10 +24,10 @@
     "description": "As Nakhchivan's largest food distribution company within Sürkit Holding, we strengthen the region's food supply chain with over 25 years of experience.",
     "ctaPrimary": "Discover Us",
     "ctaSecondary": "Get in Touch",
-    "statYears": "Years Experience",
-    "statClients": "Active Clients",
+    "statFounded": "Year Founded",
     "statProducts": "Product SKUs",
-    "statZones": "Distribution Zones"
+    "statVehicles": "Vehicles",
+    "statStaff": "Staff Members"
   },
   "holdingStrip": {
     "text": "The region's leading food supply chain Bizim Qida LLC · A {holding} subsidiary."

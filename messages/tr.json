@@ -24,10 +24,10 @@
     "description": "Sürkit Holding bünyesinde, Nahçıvan'ın en büyük gıda dağıtım şirketi olarak 25 yılı aşkın tecrübemizle bölgenin gıda tedarik zincirini güçlendiriyoruz.",
     "ctaPrimary": "Bizi Tanıyın",
     "ctaSecondary": "İletişime Geç",
-    "statYears": "Yıllık Deneyim",
-    "statClients": "Aktif Müşteri",
+    "statFounded": "Kuruluş Yılı",
     "statProducts": "Ürün Çeşidi",
-    "statZones": "Dağıtım Bölgesi"
+    "statVehicles": "Araç Sayısı",
+    "statStaff": "Personel Sayısı"
   },
   "holdingStrip": {
     "text": "Bölgenin lider gıda tedarik zinciri Bizim Qida MMC · Bir {holding} iştirakidir."

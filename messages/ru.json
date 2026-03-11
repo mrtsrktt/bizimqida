@@ -24,10 +24,10 @@
     "description": "В составе Sürkit Holding, как крупнейшая компания по дистрибуции продовольствия в Нахчыване, мы укрепляем цепочку поставок региона.",
     "ctaPrimary": "Узнать о нас",
     "ctaSecondary": "Связаться",
-    "statYears": "Лет опыта",
-    "statClients": "Клиентов",
+    "statFounded": "Год основания",
     "statProducts": "Наименований",
-    "statZones": "Зон дистрибуции"
+    "statVehicles": "Транспорт",
+    "statStaff": "Сотрудников"
   },
   "holdingStrip": {
     "text": "Ведущая продовольственная сеть региона Bizim Qida MMC · Дочерняя компания {holding}."
