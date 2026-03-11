@@ -30,7 +30,7 @@
     "statZones": "Dağıtım Bölgesi"
   },
   "holdingStrip": {
-    "text": "{holding} bünyesinde faaliyet göstermektedir · Azerbaycan'da 40+ mağaza · Gürcistan, Türkiye operasyonları"
+    "text": "Bölgenin lider gıda tedarik zinciri Bizim Qida MMC · Bir {holding} iştirakidir."
   },
   "about": {
     "eyebrow": "Hakkımızda",

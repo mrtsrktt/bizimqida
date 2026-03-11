@@ -30,7 +30,7 @@
     "statZones": "Paylama Bölgəsi"
   },
   "holdingStrip": {
-    "text": "{holding} çərçivəsində fəaliyyət göstərir · Azərbaycanda 40+ mağaza · Gürcüstan, Türkiyə əməliyyatları"
+    "text": "Bölgənin lider qida tədarük zənciri Bizim Qida MMC · Bir {holding} iştirakıdır."
   },
   "about": {
     "eyebrow": "Haqqımızda",
