@@ -43,7 +43,6 @@ export default function BrandsGrid() {
                   alt={brand.name}
                   className={styles.brandLogo}
                 />
-                <span className={styles.brandName}>{brand.name}</span>
               </div>
             ))}
           </div>
