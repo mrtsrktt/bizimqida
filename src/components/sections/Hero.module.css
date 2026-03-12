@@ -226,13 +226,16 @@
 .heroStats {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 3px;
+  gap: 6px;
+  border-radius: 16px;
+  overflow: hidden;
 }
 
 .hstat {
   background: rgba(255, 255, 255, 0.08);
   border: 1px solid rgba(255, 255, 255, 0.12);
   backdrop-filter: blur(6px);
+  border-radius: 12px;
   padding: 32px 28px;
   transition: background 0.3s;
   opacity: 0;
