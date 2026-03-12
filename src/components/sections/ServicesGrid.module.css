@@ -74,21 +74,18 @@
   box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
 }
 
-/* Service icon */
-.svcIcon {
-  font-size: 32px;
-  margin-bottom: 12px;
-  filter: grayscale(0.2);
-}
-
 /* Service number */
 .svcNum {
   font-family: var(--font-playfair, 'Playfair Display'), serif;
-  font-size: 48px;
+  font-size: 56px;
   font-weight: 700;
-  color: rgba(200, 169, 81, 0.12);
+  color: rgba(200, 169, 81, 0.25);
   line-height: 1;
   margin-bottom: 16px;
+}
+
+.svc:hover .svcNum {
+  color: rgba(200, 169, 81, 0.45);
 }
 
 /* Service title */
