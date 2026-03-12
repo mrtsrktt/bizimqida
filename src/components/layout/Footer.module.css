@@ -163,4 +163,14 @@
     gap: 12px;
     text-align: center;
   }
+
+  .surkit-ref {
+    justify-content: center;
+    flex-wrap: wrap;
+    max-width: 100%;
+  }
+
+  .surkit-logo {
+    height: 18px;
+  }
 }
