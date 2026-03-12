@@ -58,11 +58,10 @@ export default function Footer() {
 
       <div className={styles['footer-bottom']}>
         <p>&copy; 2025 Bizim Qida &mdash; {t('copyright')}</p>
-        <div className={styles['surkit-ref']}>
-          <span>S&uuml;rkit Holding</span>
-          &nbsp;&middot;&nbsp;
-          {t('subsidiary')}
-        </div>
+        <a href="https://www.surkit.com.tr" target="_blank" rel="noopener noreferrer" className={styles['surkit-ref']}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img src="/images/surkit-logo.png" alt="Sürkit Holding" className={styles['surkit-logo']} />
+        </a>
       </div>
     </footer>
   );
