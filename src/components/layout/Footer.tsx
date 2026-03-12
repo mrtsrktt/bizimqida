@@ -1,7 +1,6 @@
 'use client';
 
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import styles from './Footer.module.css';
 
@@ -14,11 +13,10 @@ export default function Footer() {
         {/* Brand Column */}
         <div className={styles['footer-brand']}>
           <div className={styles['nav-logo']}>
-            <Image
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
               src="/images/logo/bizim-qida-logo.png"
               alt="Bizim Qida"
-              width={160}
-              height={45}
               className={styles['logo-img']}
             />
             <div className={styles['logo-text-wrap']}>

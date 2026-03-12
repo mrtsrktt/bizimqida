@@ -2,7 +2,6 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
-import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import styles from './Navbar.module.css';
 
@@ -26,13 +25,11 @@ export default function Navbar() {
       <div className={styles['nav-inner']}>
         {/* Logo */}
         <Link href="/" className={styles['nav-logo']}>
-          <Image
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
             src="/images/logo/bizim-qida-logo.png"
             alt="Bizim Qida"
-            width={180}
-            height={50}
             className={styles['logo-img']}
-            priority
           />
           <div className={styles['logo-text-wrap']}>
             <div className={styles['logo-name']}>Bizim Qida</div>
