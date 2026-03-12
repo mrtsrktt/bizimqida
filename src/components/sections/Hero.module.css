@@ -70,6 +70,12 @@
   transition: none;
 }
 
+.slideFirst {
+  opacity: 1;
+  transform: translateX(0);
+  z-index: 1;
+}
+
 .slideActive {
   opacity: 1;
   transform: translateX(0);

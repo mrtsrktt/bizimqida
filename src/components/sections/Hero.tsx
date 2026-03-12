@@ -16,8 +16,10 @@ export default function Hero() {
   const t = useTranslations('hero');
   const [current, setCurrent] = useState(0);
   const [prev, setPrev] = useState<number | null>(null);
+  const [hasTransitioned, setHasTransitioned] = useState(false);
 
   const goNext = useCallback(() => {
+    setHasTransitioned(true);
     setPrev(current);
     setCurrent((c) => (c + 1) % heroSlides.length);
   }, [current]);
@@ -42,7 +44,7 @@ export default function Hero() {
           <div
             key={src}
             className={`${styles.slide} ${
-              i === current ? styles.slideActive : ''
+              i === current ? (hasTransitioned ? styles.slideActive : styles.slideFirst) : ''
             } ${i === prev ? styles.slideExit : ''}`}
           >
             <Image
