@@ -66,7 +66,7 @@ export default function Footer() {
             className={styles['surkit-logo']}
             style={{ filter: 'brightness(0) invert(1)', height: '32px', width: 'auto' }}
           />
-          <span className={styles['surkit-label']}>{t('subsidiary')}</span>
+          <span className={styles['surkit-label']} style={{ color: 'rgba(255,255,255,0.85)', fontSize: '14px' }}>{t('subsidiary')}</span>
         </a>
       </div>
     </footer>
