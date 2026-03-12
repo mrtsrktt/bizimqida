@@ -2,7 +2,6 @@
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import RevealOnScroll from '@/components/animations/RevealOnScroll';
-import NakhchivanMap from './NakhchivanMap';
 import styles from './DistributionSection.module.css';
 
 export default function DistributionSection() {
@@ -49,7 +48,11 @@ export default function DistributionSection() {
         </RevealOnScroll>
 
         {/* Animated SVG Map */}
-        <NakhchivanMap />
+        <iframe
+          src="/nakhchivan-map-v7b.html"
+          style={{ width: '100%', height: '560px', border: 'none', display: 'block', borderRadius: '8px' }}
+          title="Naxçıvan Dağıtım Haritası"
+        />
 
         <RevealOnScroll>
           <div className={styles.fleetImage}>

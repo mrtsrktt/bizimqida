@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Naxçıvan Paylama Şəbəkəsi</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;1,400&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --navy:#0D1E40;
+  --navy-deep:#06101f;
+  --gold:#C8A951;
+  --gold-light:#E5CB7A;
+}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background:var(--navy-deep);font-family:'Outfit',sans-serif;}
+
+.map-outer{
+  position:relative;
+  width:100%;
+  background:radial-gradient(ellipse at 52% 46%, #102040 0%, #06101f 72%);
+  overflow:hidden;
+}
+
+/* Subtle atmospheric glow */
+.map-outer::after{
+  content:'';
+  position:absolute;
+  left:35%;top:20%;
+  width:50%;height:60%;
+  background:radial-gradient(ellipse, rgba(200,169,81,0.055) 0%, transparent 68%);
+  pointer-events:none;
+  z-index:1;
+}
+
+svg{position:relative;z-index:2;width:100%;display:block;}
+
+/* Region */
+.region-shadow{ fill:rgba(0,0,0,0.4); }
+.region-fill{ fill:url(#rGrad); }
+.region-glow{ fill:none; stroke:rgba(200,169,81,0.1); stroke-width:12; stroke-linejoin:round; }
+.region-border{ fill:none; stroke:url(#bGrad); stroke-width:2; stroke-linejoin:round; filter:url(#fBorder); }
+.region-grid{ fill:url(#gPat); }
+
+/* Scan sweep */
+.scan{ stroke:rgba(200,169,81,0.13); stroke-width:1.5; fill:none;
+  animation:sweep 5s linear infinite; }
+@keyframes sweep{
+  0%{  transform:translateY(-560px); opacity:0; }
+  8%{  opacity:1; }
+  92%{ opacity:0.8; }
+  100%{ transform:translateY(560px); opacity:0; }
+}
+
+/* Routes */
+.rt{ fill:none; stroke:#C8A951; stroke-width:1.3; stroke-dasharray:6 5; stroke-linecap:round;
+  opacity:0; animation:rtIn 0.5s ease forwards; }
+@keyframes rtIn{ to{ opacity:0.5; } }
+
+/* HQ pulse */
+.hq-pulse{ fill:none; stroke:rgba(200,169,81,0.35);
+  animation:hqP 3s ease-out infinite; }
+.hq-pulse.p2{ animation-delay:1.1s; }
+.hq-pulse.p3{ animation-delay:2.2s; }
+@keyframes hqP{
+  0%{  r:11; stroke-opacity:0.5; stroke-width:2; }
+  100%{ r:48; stroke-opacity:0; stroke-width:0.5; }
+}
+.hq-outer{ fill:#C8A951; filter:url(#fHQ); }
+.hq-ring{ fill:none; stroke:var(--navy-deep); stroke-width:2; }
+.hq-inner{ fill:#C8A951; }
+
+/* City dots */
+.cdot-ring{ fill:none; stroke:#C8A951; stroke-width:1;
+  animation:cdR 2.8s ease-out infinite; }
+@keyframes cdR{ 0%{r:6; opacity:0.45;} 100%{r:22; opacity:0;} }
+.cdot{ fill:#C8A951; stroke:rgba(200,169,81,0.25); stroke-width:5; filter:url(#fDot); }
+
+/* Labels */
+.lbl{ opacity:0; animation:lblIn 0.45s ease forwards; }
+@keyframes lblIn{ from{opacity:0; transform:translateY(5px);} to{opacity:1; transform:none;} }
+.lbg{ fill:rgba(6,16,31,0.92); }
+.lbdr{ fill:none; stroke:rgba(200,169,81,0.3); stroke-width:0.8; }
+.ltop{ fill:#C8A951; } /* gold accent top bar */
+.ltxt{ fill:#e2e2e2; font-family:'Outfit',sans-serif; font-size:12px; font-weight:500; letter-spacing:0.04em; }
+.ltxt-hq{ fill:#ffffff; font-family:'Outfit',sans-serif; font-size:11.5px; font-weight:600; letter-spacing:0.07em; }
+.ltxt-hq-sub{ fill:rgba(255,255,255,0.55); font-family:'Outfit',sans-serif; font-size:9px; font-weight:400; letter-spacing:0.14em; text-transform:uppercase; }
+
+/* BQ label special animation */
+@keyframes bqPulse{
+  0%,100%{ opacity:1; }
+  50%{ opacity:0.75; }
+}
+@keyframes bqBorderGlow{
+  0%,100%{ stroke:rgba(255,255,255,0.35); stroke-width:0.8; }
+  50%{ stroke:rgba(255,255,255,0.7); stroke-width:1.2; }
+}
+.bq-bg{ fill:#162952; animation:bqPulse 3.5s ease-in-out infinite; }
+.bq-accent{ fill:url(#bqGrad); }
+.bq-border{ fill:none; stroke:rgba(255,255,255,0.3); stroke-width:0.8; animation:bqBorderGlow 3.5s ease-in-out infinite; }
+
+/* Title block (SVG-internal) */
+.ti-eye{ fill:none; stroke:#C8A951; stroke-width:0.8; }
+.ti-line{ stroke:rgba(200,169,81,0.5); stroke-width:0.8; }
+.ti-sub{ fill:rgba(200,169,81,0.7); font-family:'Outfit',sans-serif; font-size:9px; letter-spacing:0.2em; text-transform:uppercase; }
+.ti-h{ fill:rgba(255,255,255,0.88); font-family:'Playfair Display',serif; font-size:17px; font-weight:600; }
+.ti-em{ fill:#E5CB7A; font-family:'Playfair Display',serif; font-size:17px; font-style:italic; }
+
+/* Stat boxes (SVG-internal) */
+.sb-bg{ fill:rgba(6,16,31,0.82); }
+.sb-bdr{ fill:none; stroke:rgba(200,169,81,0.18); stroke-width:0.8; }
+.sb-n{ fill:#C8A951; font-family:'Playfair Display',serif; font-size:22px; font-weight:600; }
+.sb-l{ fill:rgba(255,255,255,0.35); font-family:'Outfit',sans-serif; font-size:9px; letter-spacing:0.12em; }
+
+/* Corner marks */
+.crn{ fill:none; stroke:rgba(200,169,81,0.18); stroke-width:1; }
+
+/* Legend (SVG-internal) */
+.lg-bg{ fill:rgba(6,16,31,0.88); }
+.lg-bdr{ fill:none; stroke:rgba(200,169,81,0.18); stroke-width:0.8; }
+.lg-txt{ fill:rgba(255,255,255,0.4); font-family:'Outfit',sans-serif; font-size:9.5px; letter-spacing:0.12em; }
+.lg-sep{ stroke:rgba(255,255,255,0.08); stroke-width:0.8; }
+</style>
+</head>
+<body>
+<div class="map-outer">
+<svg viewBox="0 0 960 580" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <!-- Region radial gradient -->
+  <radialGradient id="rGrad" cx="52%" cy="46%" r="56%">
+    <stop offset="0%"   stop-color="#1e3d6e"/>
+    <stop offset="55%"  stop-color="#122245"/>
+    <stop offset="100%" stop-color="#091525"/>
+  </radialGradient>
+
+  <!-- Border gradient: warm gold -->
+  <linearGradient id="bGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+    <stop offset="0%"   stop-color="#e8d080"/>
+    <stop offset="50%"  stop-color="#C8A951"/>
+    <stop offset="100%" stop-color="#a88828"/>
+  </linearGradient>
+
+  <!-- Fine grid pattern -->
+  <pattern id="gPat" width="34" height="34" patternUnits="userSpaceOnUse">
+    <path d="M34 0L0 0 0 34" fill="none" stroke="rgba(200,169,81,0.055)" stroke-width="0.7"/>
+  </pattern>
+
+  <!-- Clip path for grid -->
+  <clipPath id="rClip">
+    <path d="M197.9,109 L207.5,115.3 L210.8,123.3 L219.2,129.9 L227,145.3 L242.1,152.9 L255.9,162.3 L255.4,179.6 L271.7,193.7 L266.6,196.6 L270.1,208.4 L277.3,217.2 L294,226 L307.1,232.5 L315.2,243.4 L326,256.6 L341.6,269.3 L344.2,278.1 L349.7,299.1 L370.7,305.7 L418.4,314.7 L429.2,333.5 L448.1,351.9 L460.4,363.6 L470,367.2 L462.5,380.3 L469.4,389.4 L487.4,392.3 L498.5,397.5 L512.8,397.8 L527.5,401.2 L532.5,408.6 L552.9,406.4 L565.1,407.5 L590.2,413.4 L604.3,415.3 L613.4,422.9 L629,426.7 L641.7,434 L655.2,432.4 L670.8,430 L696.8,434.8 L707.1,429.8 L723.3,438 L734.4,446 L742.1,429 L730.6,406.2 L722.8,386 L713,368.4 L698.7,350.7 L689.9,340.5 L684.8,323.3 L679.2,298.9 L685.3,282.1 L673.9,269.7 L654.9,259.8 L636.6,249.9 L611.8,243.7 L604.2,226.2 L614.1,212.4 L613,197.4 L611.2,177.9 L600.5,162.2 L581,153.2 L560.1,151.8 L538.1,162.7 L518.9,162.6 L500.4,174.9 L479.9,188.3 L464.3,184.3 L435.3,173.5 L411.9,160.1 L404.2,144.6 L370.2,156.9 L358.7,125 L348.3,105.5 L337,86.6 L314.4,74 L295.1,87 L260.6,100.3 L246.1,91.9 L200.4,105.8 Z"/>
+  </clipPath>
+
+  <!-- BQ label accent gradient -->
+  <linearGradient id="bqGrad" x1="0%" y1="0%" x2="100%" y2="0%">
+    <stop offset="0%"   stop-color="#C8A951"/>
+    <stop offset="50%"  stop-color="#E5CB7A"/>
+    <stop offset="100%" stop-color="#C8A951"/>
+  </linearGradient>
+
+  <!-- Filters -->
+  <filter id="fBorder" x="-15%" y="-15%" width="130%" height="130%">
+    <feGaussianBlur stdDeviation="2.5" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="fHQ" x="-100%" y="-100%" width="300%" height="300%">
+    <feGaussianBlur stdDeviation="7" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+  <filter id="fDot" x="-80%" y="-80%" width="260%" height="260%">
+    <feGaussianBlur stdDeviation="3.5" result="b"/>
+    <feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge>
+  </filter>
+</defs>
+
+<!-- ══ REGION ══ -->
+<!-- Shadow -->
+<path class="region-shadow" transform="translate(7,9)"
+  d="M197.9,109 L207.5,115.3 L210.8,123.3 L219.2,129.9 L227,145.3 L242.1,152.9 L255.9,162.3 L255.4,179.6 L271.7,193.7 L266.6,196.6 L270.1,208.4 L277.3,217.2 L294,226 L307.1,232.5 L315.2,243.4 L326,256.6 L341.6,269.3 L344.2,278.1 L349.7,299.1 L370.7,305.7 L418.4,314.7 L429.2,333.5 L448.1,351.9 L460.4,363.6 L470,367.2 L462.5,380.3 L469.4,389.4 L487.4,392.3 L498.5,397.5 L512.8,397.8 L527.5,401.2 L532.5,408.6 L552.9,406.4 L565.1,407.5 L590.2,413.4 L604.3,415.3 L613.4,422.9 L629,426.7 L641.7,434 L655.2,432.4 L670.8,430 L696.8,434.8 L707.1,429.8 L723.3,438 L734.4,446 L742.1,429 L730.6,406.2 L722.8,386 L713,368.4 L698.7,350.7 L689.9,340.5 L684.8,323.3 L679.2,298.9 L685.3,282.1 L673.9,269.7 L654.9,259.8 L636.6,249.9 L611.8,243.7 L604.2,226.2 L614.1,212.4 L613,197.4 L611.2,177.9 L600.5,162.2 L581,153.2 L560.1,151.8 L538.1,162.7 L518.9,162.6 L500.4,174.9 L479.9,188.3 L464.3,184.3 L435.3,173.5 L411.9,160.1 L404.2,144.6 L370.2,156.9 L358.7,125 L348.3,105.5 L337,86.6 L314.4,74 L295.1,87 L260.6,100.3 L246.1,91.9 L200.4,105.8 Z"/>
+<!-- Fill -->
+<path class="region-fill"
+  d="M197.9,109 L207.5,115.3 L210.8,123.3 L219.2,129.9 L227,145.3 L242.1,152.9 L255.9,162.3 L255.4,179.6 L271.7,193.7 L266.6,196.6 L270.1,208.4 L277.3,217.2 L294,226 L307.1,232.5 L315.2,243.4 L326,256.6 L341.6,269.3 L344.2,278.1 L349.7,299.1 L370.7,305.7 L418.4,314.7 L429.2,333.5 L448.1,351.9 L460.4,363.6 L470,367.2 L462.5,380.3 L469.4,389.4 L487.4,392.3 L498.5,397.5 L512.8,397.8 L527.5,401.2 L532.5,408.6 L552.9,406.4 L565.1,407.5 L590.2,413.4 L604.3,415.3 L613.4,422.9 L629,426.7 L641.7,434 L655.2,432.4 L670.8,430 L696.8,434.8 L707.1,429.8 L723.3,438 L734.4,446 L742.1,429 L730.6,406.2 L722.8,386 L713,368.4 L698.7,350.7 L689.9,340.5 L684.8,323.3 L679.2,298.9 L685.3,282.1 L673.9,269.7 L654.9,259.8 L636.6,249.9 L611.8,243.7 L604.2,226.2 L614.1,212.4 L613,197.4 L611.2,177.9 L600.5,162.2 L581,153.2 L560.1,151.8 L538.1,162.7 L518.9,162.6 L500.4,174.9 L479.9,188.3 L464.3,184.3 L435.3,173.5 L411.9,160.1 L404.2,144.6 L370.2,156.9 L358.7,125 L348.3,105.5 L337,86.6 L314.4,74 L295.1,87 L260.6,100.3 L246.1,91.9 L200.4,105.8 Z"/>
+<!-- Grid clipped to region -->
+<rect width="960" height="580" fill="url(#gPat)" clip-path="url(#rClip)"/>
+<!-- Inner glow -->
+<path class="region-glow"
+  d="M197.9,109 L207.5,115.3 L210.8,123.3 L219.2,129.9 L227,145.3 L242.1,152.9 L255.9,162.3 L255.4,179.6 L271.7,193.7 L266.6,196.6 L270.1,208.4 L277.3,217.2 L294,226 L307.1,232.5 L315.2,243.4 L326,256.6 L341.6,269.3 L344.2,278.1 L349.7,299.1 L370.7,305.7 L418.4,314.7 L429.2,333.5 L448.1,351.9 L460.4,363.6 L470,367.2 L462.5,380.3 L469.4,389.4 L487.4,392.3 L498.5,397.5 L512.8,397.8 L527.5,401.2 L532.5,408.6 L552.9,406.4 L565.1,407.5 L590.2,413.4 L604.3,415.3 L613.4,422.9 L629,426.7 L641.7,434 L655.2,432.4 L670.8,430 L696.8,434.8 L707.1,429.8 L723.3,438 L734.4,446 L742.1,429 L730.6,406.2 L722.8,386 L713,368.4 L698.7,350.7 L689.9,340.5 L684.8,323.3 L679.2,298.9 L685.3,282.1 L673.9,269.7 L654.9,259.8 L636.6,249.9 L611.8,243.7 L604.2,226.2 L614.1,212.4 L613,197.4 L611.2,177.9 L600.5,162.2 L581,153.2 L560.1,151.8 L538.1,162.7 L518.9,162.6 L500.4,174.9 L479.9,188.3 L464.3,184.3 L435.3,173.5 L411.9,160.1 L404.2,144.6 L370.2,156.9 L358.7,125 L348.3,105.5 L337,86.6 L314.4,74 L295.1,87 L260.6,100.3 L246.1,91.9 L200.4,105.8 Z"/>
+<!-- Border -->
+<path class="region-border"
+  d="M197.9,109 L207.5,115.3 L210.8,123.3 L219.2,129.9 L227,145.3 L242.1,152.9 L255.9,162.3 L255.4,179.6 L271.7,193.7 L266.6,196.6 L270.1,208.4 L277.3,217.2 L294,226 L307.1,232.5 L315.2,243.4 L326,256.6 L341.6,269.3 L344.2,278.1 L349.7,299.1 L370.7,305.7 L418.4,314.7 L429.2,333.5 L448.1,351.9 L460.4,363.6 L470,367.2 L462.5,380.3 L469.4,389.4 L487.4,392.3 L498.5,397.5 L512.8,397.8 L527.5,401.2 L532.5,408.6 L552.9,406.4 L565.1,407.5 L590.2,413.4 L604.3,415.3 L613.4,422.9 L629,426.7 L641.7,434 L655.2,432.4 L670.8,430 L696.8,434.8 L707.1,429.8 L723.3,438 L734.4,446 L742.1,429 L730.6,406.2 L722.8,386 L713,368.4 L698.7,350.7 L689.9,340.5 L684.8,323.3 L679.2,298.9 L685.3,282.1 L673.9,269.7 L654.9,259.8 L636.6,249.9 L611.8,243.7 L604.2,226.2 L614.1,212.4 L613,197.4 L611.2,177.9 L600.5,162.2 L581,153.2 L560.1,151.8 L538.1,162.7 L518.9,162.6 L500.4,174.9 L479.9,188.3 L464.3,184.3 L435.3,173.5 L411.9,160.1 L404.2,144.6 L370.2,156.9 L358.7,125 L348.3,105.5 L337,86.6 L314.4,74 L295.1,87 L260.6,100.3 L246.1,91.9 L200.4,105.8 Z"/>
+
+<!-- Scan sweep line -->
+<line class="scan" x1="100" y1="0" x2="860" y2="0" clip-path="url(#rClip)"/>
+
+<!-- ══ ROUTES from HQ (452.6, 303.5) ══ -->
+<!-- All shifted +20x +30y from v5 coords to match new path offset -->
+<line class="rt" style="animation-delay:1.2s" x1="452.6" y1="303.5" x2="284.5" y2="167.7"/><!-- Şərur -->
+<line class="rt" style="animation-delay:1.4s" x1="452.6" y1="303.5" x2="353.7" y2="232.7"/><!-- Kəngərli -->
+<line class="rt" style="animation-delay:1.6s" x1="452.6" y1="303.5" x2="467"   y2="326.2"/><!-- Babək -->
+<line class="rt" style="animation-delay:1.8s" x1="452.6" y1="303.5" x2="514.8" y2="225.6"/><!-- Şahbuz -->
+<line class="rt" style="animation-delay:2.0s" x1="452.6" y1="303.5" x2="538.8" y2="402"/>  <!-- Culfa -->
+<line class="rt" style="animation-delay:2.2s" x1="452.6" y1="303.5" x2="692.6" y2="424"/>  <!-- Ordubad -->
+<line class="rt" style="animation-delay:2.4s" x1="452.6" y1="303.5" x2="243.6" y2="103.2"/><!-- Sədərək -->
+
+<!-- ══ HQ — Naxçıvan (452.6, 303.5) ══ -->
+<circle class="hq-pulse"    cx="452.6" cy="303.5" r="11"/>
+<circle class="hq-pulse p2" cx="452.6" cy="303.5" r="11"/>
+<circle class="hq-pulse p3" cx="452.6" cy="303.5" r="11"/>
+<circle class="hq-outer" cx="452.6" cy="303.5" r="12"/>
+<circle class="hq-ring"  cx="452.6" cy="303.5" r="9"/>
+<circle class="hq-inner" cx="452.6" cy="303.5" r="5"/>
+<!-- HQ label — Bizim Qida MMC -->
+<g class="lbl" style="animation-delay:1.0s">
+  <!-- connector line from dot to label -->
+  <line x1="452.6" y1="315" x2="510" y2="328" stroke="rgba(200,169,81,0.4)" stroke-width="0.8" stroke-dasharray="3 3"/>
+  <!-- main label box -->
+  <rect class="bq-bg"     x="506" y="318" width="124" height="38" rx="4"/>
+  <rect class="bq-border" x="506" y="318" width="124" height="38" rx="4"/>
+  <!-- gold top accent bar with shimmer gradient -->
+  <rect class="bq-accent" x="506" y="318" width="124" height="3.5" rx="2"/>
+  <!-- company name -->
+  <text class="ltxt-hq" x="518" y="334">BİZİM QIDA</text>
+  <!-- sub label -->
+  <text class="ltxt-hq-sub" x="518" y="348">MMC · Naxçıvan</text>
+</g>
+
+<!-- ══ Şərur (284.5, 167.7) — label RIGHT ══ -->
+<g class="lbl" style="animation-delay:1.3s">
+  <circle class="cdot-ring" cx="284.5" cy="167.7" r="6"/>
+  <circle class="cdot"      cx="284.5" cy="167.7" r="5"/>
+  <rect class="lbg"  x="296" y="157" width="62" height="23" rx="3"/>
+  <rect class="lbdr" x="296" y="157" width="62" height="23" rx="3"/>
+  <text class="ltxt" x="306" y="173">Şərur</text>
+</g>
+
+<!-- ══ Kəngərli (353.7, 232.7) — label LEFT ══ -->
+<g class="lbl" style="animation-delay:1.5s">
+  <circle class="cdot-ring" cx="353.7" cy="232.7" r="6"/>
+  <circle class="cdot"      cx="353.7" cy="232.7" r="5"/>
+  <rect class="lbg"  x="254" y="222" width="91" height="23" rx="3"/>
+  <rect class="lbdr" x="254" y="222" width="91" height="23" rx="3"/>
+  <text class="ltxt" x="264" y="238">Kəngərli</text>
+</g>
+
+<!-- ══ Babək (467, 326.2) — label LEFT-UP ══ -->
+<g class="lbl" style="animation-delay:1.7s">
+  <circle class="cdot-ring" cx="467" cy="326.2" r="6"/>
+  <circle class="cdot"      cx="467" cy="326.2" r="5"/>
+  <rect class="lbg"  x="393" y="290" width="64" height="23" rx="3"/>
+  <rect class="lbdr" x="393" y="290" width="64" height="23" rx="3"/>
+  <text class="ltxt" x="403" y="306">Babək</text>
+</g>
+
+<!-- ══ Şahbuz (514.8, 225.6) — label RIGHT ══ -->
+<g class="lbl" style="animation-delay:1.9s">
+  <circle class="cdot-ring" cx="514.8" cy="225.6" r="6"/>
+  <circle class="cdot"      cx="514.8" cy="225.6" r="5"/>
+  <rect class="lbg"  x="526" y="215" width="74" height="23" rx="3"/>
+  <rect class="lbdr" x="526" y="215" width="74" height="23" rx="3"/>
+  <text class="ltxt" x="536" y="231">Şahbuz</text>
+</g>
+
+<!-- ══ Culfa (538.8, 402) — label RIGHT ══ -->
+<g class="lbl" style="animation-delay:2.1s">
+  <circle class="cdot-ring" cx="538.8" cy="402" r="6"/>
+  <circle class="cdot"      cx="538.8" cy="402" r="5"/>
+  <rect class="lbg"  x="550" y="392" width="56" height="23" rx="3"/>
+  <rect class="lbdr" x="550" y="392" width="56" height="23" rx="3"/>
+  <text class="ltxt" x="560" y="408">Culfa</text>
+</g>
+
+<!-- ══ Ordubad (692.6, 424) — label RIGHT ══ -->
+<g class="lbl" style="animation-delay:2.3s">
+  <circle class="cdot-ring" cx="692.6" cy="424" r="6"/>
+  <circle class="cdot"      cx="692.6" cy="424" r="5"/>
+  <rect class="lbg"  x="704" y="413" width="80" height="23" rx="3"/>
+  <rect class="lbdr" x="704" y="413" width="80" height="23" rx="3"/>
+  <text class="ltxt" x="714" y="429">Ordubad</text>
+</g>
+
+<!-- ══ Sədərək (243.6, 103.2) — label RIGHT ══ -->
+<g class="lbl" style="animation-delay:2.5s">
+  <circle class="cdot-ring" cx="243.6" cy="103.2" r="6"/>
+  <circle class="cdot"      cx="243.6" cy="103.2" r="5"/>
+  <rect class="lbg"  x="255" y="93"  width="78" height="23" rx="3"/>
+  <rect class="lbdr" x="255" y="93"  width="78" height="23" rx="3"/>
+  <text class="ltxt" x="265" y="109">Sədərək</text>
+</g>
+
+<!-- ══ TITLE (top-left) ══ -->
+<g>
+  <line class="ti-line" x1="28" y1="34" x2="48" y2="34"/>
+  <text class="ti-sub" x="54" y="38">Paylama İnfrastrukturu</text>
+  <text class="ti-h"  x="28" y="60">Naxçıvan </text>
+  <text class="ti-em" x="130" y="60">Şəbəkəsi</text>
+</g>
+
+<!-- ══ STAT BOXES (top-right) ══ -->
+<g>
+  <rect class="sb-bg"  x="870" y="24" width="68" height="46" rx="3"/>
+  <rect class="sb-bdr" x="870" y="24" width="68" height="46" rx="3"/>
+  <text class="sb-n" x="904" y="52" text-anchor="middle">7</text>
+  <text class="sb-l" x="904" y="62" text-anchor="middle">RAYON</text>
+
+  <rect class="sb-bg"  x="870" y="78" width="68" height="46" rx="3"/>
+  <rect class="sb-bdr" x="870" y="78" width="68" height="46" rx="3"/>
+  <text class="sb-n" x="904" y="105" text-anchor="middle">500+</text>
+  <text class="sb-l" x="904" y="116" text-anchor="middle">MÜŞTƏRİ</text>
+</g>
+
+<!-- ══ LEGEND (bottom-center) ══ -->
+<g>
+  <rect class="lg-bg"  x="298" y="536" width="364" height="34" rx="4"/>
+  <rect class="lg-bdr" x="298" y="536" width="364" height="34" rx="4"/>
+  <!-- Dot item -->
+  <circle cx="324" cy="553" r="5" fill="#C8A951"/>
+  <text class="lg-txt" x="334" y="557">DAĞITIM MƏRKƏZİ</text>
+  <!-- Separator -->
+  <line class="lg-sep" x1="460" y1="541" x2="460" y2="565"/>
+  <!-- Dash item -->
+  <line x1="470" y1="553" x2="496" y2="553" stroke="#C8A951" stroke-width="1.3" stroke-dasharray="5 4" opacity="0.7"/>
+  <text class="lg-txt" x="502" y="557">DAĞITIM XƏTTİ</text>
+  <!-- Separator -->
+  <line class="lg-sep" x1="590" y1="541" x2="590" y2="565"/>
+  <!-- Box item -->
+  <rect x="600" y="547" width="14" height="11" rx="2" fill="rgba(200,169,81,0.12)" stroke="rgba(200,169,81,0.45)" stroke-width="0.8"/>
+  <text class="lg-txt" x="620" y="557">NAXÇIVAN MR</text>
+</g>
+
+<!-- ══ CORNER MARKS ══ -->
+<polyline class="crn" points="18,18 18,42 42,42"/>
+<polyline class="crn" points="942,18 942,42 918,42"/>
+<polyline class="crn" points="18,562 18,538 42,538"/>
+<polyline class="crn" points="942,562 942,538 918,538"/>
+
+</svg>
+</div>
+</body>
+</html>
