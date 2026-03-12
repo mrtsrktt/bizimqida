@@ -9,6 +9,32 @@
   from { opacity: 0; }
   to { opacity: 1; }
 }
+@keyframes drawLine {
+  from { width: 0; }
+  to { width: 32px; }
+}
+@keyframes revealRight {
+  from { clip-path: inset(0 100% 0 0); opacity: 0; }
+  15% { opacity: 1; }
+  to { clip-path: inset(0 0 0 0); opacity: 1; }
+}
+@keyframes revealUp {
+  from { clip-path: inset(100% 0 0 0); opacity: 0; transform: translateY(12px); }
+  15% { opacity: 1; }
+  to { clip-path: inset(0 0 0 0); opacity: 1; transform: translateY(0); }
+}
+@keyframes goldSweep {
+  0% { background-position: -200% center; }
+  100% { background-position: 200% center; }
+}
+@keyframes fadeBlurIn {
+  from { opacity: 0; filter: blur(6px); transform: translateY(10px); }
+  to { opacity: 1; filter: blur(0); transform: translateY(0); }
+}
+@keyframes statReveal {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); }
+  to { opacity: 1; transform: translateY(0) scale(1); }
+}
 @keyframes heroPulse {
   0% { background: linear-gradient(130deg, #081429 0%, #0D1E40 40%, #1E3A6E 100%); }
   100% { background: linear-gradient(150deg, #0a1830 0%, #0f2347 40%, #162952 100%); }
@@ -128,14 +154,13 @@
   align-items: center;
   gap: 10px;
   margin-bottom: 24px;
-  opacity: 0;
-  animation: slideUp 0.7s 0.2s forwards;
 }
 
 .heroEyebrow .dot {
-  width: 32px;
+  width: 0;
   height: 1px;
   background: var(--gold);
+  animation: drawLine 0.6s 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .heroEyebrow span {
@@ -144,6 +169,8 @@
   text-transform: uppercase;
   color: var(--gold);
   font-weight: 500;
+  opacity: 0;
+  animation: revealRight 0.7s 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .heroH1 {
@@ -154,12 +181,26 @@
   color: var(--white);
   margin-bottom: 24px;
   opacity: 0;
-  animation: slideUp 0.7s 0.4s forwards;
+  clip-path: inset(0 100% 0 0);
+  animation: revealRight 0.9s 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .heroH1 em {
   font-style: italic;
-  color: var(--gold-light);
+  display: inline-block;
+  background: linear-gradient(
+    90deg,
+    var(--gold-light) 0%,
+    #e8d9a0 25%,
+    var(--gold) 50%,
+    #e8d9a0 75%,
+    var(--gold-light) 100%
+  );
+  background-size: 200% 100%;
+  background-clip: text;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  animation: goldSweep 3s 2s ease-in-out forwards;
 }
 
 .heroP {
@@ -170,7 +211,7 @@
   max-width: 480px;
   margin-bottom: 44px;
   opacity: 0;
-  animation: slideUp 0.7s 0.6s forwards;
+  animation: fadeBlurIn 0.8s 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .heroActions {
@@ -186,8 +227,6 @@
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 3px;
-  opacity: 0;
-  animation: fadeIn 0.9s 0.9s forwards;
 }
 
 .hstat {
@@ -196,7 +235,14 @@
   backdrop-filter: blur(12px);
   padding: 32px 28px;
   transition: background 0.3s;
+  opacity: 0;
+  animation: statReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
+
+.hstat:nth-child(1) { animation-delay: 1.2s; }
+.hstat:nth-child(2) { animation-delay: 1.4s; }
+.hstat:nth-child(3) { animation-delay: 1.6s; }
+.hstat:nth-child(4) { animation-delay: 1.8s; }
 
 .hstat:hover {
   background: rgba(255, 255, 255, 0.09);
