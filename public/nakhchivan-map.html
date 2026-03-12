@@ -4,8 +4,6 @@
   <meta charset="UTF-8"/>
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Naxçıvan Dağıtım Haritası</title>
-  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
-  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
   <style>
     *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
@@ -26,51 +24,69 @@
       max-width: 1200px;
     }
 
-    #map {
+    .svg-container {
       width: 100%;
       height: 520px;
       border-radius: 8px;
       overflow: hidden;
-      background: #0a1628;
+      background: #0D1E40;
     }
 
-    .leaflet-control-attribution,
-    .leaflet-control-zoom {
-      display: none !important;
+    .svg-container svg {
+      width: 100%;
+      height: 100%;
     }
 
-    /* HQ pulse animation */
-    @keyframes pulse {
-      0%, 100% { box-shadow: 0 0 0 4px rgba(200,169,81,0.12), 0 0 16px rgba(200,169,81,0.3); }
-      50% { box-shadow: 0 0 0 12px rgba(200,169,81,0.06), 0 0 32px rgba(200,169,81,0.6); }
-    }
-
-    .district-dot {
-      width: 10px;
-      height: 10px;
-      background: #C8A951;
-      border-radius: 50%;
-    }
-
-    .district-label {
-      background: rgba(8,20,41,0.92);
-      color: #fff;
-      font-size: 12px;
-      padding: 4px 10px;
-      border-radius: 4px;
-      border: 1px solid rgba(200,169,81,0.35);
-      white-space: nowrap;
-      font-family: 'Outfit', sans-serif;
-    }
-
-    /* Flowing dash animation */
+    /* Route dash flow animation */
     @keyframes dashFlow {
       0% { stroke-dashoffset: 0; }
       100% { stroke-dashoffset: -26; }
     }
 
-    .flowing-dash {
+    .route-line {
       animation: dashFlow 1.5s linear infinite;
+    }
+
+    /* HQ pulse rings */
+    @keyframes pulseRing {
+      0% { r: 10; opacity: 0.4; }
+      100% { r: 28; opacity: 0; }
+    }
+
+    .pulse-ring-1 {
+      animation: pulseRing 2s ease-out infinite;
+    }
+
+    .pulse-ring-2 {
+      animation: pulseRing 2s ease-out infinite 0.6s;
+    }
+
+    /* Fade in */
+    .fade-in {
+      opacity: 0;
+      transition: opacity 0.4s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+    }
+
+    .region-path {
+      opacity: 0;
+      transition: opacity 0.5s ease;
+    }
+
+    .region-path.visible {
+      opacity: 1;
+    }
+
+    .hq-group {
+      opacity: 0;
+      transition: opacity 0.8s ease;
+    }
+
+    .hq-group.visible {
+      opacity: 1;
     }
 
     /* Legend */
@@ -78,7 +94,7 @@
       display: flex;
       justify-content: center;
       gap: 32px;
-      margin-top: 16px;
+      padding-top: 16px;
       flex-wrap: wrap;
     }
 
@@ -121,7 +137,65 @@
 </head>
 <body>
   <div class="map-wrapper">
-    <div id="map"></div>
+    <div class="svg-container">
+      <svg viewBox="0 0 900 520" xmlns="http://www.w3.org/2000/svg">
+        <!-- Background -->
+        <rect width="900" height="520" fill="#0D1E40"/>
+
+        <!-- Subtle grid -->
+        <defs>
+          <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M 40 0 L 0 0 0 40" fill="none"
+                  stroke="rgba(200,169,81,0.04)" stroke-width="1"/>
+          </pattern>
+        </defs>
+        <rect width="900" height="520" fill="url(#grid)"/>
+
+        <!-- Nakhchivan region shape -->
+        <path class="region-path" d="
+          M 180,80
+          C 200,70 230,65 260,68
+          C 290,71 320,78 350,88
+          C 380,98 410,110 440,125
+          C 470,140 495,158 515,178
+          C 535,198 548,220 555,245
+          C 562,270 560,295 552,318
+          C 544,341 530,362 512,380
+          C 494,398 472,413 448,425
+          C 424,437 398,446 372,452
+          C 346,458 320,461 294,460
+          C 268,459 243,454 220,445
+          C 197,436 176,423 160,407
+          C 144,391 133,372 128,351
+          C 123,330 124,308 130,287
+          C 136,266 147,246 162,229
+          C 177,212 195,197 210,182
+          C 225,167 235,152 235,136
+          C 235,120 220,103 200,90
+          Z
+        "
+        fill="rgba(30,58,110,0.9)"
+        stroke="#C8A951"
+        stroke-width="2"
+        />
+
+        <!-- Route lines (HQ 420,290 to each district) -->
+        <g id="routes"></g>
+
+        <!-- HQ marker group -->
+        <g class="hq-group" id="hq-group">
+          <circle class="pulse-ring-1" cx="420" cy="290" r="10" fill="none" stroke="#C8A951" stroke-width="2"/>
+          <circle class="pulse-ring-2" cx="420" cy="290" r="10" fill="none" stroke="#C8A951" stroke-width="2"/>
+          <circle cx="420" cy="290" r="10" fill="#C8A951"/>
+          <!-- HQ label -->
+          <rect x="385" y="308" width="72" height="24" rx="4" fill="#C8A951"/>
+          <text x="421" y="325" text-anchor="middle" fill="#0D1E40" font-family="Outfit, sans-serif" font-weight="700" font-size="13">Naxçıvan</text>
+        </g>
+
+        <!-- District markers group -->
+        <g id="districts"></g>
+      </svg>
+    </div>
     <div class="legend">
       <div class="legend-item">
         <span class="legend-dot"></span>
@@ -140,109 +214,100 @@
 
   <script>
     window.addEventListener('load', function () {
+      var HQ = { x: 420, y: 290 };
 
-      var map = L.map('map', {
-        center: [39.25, 45.35],
-        zoom: 9,
-        dragging: false,
-        scrollWheelZoom: false,
-        zoomControl: false,
-        doubleClickZoom: false,
-        attributionControl: false
-      });
-
-      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
-        maxZoom: 19
-      }).addTo(map);
-
-      /* ── Navy color overlay ── */
-      L.rectangle(
-        [[-90, -180], [90, 180]],
-        {
-          color: 'transparent', weight: 0,
-          fillColor: '#0D1E40', fillOpacity: 0.45,
-          interactive: false
-        }
-      ).addTo(map);
-
-      /* ── Bounding box rectangle ── */
-      L.rectangle(
-        [[38.85, 44.87], [39.78, 46.22]],
-        { color: '#C8A951', weight: 2, fillColor: '#C8A951', fillOpacity: 0.08 }
-      ).addTo(map);
-
-      /* ── Districts ── */
       var DISTRICTS = [
-        { name: 'Naxçıvan', lat: 39.2092, lng: 45.4122, isHQ: true },
-        { name: 'Şərur',    lat: 39.5553, lng: 44.9839 },
-        { name: 'Kəngərli', lat: 39.3897, lng: 45.1603 },
-        { name: 'Babək',    lat: 39.1514, lng: 45.4489 },
-        { name: 'Şahbuz',   lat: 39.4078, lng: 45.5706 },
-        { name: 'Culfa',    lat: 38.9583, lng: 45.6317 },
-        { name: 'Ordubad',  lat: 38.9022, lng: 46.0236 },
-        { name: 'Sədərək',  lat: 39.7197, lng: 44.8797 }
+        { name: 'Şərur',    x: 245, y: 175 },
+        { name: 'Kəngərli', x: 330, y: 240 },
+        { name: 'Babək',    x: 450, y: 330 },
+        { name: 'Şahbuz',   x: 500, y: 210 },
+        { name: 'Culfa',    x: 520, y: 380 },
+        { name: 'Ordubad',  x: 640, y: 415 },
+        { name: 'Sədərək',  x: 195, y: 120 }
       ];
 
-      var hq = DISTRICTS[0];
-      var districts = DISTRICTS.slice(1);
+      var svgNS = 'http://www.w3.org/2000/svg';
+      var routesGroup = document.getElementById('routes');
+      var districtsGroup = document.getElementById('districts');
 
-      /* ── HQ Marker with pulse ── */
-      var hqIcon = L.divIcon({
-        html: '<div style="display:flex;flex-direction:column;align-items:center;gap:4px">' +
-          '<div style="width:18px;height:18px;border-radius:50%;background:#C8A951;' +
-          'border:3px solid rgba(200,169,81,0.4);' +
-          'box-shadow:0 0 0 8px rgba(200,169,81,0.12),0 0 24px rgba(200,169,81,0.5);' +
-          'animation:pulse 2s ease-in-out infinite"></div>' +
-          '<div style="background:#C8A951;color:#0D1E40;font-weight:700;' +
-          'font-size:13px;padding:5px 14px;border-radius:4px;' +
-          'white-space:nowrap">Naxçıvan</div></div>',
-        className: '',
-        iconAnchor: [9, 9]
-      });
+      /* Step 1: Fade in region path */
+      var regionPath = document.querySelector('.region-path');
+      regionPath.classList.add('visible');
 
-      L.marker([39.2092, 45.4122], { icon: hqIcon, zIndexOffset: 1000 }).addTo(map);
+      /* Step 2: Fade in HQ marker */
+      setTimeout(function () {
+        document.getElementById('hq-group').classList.add('visible');
+      }, 500);
 
-      /* ── Animate districts sequentially ── */
-      districts.forEach(function (d, i) {
+      /* Step 3: Animate each district sequentially */
+      DISTRICTS.forEach(function (d, i) {
         setTimeout(function () {
 
-          /* Dashed polyline from HQ to district */
-          var line = L.polyline([[hq.lat, hq.lng], [d.lat, d.lng]], {
-            color: '#C8A951',
-            weight: 1.5,
-            opacity: 0.55,
-            dashArray: '8 5'
-          }).addTo(map);
+          /* Route line */
+          var line = document.createElementNS(svgNS, 'line');
+          line.setAttribute('x1', HQ.x);
+          line.setAttribute('y1', HQ.y);
+          line.setAttribute('x2', d.x);
+          line.setAttribute('y2', d.y);
+          line.setAttribute('stroke', '#C8A951');
+          line.setAttribute('stroke-width', '1.5');
+          line.setAttribute('stroke-dasharray', '8 5');
+          line.setAttribute('opacity', '0.55');
+          line.classList.add('route-line', 'fade-in');
+          routesGroup.appendChild(line);
 
-          /* Add flowing dash animation */
-          var lineEl = line.getElement();
-          if (lineEl) {
-            lineEl.classList.add('flowing-dash');
-          }
+          /* District group */
+          var g = document.createElementNS(svgNS, 'g');
+          g.classList.add('fade-in');
 
-          /* District dot marker */
-          var dotIcon = L.divIcon({
-            className: '',
-            html: '<div class="district-dot"></div>',
-            iconSize: [10, 10],
-            iconAnchor: [5, 5]
+          /* Dot */
+          var dot = document.createElementNS(svgNS, 'circle');
+          dot.setAttribute('cx', d.x);
+          dot.setAttribute('cy', d.y);
+          dot.setAttribute('r', '6');
+          dot.setAttribute('fill', '#C8A951');
+          dot.setAttribute('stroke', '#0D1E40');
+          dot.setAttribute('stroke-width', '2');
+          g.appendChild(dot);
+
+          /* Label background */
+          var labelText = d.name;
+          var textLen = labelText.length * 7 + 20;
+          var labelX = d.x + 12;
+          var labelY = d.y - 10;
+
+          var labelBg = document.createElementNS(svgNS, 'rect');
+          labelBg.setAttribute('x', labelX);
+          labelBg.setAttribute('y', labelY);
+          labelBg.setAttribute('width', textLen);
+          labelBg.setAttribute('height', '22');
+          labelBg.setAttribute('rx', '4');
+          labelBg.setAttribute('fill', 'rgba(8,20,41,0.9)');
+          labelBg.setAttribute('stroke', 'rgba(200,169,81,0.4)');
+          labelBg.setAttribute('stroke-width', '1');
+          g.appendChild(labelBg);
+
+          /* Label text */
+          var text = document.createElementNS(svgNS, 'text');
+          text.setAttribute('x', labelX + textLen / 2);
+          text.setAttribute('y', labelY + 15);
+          text.setAttribute('text-anchor', 'middle');
+          text.setAttribute('fill', '#ffffff');
+          text.setAttribute('font-family', 'Outfit, sans-serif');
+          text.setAttribute('font-size', '12');
+          text.textContent = labelText;
+          g.appendChild(text);
+
+          districtsGroup.appendChild(g);
+
+          /* Trigger fade-in */
+          requestAnimationFrame(function () {
+            line.classList.add('visible');
+            g.classList.add('visible');
           });
 
-          L.marker([d.lat, d.lng], { icon: dotIcon, interactive: false }).addTo(map);
-
-          /* District label (always visible) */
-          var labelIcon = L.divIcon({
-            className: '',
-            html: '<div class="district-label">' + d.name + '</div>',
-            iconSize: [0, 0],
-            iconAnchor: [-10, 12]
-          });
-
-          L.marker([d.lat, d.lng], { icon: labelIcon, interactive: false }).addTo(map);
-
-        }, (i + 1) * 300);
+        }, 800 + (i + 1) * 300);
       });
-
     });
   </script>
 </body>
