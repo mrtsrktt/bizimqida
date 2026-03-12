@@ -60,7 +60,12 @@ export default function Footer() {
         <p>&copy; 2025 Bizim Qida &mdash; {t('copyright')}</p>
         <a href="https://www.surkit.com.tr" target="_blank" rel="noopener noreferrer" className={styles['surkit-ref']}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src="/images/surkit-logo.png" alt="Sürkit Holding" className={styles['surkit-logo']} />
+          <img
+            src="/images/surkit-logo.png"
+            alt="Sürkit Holding"
+            className={styles['surkit-logo']}
+            style={{ filter: 'brightness(0) invert(1)', height: '32px', width: 'auto' }}
+          />
           <span className={styles['surkit-label']}>{t('subsidiary')}</span>
         </a>
       </div>
