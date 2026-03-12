@@ -27,14 +27,18 @@ export default function DistributionSection() {
             </div>
             <div className={styles.distPoints}>
               <div className={styles.dp}>
-                <div className={styles.dpIcon}>&#x1F69B;</div>
+                <div className={styles.dpIcon}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M1 3h15v13H1z"/><path d="M16 8h4l3 4v4h-7V8z"/><circle cx="5.5" cy="18.5" r="2.5"/><circle cx="18.5" cy="18.5" r="2.5"/></svg>
+                </div>
                 <div>
                   <h4>{t('fleetTitle')}</h4>
                   <p>{t('fleetDesc')}</p>
                 </div>
               </div>
               <div className={styles.dp}>
-                <div className={styles.dpIcon}>&#x1F3ED;</div>
+                <div className={styles.dpIcon}>
+                  <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"><path d="M3 21V7l9-4 9 4v14"/><path d="M9 21V11h6v10"/><path d="M3 11h18"/></svg>
+                </div>
                 <div>
                   <h4>{t('warehouseTitle')}</h4>
                   <p>{t('warehouseDesc')}</p>

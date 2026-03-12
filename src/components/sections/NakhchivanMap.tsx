@@ -1,252 +1,131 @@
 'use client';
-import { useState, useEffect, useRef } from 'react';
-import { useTranslations } from 'next-intl';
+import { useEffect, useRef, useState } from 'react';
 import styles from './NakhchivanMap.module.css';
 
-interface City {
-  id: string;
-  name: string;
-  x: number;
-  y: number;
-  pct: number;
-  isHub?: boolean;
-  labelOffset?: { dx: number; dy: number };
-}
+const HUB = { lat: 39.2092, lng: 45.4122, name: 'Naxçıvan' };
 
-const HUB = { x: 420, y: 275 };
-
-const cities: City[] = [
-  { id: 'sadarak', name: 'Sədərək', x: 105, y: 130, pct: 55, labelOffset: { dx: 0, dy: -14 } },
-  { id: 'sharur', name: 'Şərur', x: 210, y: 170, pct: 75, labelOffset: { dx: 0, dy: -14 } },
-  { id: 'kangarli', name: 'Kəngərli', x: 330, y: 195, pct: 65, labelOffset: { dx: 0, dy: -14 } },
-  { id: 'babek', name: 'Babək', x: 385, y: 225, pct: 60, labelOffset: { dx: -40, dy: 5 } },
-  { id: 'nakhchivan', name: 'Naxçıvan', x: HUB.x, y: HUB.y, pct: 95, isHub: true, labelOffset: { dx: 0, dy: -24 } },
-  { id: 'julfa', name: 'Culfa', x: 530, y: 340, pct: 70, labelOffset: { dx: 0, dy: -14 } },
-  { id: 'ordubad', name: 'Ordubad', x: 675, y: 385, pct: 80, labelOffset: { dx: 0, dy: -14 } },
-];
-
-const nonHubCities = cities.filter(c => !c.isHub);
-
-// Simplified Nakhchivan AR outline
-const OUTLINE_PATH = `
-  M 65,145
-  C 70,125 80,115 95,105
-  L 135,100
-  C 160,95 185,100 220,110
-  L 280,130
-  C 320,140 350,150 380,165
-  L 440,195
-  C 475,210 510,230 545,260
-  L 590,295
-  C 620,315 650,340 680,360
-  L 720,385
-  C 735,395 740,410 730,425
-  L 710,435
-  C 690,440 665,430 640,415
-  L 590,380
-  C 555,360 525,345 500,335
-  L 450,310
-  C 420,300 390,285 360,270
-  L 300,240
-  C 260,225 220,210 180,195
-  L 130,175
-  C 105,168 85,160 70,155
-  Z
-`;
-
-// District boundary lines (simplified)
-const DISTRICT_BOUNDARIES = [
-  // Sadarak | Sharur
-  'M 152,98 L 145,180',
-  // Sharur | Kangarli
-  'M 275,128 L 262,220',
-  // Kangarli | Babek
-  'M 375,163 L 355,268',
-  // Babek/Nakhchivan | Julfa
-  'M 475,215 L 495,338',
-  // Julfa | Ordubad
-  'M 625,340 L 610,425',
+const cities = [
+  { lat: 39.7105, lng: 44.8850, name: 'Sədərək' },
+  { lat: 39.5536, lng: 44.9839, name: 'Şərur' },
+  { lat: 39.3872, lng: 45.1641, name: 'Kəngərli' },
+  { lat: 39.1508, lng: 45.4470, name: 'Babək' },
+  { lat: 38.9614, lng: 45.6294, name: 'Culfa' },
+  { lat: 38.9070, lng: 46.0230, name: 'Ordubad' },
+  { lat: 39.4000, lng: 45.5800, name: 'Şahbuz' },
 ];
 
 export default function NakhchivanMap() {
-  const t = useTranslations('distribution');
-  const [isVisible, setIsVisible] = useState(false);
-  const [hoveredCity, setHoveredCity] = useState<string | null>(null);
   const mapRef = useRef<HTMLDivElement>(null);
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
-    const el = mapRef.current;
-    if (!el) return;
+    if (!mapRef.current || loaded) return;
+
+    const init = async () => {
+      const L = (await import('leaflet')).default;
+
+      const map = L.map(mapRef.current!, {
+        center: [39.25, 45.45],
+        zoom: 9,
+        zoomControl: false,
+        attributionControl: false,
+        scrollWheelZoom: false,
+        dragging: true,
+      });
+
+      // Dark tile layer
+      L.tileLayer(
+        'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+        { maxZoom: 13, minZoom: 8 }
+      ).addTo(map);
+
+      // Custom gold marker icon
+      const goldIcon = L.divIcon({
+        className: styles.goldMarker,
+        iconSize: [14, 14],
+        iconAnchor: [7, 7],
+      });
+
+      // Hub marker (larger)
+      const hubIcon = L.divIcon({
+        className: styles.hubMarker,
+        iconSize: [22, 22],
+        iconAnchor: [11, 11],
+      });
+
+      // Add hub marker
+      L.marker([HUB.lat, HUB.lng], { icon: hubIcon })
+        .addTo(map)
+        .bindTooltip(HUB.name, {
+          permanent: true,
+          direction: 'top',
+          offset: [0, -14],
+          className: styles.hubTooltip,
+        });
+
+      // Add city markers with animated polylines
+      cities.forEach((city, i) => {
+        // Marker
+        L.marker([city.lat, city.lng], { icon: goldIcon })
+          .addTo(map)
+          .bindTooltip(city.name, {
+            permanent: true,
+            direction: 'top',
+            offset: [0, -10],
+            className: styles.cityTooltip,
+          });
+
+        // Polyline from hub to city
+        const latlngs: [number, number][] = [
+          [HUB.lat, HUB.lng],
+          [city.lat, city.lng],
+        ];
+
+        const polyline = L.polyline(latlngs, {
+          color: '#C8A951',
+          weight: 2,
+          opacity: 0.5,
+          dashArray: '8, 6',
+        }).addTo(map);
+
+        // Animate: start hidden, reveal after delay
+        const el = polyline.getElement() as SVGElement | null;
+        if (el) {
+          const svgPath = el as unknown as SVGPathElement;
+          const length = svgPath.getTotalLength?.() || 500;
+          el.style.strokeDasharray = `${length}`;
+          el.style.strokeDashoffset = `${length}`;
+          el.style.transition = `stroke-dashoffset 1.2s ease ${0.5 + i * 0.2}s`;
+          setTimeout(() => {
+            el.style.strokeDashoffset = '0';
+          }, 100);
+        }
+      });
+
+      setLoaded(true);
+    };
+
+    // Observe visibility
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
-          setIsVisible(true);
-          obs.unobserve(el);
+          init();
+          obs.disconnect();
         }
       },
-      { threshold: 0.15 }
+      { threshold: 0.2 }
     );
-    obs.observe(el);
+    obs.observe(mapRef.current);
     return () => obs.disconnect();
-  }, []);
-
-  const getRouteLength = (city: City) =>
-    Math.hypot(city.x - HUB.x, city.y - HUB.y);
-
-  const hoveredData = cities.find(c => c.id === hoveredCity);
+  }, [loaded]);
 
   return (
-    <div
-      ref={mapRef}
-      className={`${styles.mapContainer} ${isVisible ? styles.active : ''}`}
-    >
-      <h3 className={styles.mapTitle}>{t('mapTitle')}</h3>
-      <div className={styles.gridOverlay} />
-
-      <div className={styles.svgWrap}>
-        <svg viewBox="0 0 800 500" className={styles.mapSvg}>
-          <defs>
-            {/* Hub glow filter */}
-            <filter id="hubGlow" x="-50%" y="-50%" width="200%" height="200%">
-              <feGaussianBlur in="SourceGraphic" stdDeviation="3" result="blur" />
-              <feMerge>
-                <feMergeNode in="blur" />
-                <feMergeNode in="SourceGraphic" />
-              </feMerge>
-            </filter>
-          </defs>
-
-          {/* Map outline */}
-          <path
-            d={OUTLINE_PATH}
-            className={styles.regionOutline}
-          />
-
-          {/* District boundaries */}
-          {DISTRICT_BOUNDARIES.map((d, i) => (
-            <path
-              key={`boundary-${i}`}
-              d={d}
-              className={styles.districtBoundary}
-            />
-          ))}
-
-          {/* Route lines from hub to each city */}
-          {nonHubCities.map((city, i) => {
-            const len = getRouteLength(city);
-            return (
-              <line
-                key={`route-${city.id}`}
-                x1={HUB.x}
-                y1={HUB.y}
-                x2={city.x}
-                y2={city.y}
-                className={`${styles.routeLine} ${
-                  hoveredCity === city.id ? styles.routeHighlight : ''
-                }`}
-                style={{
-                  strokeDasharray: len,
-                  strokeDashoffset: isVisible ? 0 : len,
-                  transitionDelay: isVisible ? `${1.0 + i * 0.2}s` : '0s',
-                }}
-              />
-            );
-          })}
-
-          {/* Hub marker */}
-          <circle
-            cx={HUB.x}
-            cy={HUB.y}
-            r="16"
-            className={styles.hubOuter}
-          />
-          <circle
-            cx={HUB.x}
-            cy={HUB.y}
-            r="8"
-            className={styles.hubInner}
-            filter="url(#hubGlow)"
-          />
-          <circle
-            cx={HUB.x}
-            cy={HUB.y}
-            r="16"
-            className={styles.hubPulse}
-          />
-          <circle
-            cx={HUB.x}
-            cy={HUB.y}
-            r="16"
-            className={styles.hubPulse2}
-          />
-
-          {/* City dots (non-hub) */}
-          {nonHubCities.map((city, i) => (
-            <circle
-              key={`dot-${city.id}`}
-              cx={city.x}
-              cy={city.y}
-              r="5"
-              className={`${styles.cityDot} ${
-                hoveredCity === city.id ? styles.cityDotHover : ''
-              }`}
-              style={{
-                animationDelay: isVisible ? `${1.3 + i * 0.2}s` : '0s',
-              }}
-              onMouseEnter={() => setHoveredCity(city.id)}
-              onMouseLeave={() => setHoveredCity(null)}
-              onClick={() => setHoveredCity(hoveredCity === city.id ? null : city.id)}
-            />
-          ))}
-
-          {/* City labels */}
-          {cities.map((city, i) => (
-            <text
-              key={`label-${city.id}`}
-              x={city.x + (city.labelOffset?.dx || 0)}
-              y={city.y + (city.labelOffset?.dy || -14)}
-              className={`${styles.cityLabel} ${
-                city.isHub ? styles.hubLabel : ''
-              } ${hoveredCity === city.id ? styles.labelHighlight : ''}`}
-              style={{
-                animationDelay: isVisible ? `${city.isHub ? 1.0 : 1.6 + i * 0.2}s` : '0s',
-              }}
-            >
-              {city.name}
-            </text>
-          ))}
-        </svg>
-      </div>
-
-      {/* Hover info bar */}
-      <div className={`${styles.infoBar} ${hoveredData ? styles.infoBarActive : ''}`}>
-        {hoveredData ? (
-          <>
-            <span className={styles.infoCityName}>{hoveredData.name}</span>
-            <div className={styles.infoDivider} />
-            <span className={styles.infoPct}>{hoveredData.pct}%</span>
-            <span className={styles.infoLabel}>{t('mapTooltipCoverage')}</span>
-          </>
-        ) : (
-          <span className={styles.infoPrompt}>{t('mapHoverPrompt')}</span>
-        )}
-      </div>
-
-      {/* Legend */}
-      <div className={styles.legend}>
-        <div className={styles.legendItem}>
-          <span className={styles.legendHub} />
-          {t('mapLegendHub')}
-        </div>
-        <div className={styles.legendItem}>
-          <span className={styles.legendRoute} />
-          {t('mapLegendRoute')}
-        </div>
-        <div className={styles.legendItem}>
-          <span className={styles.legendCity} />
-          {t('mapLegendCity')}
-        </div>
-      </div>
+    <div className={styles.mapContainer}>
+      <link
+        rel="stylesheet"
+        href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"
+      />
+      <div ref={mapRef} className={styles.leafletMap} />
     </div>
   );
 }
