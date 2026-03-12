@@ -27,7 +27,7 @@
 }
 
 /* ============================================================
-   HUB MARKER — Naxçıvan center
+   HUB MARKER — Naxçıvan center (pulse animation)
    ============================================================ */
 @keyframes hubPulse {
   0%   { transform: scale(1); opacity: 0.6; }
@@ -72,7 +72,7 @@
 }
 
 /* ============================================================
-   CITY MARKERS
+   CITY MARKERS — gold dot
    ============================================================ */
 .cityMarker {
   background: #C8A951 !important;
@@ -82,17 +82,17 @@
 }
 
 /* ============================================================
-   TOOLTIPS
+   TOOLTIPS — Always visible, Outfit font
    ============================================================ */
 .hubTooltip {
   background: rgba(13, 30, 64, 0.95) !important;
   color: #C8A951 !important;
   border: 1px solid rgba(200, 169, 81, 0.4) !important;
-  font-family: var(--font-playfair, 'Playfair Display'), serif;
+  font-family: 'Outfit', var(--font-outfit), sans-serif;
   font-size: 15px !important;
   font-weight: 600;
-  padding: 8px 16px !important;
-  border-radius: 6px !important;
+  padding: 6px 14px !important;
+  border-radius: 4px !important;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
   letter-spacing: 0.03em;
 }
@@ -102,11 +102,11 @@
 }
 
 .cityTooltip {
-  background: rgba(13, 30, 64, 0.9) !important;
-  color: rgba(255, 255, 255, 0.85) !important;
-  border: 1px solid rgba(200, 169, 81, 0.2) !important;
-  font-family: var(--font-playfair, 'Playfair Display'), serif;
-  font-size: 12px !important;
+  background: rgba(13, 30, 64, 0.85) !important;
+  color: #ffffff !important;
+  border: 1px solid rgba(200, 169, 81, 0.4) !important;
+  font-family: 'Outfit', var(--font-outfit), sans-serif;
+  font-size: 13px !important;
   font-weight: 500;
   padding: 4px 10px !important;
   border-radius: 4px !important;
@@ -114,7 +114,7 @@
 }
 
 .cityTooltip::before {
-  border-top-color: rgba(13, 30, 64, 0.9) !important;
+  border-top-color: rgba(13, 30, 64, 0.85) !important;
 }
 
 /* ============================================================

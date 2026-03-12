@@ -5,27 +5,28 @@ import styles from './NakhchivanMap.module.css';
 const HUB = { lat: 39.2092, lng: 45.4122, name: 'Naxçıvan' };
 
 const cities = [
-  { lat: 39.7197, lng: 44.8797, name: 'Sədərək' },
   { lat: 39.5553, lng: 44.9839, name: 'Şərur' },
   { lat: 39.3897, lng: 45.1603, name: 'Kəngərli' },
   { lat: 39.1514, lng: 45.4489, name: 'Babək' },
   { lat: 38.9583, lng: 45.6317, name: 'Culfa' },
   { lat: 38.9022, lng: 46.0236, name: 'Ordubad' },
+  { lat: 39.7197, lng: 44.8797, name: 'Sədərək' },
   { lat: 39.4078, lng: 45.5706, name: 'Şahbuz' },
 ];
 
-// Simplified Nakhchivan AR boundary polygon
+// Real Nakhchivan AR boundary (user-provided GeoJSON, converted from [lng,lat] to [lat,lng])
 const nakhchivanBoundary: [number, number][] = [
-  [39.78, 44.76], [39.72, 44.77], [39.65, 44.82], [39.58, 44.85],
-  [39.50, 44.87], [39.42, 44.92], [39.35, 45.00], [39.28, 45.05],
-  [39.22, 45.10], [39.15, 45.18], [39.10, 45.28], [39.05, 45.38],
-  [39.00, 45.48], [38.95, 45.55], [38.90, 45.60], [38.86, 45.70],
-  [38.84, 45.82], [38.85, 45.95], [38.87, 46.05], [38.90, 46.10],
-  [38.95, 46.15], [39.00, 46.12], [39.05, 46.05], [39.10, 45.95],
-  [39.15, 45.88], [39.20, 45.82], [39.25, 45.75], [39.30, 45.70],
-  [39.35, 45.65], [39.40, 45.62], [39.45, 45.55], [39.50, 45.48],
-  [39.55, 45.40], [39.60, 45.30], [39.65, 45.20], [39.70, 45.10],
-  [39.75, 45.00], [39.78, 44.90], [39.80, 44.82], [39.78, 44.76],
+  [39.75, 45.00], [39.72, 45.15], [39.65, 45.30], [39.58, 45.45],
+  [39.52, 45.55], [39.45, 45.62], [39.38, 45.70], [39.30, 45.75],
+  [39.22, 45.82], [39.10, 45.90], [38.95, 46.10], [38.90, 46.20],
+  [38.85, 46.15], [38.82, 45.95], [38.88, 45.75], [38.95, 45.55],
+  [39.05, 45.40], [39.15, 45.25], [39.28, 45.10], [39.42, 44.95],
+  [39.55, 44.88], [39.65, 44.90], [39.70, 44.95], [39.75, 45.00],
+];
+
+// World rectangle for masking outside the polygon
+const worldBounds: [number, number][] = [
+  [-90, -180], [-90, 180], [90, 180], [90, -180], [-90, -180],
 ];
 
 export default function NakhchivanMap() {
@@ -39,8 +40,8 @@ export default function NakhchivanMap() {
       const L = (await import('leaflet')).default;
 
       const map = L.map(mapRef.current!, {
-        center: [39.2092, 45.4122],
-        zoom: 9,
+        center: [39.25, 45.25],
+        zoom: 9.2,
         zoomControl: false,
         attributionControl: false,
         scrollWheelZoom: false,
@@ -57,13 +58,21 @@ export default function NakhchivanMap() {
         { maxZoom: 13, minZoom: 8 }
       ).addTo(map);
 
-      // Nakhchivan boundary polygon with glow
+      // Darken area OUTSIDE Nakhchivan — polygon with hole
+      L.polygon([worldBounds, nakhchivanBoundary], {
+        fillColor: 'rgba(8, 20, 41, 1)',
+        fillOpacity: 0.55,
+        stroke: false,
+        interactive: false,
+      }).addTo(map);
+
+      // Nakhchivan boundary polygon (gold border + subtle fill)
       L.polygon(nakhchivanBoundary, {
-        fillColor: 'rgba(200, 169, 81, 0.08)',
+        fillColor: 'rgba(200, 169, 81, 0.15)',
         fillOpacity: 1,
         color: '#C8A951',
-        weight: 2,
-        opacity: 0.7,
+        weight: 2.5,
+        opacity: 0.8,
       }).addTo(map);
 
       // Hub marker — appears first with delay
@@ -114,8 +123,8 @@ export default function NakhchivanMap() {
         setTimeout(() => {
           const cityIcon = L.divIcon({
             className: `${styles.cityMarker} ${styles.fadeIn}`,
-            iconSize: [14, 14],
-            iconAnchor: [7, 7],
+            iconSize: [12, 12],
+            iconAnchor: [6, 6],
           });
 
           L.marker([city.lat, city.lng], { icon: cityIcon })
