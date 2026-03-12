@@ -327,18 +327,6 @@
    RESPONSIVE
    ============================================================ */
 @media (max-width: 900px) {
-  /* On mobile: no slideshow, just a static background on .hero itself */
-  .hero {
-    background: url('/images/facility/exterior-front-wide.jpg') center/cover no-repeat #081429;
-    height: 100vh;
-    height: 100dvh;
-    min-height: unset;
-  }
-
-  .slideshow {
-    display: none !important;
-  }
-
   .heroContent {
     grid-template-columns: 1fr;
     gap: 40px;

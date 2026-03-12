@@ -31,6 +31,13 @@ export default function CountUp({ target, suffix = '', className = '', threshold
 
   useEffect(() => {
     if (!started) return;
+
+    // Skip animation on mobile to prevent layout-shift shaking
+    if (window.matchMedia('(max-width: 900px)').matches) {
+      setCount(target);
+      return;
+    }
+
     let cur = 0;
     const inc = Math.ceil(target / 50);
     const timer = setInterval(() => {
