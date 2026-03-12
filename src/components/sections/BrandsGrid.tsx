@@ -10,7 +10,7 @@ const brands = [
   { logo: '/images/markalar/azersun.png', name: 'Azersun' },
   { logo: '/images/markalar/ABC.png', name: 'ABC' },
   { logo: '/images/markalar/karmen.png', name: 'Karmen' },
-  { logo: '/images/markalar/tadım.png', name: 'Tadım' },
+  { logo: '/images/markalar/tadim.png', name: 'Tadım' },
 ];
 
 export default function BrandsGrid() {
