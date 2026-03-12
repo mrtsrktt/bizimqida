@@ -331,10 +331,6 @@
     gap: 40px;
   }
 
-  .hero {
-    transform: translateZ(0);
-  }
-
   .heroGlow {
     display: none;
   }
@@ -343,46 +339,45 @@
     display: none;
   }
 
-  .heroBg {
-    transform: translateZ(0);
-  }
-
-  .slideshow {
-    transform: translateZ(0);
-  }
-
-  .slide {
-    transform: translateZ(0);
-  }
-
+  /* Kill ALL animations on mobile to prevent slide image shaking */
   .slideFirst {
-    transform: translateZ(0);
     animation: none !important;
   }
 
   .heroEyebrow .dot {
-    animation-delay: 0.2s;
+    animation: none !important;
+    width: 32px;
   }
 
   .heroEyebrow span {
-    animation-delay: 0.3s;
-  }
-
-  .heroP {
-    animation-delay: 1s;
-  }
-
-  .heroActions {
-    animation-delay: 1.5s;
-  }
-
-  .hstat {
-    animation-delay: 1s !important;
+    animation: none !important;
+    opacity: 1;
   }
 
   .heroH1 {
+    animation: none !important;
+    opacity: 1;
     clip-path: none;
-    animation-name: fadeIn;
+  }
+
+  .heroH1 em {
+    animation: none !important;
+  }
+
+  .heroP {
+    animation: none !important;
+    opacity: 1;
+    filter: none;
+  }
+
+  .heroActions {
+    animation: none !important;
+    opacity: 1;
+  }
+
+  .hstat {
+    animation: none !important;
+    opacity: 1;
   }
 }
 
