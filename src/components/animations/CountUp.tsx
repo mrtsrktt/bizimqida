@@ -6,9 +6,10 @@ interface Props {
   suffix?: string;
   className?: string;
   threshold?: number;
+  delay?: number;
 }
 
-export default function CountUp({ target, suffix = '', className = '', threshold = 0.3 }: Props) {
+export default function CountUp({ target, suffix = '', className = '', threshold = 0.3, delay = 0 }: Props) {
   const ref = useRef<HTMLSpanElement>(null);
   const [count, setCount] = useState(0);
   const [started, setStarted] = useState(false);
@@ -38,15 +39,27 @@ export default function CountUp({ target, suffix = '', className = '', threshold
       return;
     }
 
-    let cur = 0;
-    const inc = Math.ceil(target / 50);
-    const timer = setInterval(() => {
-      cur = Math.min(cur + inc, target);
-      setCount(cur);
-      if (cur >= target) clearInterval(timer);
-    }, 30);
-    return () => clearInterval(timer);
-  }, [started, target]);
+    const runAnimation = () => {
+      let cur = 0;
+      const inc = Math.ceil(target / 50);
+      const timer = setInterval(() => {
+        cur = Math.min(cur + inc, target);
+        setCount(cur);
+        if (cur >= target) clearInterval(timer);
+      }, 30);
+      return timer;
+    };
+
+    if (delay > 0) {
+      const delayTimer = setTimeout(() => {
+        runAnimation();
+      }, delay);
+      return () => clearTimeout(delayTimer);
+    } else {
+      const timer = runAnimation();
+      return () => clearInterval(timer);
+    }
+  }, [started, target, delay]);
 
   return (
     <span ref={ref} className={className}>
