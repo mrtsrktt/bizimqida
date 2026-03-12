@@ -160,7 +160,7 @@
   width: 0;
   height: 1px;
   background: var(--gold);
-  animation: drawLine 0.6s 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: drawLine 1s 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .heroEyebrow span {
@@ -170,7 +170,7 @@
   color: var(--gold);
   font-weight: 500;
   opacity: 0;
-  animation: revealRight 0.7s 0.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: revealRight 1s 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .heroH1 {
@@ -182,7 +182,7 @@
   margin-bottom: 24px;
   opacity: 0;
   clip-path: inset(0 100% 0 0);
-  animation: revealRight 0.9s 0.9s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: revealRight 1.4s 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .heroH1 em {
@@ -200,7 +200,7 @@
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
-  animation: goldSweep 3s 2s ease-in-out forwards;
+  animation: goldSweep 3s 3s ease-in-out forwards;
 }
 
 .heroP {
@@ -211,7 +211,7 @@
   max-width: 480px;
   margin-bottom: 44px;
   opacity: 0;
-  animation: fadeBlurIn 0.8s 1.6s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: fadeBlurIn 1.2s 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .heroActions {
@@ -219,7 +219,7 @@
   gap: 14px;
   flex-wrap: wrap;
   opacity: 0;
-  animation: slideUp 0.7s 0.8s forwards;
+  animation: slideUp 1s 3.4s forwards;
 }
 
 /* Hero stat cards */
@@ -239,13 +239,13 @@
   padding: 32px 28px;
   transition: background 0.3s;
   opacity: 0;
-  animation: statReveal 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: statReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.hstat:nth-child(1) { animation-delay: 1.2s; }
-.hstat:nth-child(2) { animation-delay: 1.4s; }
-.hstat:nth-child(3) { animation-delay: 1.6s; }
-.hstat:nth-child(4) { animation-delay: 1.8s; }
+.hstat:nth-child(1) { animation-delay: 2.0s; }
+.hstat:nth-child(2) { animation-delay: 2.3s; }
+.hstat:nth-child(3) { animation-delay: 2.6s; }
+.hstat:nth-child(4) { animation-delay: 2.9s; }
 
 .hstat:hover {
   background: rgba(255, 255, 255, 0.09);
