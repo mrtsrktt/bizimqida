@@ -4,7 +4,7 @@ import '@/styles/globals.css';
 const playfair = Playfair_Display({
   subsets: ['latin'],
   variable: '--font-playfair',
-  display: 'swap',
+  display: 'optional',
   weight: ['400', '600', '700'],
   style: ['normal', 'italic'],
 });
@@ -12,7 +12,7 @@ const playfair = Playfair_Display({
 const outfit = Outfit({
   subsets: ['latin'],
   variable: '--font-outfit',
-  display: 'swap',
+  display: 'optional',
   weight: ['300', '400', '500', '600'],
 });
 
