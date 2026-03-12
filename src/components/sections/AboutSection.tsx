@@ -16,7 +16,7 @@ export default function AboutSection() {
             <div className={styles.aboutImgWrap}>
               <div className={styles.aboutImgBox}>
                 <Image
-                  src="/images/facility/exterior-approach-daytime.jpg"
+                  src="/images/facility/exterior-fleet-sunset.jpg"
                   alt="Bizim Qida facility"
                   fill
                   sizes="(max-width: 900px) 100vw, 50vw"
