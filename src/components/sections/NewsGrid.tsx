@@ -13,13 +13,6 @@ const newsItems = [
     featured: true,
   },
   {
-    tagKey: 'news2Tag',
-    titleKey: 'news2Title',
-    date: 'Subat 2025',
-    image: '/images/facility/exterior-front-wide.jpg',
-    featured: false,
-  },
-  {
     tagKey: 'news3Tag',
     titleKey: 'news3Title',
     date: 'Ocak 2025',
