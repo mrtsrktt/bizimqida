@@ -78,14 +78,6 @@ export default function Hero() {
 
           <p className={styles.heroP}>{t('description')}</p>
 
-          <div className={styles.heroActions}>
-            <Link href="/about" className="btn-primary">
-              {t('ctaPrimary')}
-            </Link>
-            <Link href="/contact" className="btn-ghost">
-              {t('ctaSecondary')}
-            </Link>
-          </div>
         </div>
 
         {/* Right column — stats */}
