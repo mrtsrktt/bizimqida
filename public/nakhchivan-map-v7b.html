@@ -120,9 +120,16 @@ svg{position:relative;z-index:2;width:100%;display:block;}
 .lg-bdr{ fill:none; stroke:rgba(200,169,81,0.18); stroke-width:0.8; }
 .lg-txt{ fill:rgba(255,255,255,0.4); font-family:'Outfit',sans-serif; font-size:9.5px; letter-spacing:0.12em; }
 .lg-sep{ stroke:rgba(255,255,255,0.08); stroke-width:0.8; }
+
+/* Pause all animations until parent signals visibility */
+body.waiting .rt,
+body.waiting .lbl,
+body.waiting .scan{
+  animation-play-state:paused !important;
+}
 </style>
 </head>
-<body>
+<body class="waiting">
 <div class="map-outer">
 <svg viewBox="0 0 960 580" xmlns="http://www.w3.org/2000/svg">
 <defs>
@@ -193,13 +200,13 @@ svg{position:relative;z-index:2;width:100%;display:block;}
 
 <!-- ══ ROUTES from HQ (452.6, 303.5) ══ -->
 <!-- All shifted +20x +30y from v5 coords to match new path offset -->
-<line class="rt" style="animation-delay:2.5s" x1="452.6" y1="303.5" x2="284.5" y2="167.7"/><!-- Şərur -->
-<line class="rt" style="animation-delay:2.8s" x1="452.6" y1="303.5" x2="353.7" y2="232.7"/><!-- Kəngərli -->
-<line class="rt" style="animation-delay:3.1s" x1="452.6" y1="303.5" x2="467"   y2="326.2"/><!-- Babək -->
-<line class="rt" style="animation-delay:3.4s" x1="452.6" y1="303.5" x2="514.8" y2="225.6"/><!-- Şahbuz -->
-<line class="rt" style="animation-delay:3.7s" x1="452.6" y1="303.5" x2="538.8" y2="402"/>  <!-- Culfa -->
-<line class="rt" style="animation-delay:4.0s" x1="452.6" y1="303.5" x2="692.6" y2="424"/>  <!-- Ordubad -->
-<line class="rt" style="animation-delay:4.3s" x1="452.6" y1="303.5" x2="243.6" y2="103.2"/><!-- Sədərək -->
+<line class="rt" style="animation-delay:0.8s" x1="452.6" y1="303.5" x2="284.5" y2="167.7"/><!-- Şərur -->
+<line class="rt" style="animation-delay:1.0s" x1="452.6" y1="303.5" x2="353.7" y2="232.7"/><!-- Kəngərli -->
+<line class="rt" style="animation-delay:1.2s" x1="452.6" y1="303.5" x2="467"   y2="326.2"/><!-- Babək -->
+<line class="rt" style="animation-delay:1.4s" x1="452.6" y1="303.5" x2="514.8" y2="225.6"/><!-- Şahbuz -->
+<line class="rt" style="animation-delay:1.6s" x1="452.6" y1="303.5" x2="538.8" y2="402"/>  <!-- Culfa -->
+<line class="rt" style="animation-delay:1.8s" x1="452.6" y1="303.5" x2="692.6" y2="424"/>  <!-- Ordubad -->
+<line class="rt" style="animation-delay:2.0s" x1="452.6" y1="303.5" x2="243.6" y2="103.2"/><!-- Sədərək -->
 
 <!-- ══ HQ — Naxçıvan (452.6, 303.5) ══ -->
 <circle class="hq-pulse"    cx="452.6" cy="303.5" r="11"/>
@@ -209,7 +216,7 @@ svg{position:relative;z-index:2;width:100%;display:block;}
 <circle class="hq-ring"  cx="452.6" cy="303.5" r="9"/>
 <circle class="hq-inner" cx="452.6" cy="303.5" r="5"/>
 <!-- HQ label — Bizim Qida MMC -->
-<g class="lbl" style="animation-delay:2.0s">
+<g class="lbl" style="animation-delay:0.6s">
   <!-- connector line from dot to label -->
   <line x1="452.6" y1="315" x2="510" y2="328" stroke="rgba(200,169,81,0.4)" stroke-width="0.8" stroke-dasharray="3 3"/>
   <!-- main label box -->
@@ -224,7 +231,7 @@ svg{position:relative;z-index:2;width:100%;display:block;}
 </g>
 
 <!-- ══ Şərur (284.5, 167.7) — label RIGHT ══ -->
-<g class="lbl" style="animation-delay:2.7s">
+<g class="lbl" style="animation-delay:1.0s">
   <circle class="cdot-ring" cx="284.5" cy="167.7" r="6"/>
   <circle class="cdot"      cx="284.5" cy="167.7" r="5"/>
   <rect class="lbg"  x="296" y="157" width="62" height="23" rx="3"/>
@@ -233,7 +240,7 @@ svg{position:relative;z-index:2;width:100%;display:block;}
 </g>
 
 <!-- ══ Kəngərli (353.7, 232.7) — label LEFT ══ -->
-<g class="lbl" style="animation-delay:3.0s">
+<g class="lbl" style="animation-delay:1.2s">
   <circle class="cdot-ring" cx="353.7" cy="232.7" r="6"/>
   <circle class="cdot"      cx="353.7" cy="232.7" r="5"/>
   <rect class="lbg"  x="254" y="222" width="91" height="23" rx="3"/>
@@ -242,7 +249,7 @@ svg{position:relative;z-index:2;width:100%;display:block;}
 </g>
 
 <!-- ══ Babək (467, 326.2) — label LEFT-UP ══ -->
-<g class="lbl" style="animation-delay:3.3s">
+<g class="lbl" style="animation-delay:1.4s">
   <circle class="cdot-ring" cx="467" cy="326.2" r="6"/>
   <circle class="cdot"      cx="467" cy="326.2" r="5"/>
   <rect class="lbg"  x="393" y="290" width="64" height="23" rx="3"/>
@@ -251,7 +258,7 @@ svg{position:relative;z-index:2;width:100%;display:block;}
 </g>
 
 <!-- ══ Şahbuz (514.8, 225.6) — label RIGHT ══ -->
-<g class="lbl" style="animation-delay:3.6s">
+<g class="lbl" style="animation-delay:1.6s">
   <circle class="cdot-ring" cx="514.8" cy="225.6" r="6"/>
   <circle class="cdot"      cx="514.8" cy="225.6" r="5"/>
   <rect class="lbg"  x="526" y="215" width="74" height="23" rx="3"/>
@@ -260,7 +267,7 @@ svg{position:relative;z-index:2;width:100%;display:block;}
 </g>
 
 <!-- ══ Culfa (538.8, 402) — label RIGHT ══ -->
-<g class="lbl" style="animation-delay:3.9s">
+<g class="lbl" style="animation-delay:1.8s">
   <circle class="cdot-ring" cx="538.8" cy="402" r="6"/>
   <circle class="cdot"      cx="538.8" cy="402" r="5"/>
   <rect class="lbg"  x="550" y="392" width="56" height="23" rx="3"/>
@@ -269,7 +276,7 @@ svg{position:relative;z-index:2;width:100%;display:block;}
 </g>
 
 <!-- ══ Ordubad (692.6, 424) — label RIGHT ══ -->
-<g class="lbl" style="animation-delay:4.2s">
+<g class="lbl" style="animation-delay:2.0s">
   <circle class="cdot-ring" cx="692.6" cy="424" r="6"/>
   <circle class="cdot"      cx="692.6" cy="424" r="5"/>
   <rect class="lbg"  x="704" y="413" width="80" height="23" rx="3"/>
@@ -278,7 +285,7 @@ svg{position:relative;z-index:2;width:100%;display:block;}
 </g>
 
 <!-- ══ Sədərək (243.6, 103.2) — label RIGHT ══ -->
-<g class="lbl" style="animation-delay:4.5s">
+<g class="lbl" style="animation-delay:2.2s">
   <circle class="cdot-ring" cx="243.6" cy="103.2" r="6"/>
   <circle class="cdot"      cx="243.6" cy="103.2" r="5"/>
   <rect class="lbg"  x="255" y="93"  width="78" height="23" rx="3"/>
@@ -334,5 +341,11 @@ svg{position:relative;z-index:2;width:100%;display:block;}
 
 </svg>
 </div>
+<script>
+window.addEventListener('message',function(e){
+  if(e.data==='startAnimations') document.body.classList.remove('waiting');
+});
+if(window.parent!==window) window.parent.postMessage('mapReady','*');
+</script>
 </body>
 </html>

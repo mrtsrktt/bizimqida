@@ -1,11 +1,41 @@
 'use client';
 import { useTranslations } from 'next-intl';
+import { useRef, useEffect } from 'react';
 import Image from 'next/image';
 import RevealOnScroll from '@/components/animations/RevealOnScroll';
 import styles from './DistributionSection.module.css';
 
 export default function DistributionSection() {
   const t = useTranslations('distribution');
+  const iframeRef = useRef<HTMLIFrameElement>(null);
+
+  useEffect(() => {
+    const el = iframeRef.current;
+    if (!el) return;
+    let fired = false;
+    const startAnimations = () => {
+      if (fired) return;
+      try {
+        const body = el.contentDocument?.body;
+        if (body) { body.classList.remove('waiting'); fired = true; }
+      } catch { /* cross-origin fallback */ }
+      if (!fired) {
+        el.contentWindow?.postMessage('startAnimations', '*');
+        fired = true;
+      }
+    };
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          startAnimations();
+          obs.disconnect();
+        }
+      },
+      { threshold: 0.15 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
 
   return (
     <div className={styles.wrapper}>
@@ -49,6 +79,7 @@ export default function DistributionSection() {
 
         {/* Animated SVG Map */}
         <iframe
+          ref={iframeRef}
           src="/nakhchivan-map-v7b.html"
           style={{ width: '100%', aspectRatio: '960/580', border: 'none', display: 'block', borderRadius: '8px' }}
           title="Naxçıvan Dağıtım Haritası"
