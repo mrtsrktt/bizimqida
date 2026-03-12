@@ -50,7 +50,7 @@ export default function DistributionSection() {
         {/* Animated SVG Map */}
         <iframe
           src="/nakhchivan-map-v7b.html"
-          style={{ width: '100%', height: '560px', border: 'none', display: 'block', borderRadius: '8px' }}
+          style={{ width: '100%', aspectRatio: '960/580', border: 'none', display: 'block', borderRadius: '8px' }}
           title="Naxçıvan Dağıtım Haritası"
         />
 
