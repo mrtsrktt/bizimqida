@@ -58,22 +58,6 @@ export default function ContactSection() {
                 </div>
               </div>
 
-              <div className={styles.holdingRef}>
-                <div style={{ fontSize: '28px' }}>&#x1F3E2;</div>
-                <div>
-                  <p>
-                    <strong>Surkit Holding</strong> {t('holdingRef')}
-                  </p>
-                  <a
-                    href="https://www.surkit.com.tr"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className={styles.holdingRefLink}
-                  >
-                    surkit.com.tr &rarr;
-                  </a>
-                </div>
-              </div>
             </div>
 
             {/* Right — form */}
