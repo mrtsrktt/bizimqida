@@ -14,23 +14,26 @@
   max-width: 360px;
 }
 
-/* Brand list grid */
+/* Brand list grid — 6 columns for 6 brands */
 .brandList {
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 16px;
-  margin-top: 0;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
 }
 
 /* Brand card */
 .brandCard {
   background: var(--white);
   border: 1px solid var(--gray-light);
-  border-radius: 6px;
-  padding: 36px 24px;
+  border-radius: 10px;
+  padding: 40px 24px;
   text-align: center;
   transition: all 0.3s;
-  cursor: pointer;
+  cursor: default;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
 }
 
 .brandCard:hover {
@@ -39,30 +42,28 @@
   transform: translateY(-4px);
 }
 
-/* Brand icon circle */
-.brandIcon {
-  width: 72px;
-  height: 72px;
-  border-radius: 50%;
-  margin: 0 auto 16px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 28px;
+/* Brand logo */
+.brandLogo {
+  height: 60px;
+  width: auto;
+  max-width: 160px;
+  object-fit: contain;
+  filter: grayscale(100%);
+  opacity: 0.7;
+  transition: all 0.3s;
 }
 
-/* Brand title */
-.brandTitle {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 6px;
+.brandCard:hover .brandLogo {
+  filter: grayscale(0%);
+  opacity: 1;
 }
 
-/* Brand description */
-.brandDesc {
-  font-size: 12px;
+/* Brand name */
+.brandName {
+  font-size: 13px;
+  font-weight: 500;
   color: var(--text-soft);
+  letter-spacing: 0.02em;
 }
 
 /* ============================================================
@@ -70,7 +71,7 @@
    ============================================================ */
 @media (max-width: 900px) {
   .brandList {
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(2, 1fr);
   }
 
   .brandsHeader {

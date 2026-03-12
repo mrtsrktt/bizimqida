@@ -5,11 +5,13 @@ import RevealOnScroll from '@/components/animations/RevealOnScroll';
 import styles from './BrandsGrid.module.css';
 
 const brands = [
-  { emoji: '\u{1F33E}', titleKey: 'flourTitle', descKey: 'flourDesc', bg: '#FFF3E0' },
-  { emoji: '\u{1F95B}', titleKey: 'dairyTitle', descKey: 'dairyDesc', bg: '#E3F2FD' },
-  { emoji: '\u{1F36A}', titleKey: 'biscuitsTitle', descKey: 'biscuitsDesc', bg: '#FFF8E1' },
-  { emoji: '\u{1F96B}', titleKey: 'cannedTitle', descKey: 'cannedDesc', bg: '#E8F5E9' },
-] as const;
+  { logo: '/images/markalar/ulker.png', name: 'Ülker' },
+  { logo: '/images/markalar/solen.png', name: 'Şölen' },
+  { logo: '/images/markalar/azersun.png', name: 'Azersun' },
+  { logo: '/images/markalar/ABC.png', name: 'ABC' },
+  { logo: '/images/markalar/karmen.png', name: 'Karmen' },
+  { logo: '/images/markalar/tadım.png', name: 'Tadım' },
+];
 
 export default function BrandsGrid() {
   const t = useTranslations('brands');
@@ -30,16 +32,18 @@ export default function BrandsGrid() {
           </p>
         </RevealOnScroll>
 
-        {/* Brand cards grid */}
+        {/* Brand logos grid */}
         <RevealOnScroll>
           <div className={styles.brandList}>
             {brands.map((brand) => (
-              <div key={brand.titleKey} className={styles.brandCard}>
-                <div className={styles.brandIcon} style={{ background: brand.bg }}>
-                  {brand.emoji}
-                </div>
-                <h4 className={styles.brandTitle}>{t(brand.titleKey)}</h4>
-                <p className={styles.brandDesc}>{t(brand.descKey)}</p>
+              <div key={brand.name} className={styles.brandCard}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img
+                  src={brand.logo}
+                  alt={brand.name}
+                  className={styles.brandLogo}
+                />
+                <span className={styles.brandName}>{brand.name}</span>
               </div>
             ))}
           </div>
