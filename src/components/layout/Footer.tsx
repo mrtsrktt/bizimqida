@@ -61,6 +61,7 @@ export default function Footer() {
         <a href="https://www.surkit.com.tr" target="_blank" rel="noopener noreferrer" className={styles['surkit-ref']}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img src="/images/surkit-logo.png" alt="Sürkit Holding" className={styles['surkit-logo']} />
+          <span className={styles['surkit-label']}>{t('subsidiary')}</span>
         </a>
       </div>
     </footer>
