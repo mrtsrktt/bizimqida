@@ -60,6 +60,7 @@
   position: absolute;
   inset: 0;
   z-index: 0;
+  background: #081429;
 }
 
 .slide {
@@ -67,12 +68,16 @@
   inset: 0;
   opacity: 0;
   pointer-events: none;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  visibility: hidden;
 }
 
 .slideFirst {
   opacity: 1;
   z-index: 1;
   pointer-events: auto;
+  visibility: visible;
 }
 
 .slideActive {
@@ -80,12 +85,16 @@
   animation: slideIn 0.8s ease-out forwards;
   z-index: 1;
   pointer-events: auto;
+  visibility: visible;
+  will-change: opacity;
 }
 
 .slideExit {
   opacity: 1;
   animation: slideOut 0.8s ease-out forwards;
   z-index: 0;
+  visibility: visible;
+  will-change: opacity;
 }
 
 @keyframes slideIn {
@@ -321,5 +330,61 @@
   .heroContent {
     grid-template-columns: 1fr;
     gap: 40px;
+  }
+
+  .hero {
+    transform: translateZ(0);
+  }
+
+  .heroGlow {
+    display: none;
+  }
+
+  .heroGridOverlay {
+    display: none;
+  }
+
+  .heroBg {
+    transform: translateZ(0);
+  }
+
+  .slideshow {
+    transform: translateZ(0);
+  }
+
+  .slide {
+    transform: translateZ(0);
+  }
+
+  .slideFirst {
+    transform: translateZ(0);
+    animation: none !important;
+  }
+
+  .heroEyebrow .dot {
+    animation-delay: 0.2s;
+  }
+
+  .heroEyebrow span {
+    animation-delay: 0.3s;
+  }
+
+  .heroP {
+    animation-delay: 1s;
+  }
+
+  .heroActions {
+    animation-delay: 1.5s;
+  }
+
+  .hstat {
+    animation-delay: 1s !important;
+    backdrop-filter: none;
+    -webkit-backdrop-filter: none;
+  }
+
+  .heroH1 {
+    clip-path: none;
+    animation-name: fadeIn;
   }
 }
