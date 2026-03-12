@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
+import Image from 'next/image';
 import { Link } from '@/i18n/navigation';
 import styles from './Navbar.module.css';
 
@@ -25,11 +26,14 @@ export default function Navbar() {
       <div className={styles['nav-inner']}>
         {/* Logo */}
         <Link href="/" className={styles['nav-logo']}>
-          <div className={styles['logo-hex']}>BQ</div>
-          <div className={styles['logo-text-wrap']}>
-            <div className={styles['logo-name']}>Bizim <span>Qida</span></div>
-            <div className={styles['logo-sub']}>{t('logoSub')}</div>
-          </div>
+          <Image
+            src="/images/logo/BİZİM GIDA LOGO.png"
+            alt="Bizim Qida"
+            width={180}
+            height={50}
+            className={styles['logo-img']}
+            priority
+          />
         </Link>
 
         {/* Desktop Nav Menu */}
