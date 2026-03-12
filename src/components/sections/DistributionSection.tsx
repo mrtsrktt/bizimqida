@@ -1,7 +1,6 @@
 'use client';
 import { useTranslations } from 'next-intl';
 import { useRef, useEffect } from 'react';
-import Image from 'next/image';
 import RevealOnScroll from '@/components/animations/RevealOnScroll';
 import styles from './DistributionSection.module.css';
 
@@ -85,17 +84,6 @@ export default function DistributionSection() {
           title="Naxçıvan Dağıtım Haritası"
         />
 
-        <RevealOnScroll>
-          <div className={styles.fleetImage}>
-            <Image
-              src="/images/fleet/delivery-vans-lineup.jpg"
-              alt="Bizim Qida delivery fleet"
-              width={1200}
-              height={500}
-              style={{ width: '100%', height: 'auto', display: 'block', borderRadius: '12px' }}
-            />
-          </div>
-        </RevealOnScroll>
       </div>
       <div className={styles.diagBottom} />
     </div>
