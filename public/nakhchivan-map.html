@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Naxçıvan Dağıtım Haritası</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css"/>
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet"/>
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    body {
+      background: #0D1E40;
+      font-family: 'Outfit', sans-serif;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      padding: 24px;
+    }
+
+    .map-wrapper {
+      width: 100%;
+      max-width: 1200px;
+    }
+
+    #map {
+      width: 100%;
+      height: 520px;
+      border-radius: 8px;
+      overflow: hidden;
+      background: #0a1628;
+    }
+
+    .leaflet-control-attribution,
+    .leaflet-control-zoom {
+      display: none !important;
+    }
+
+    /* HQ pulse animation */
+    .hq-marker {
+      position: relative;
+      width: 16px;
+      height: 16px;
+    }
+
+    .hq-dot {
+      width: 16px;
+      height: 16px;
+      background: #C8A951;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 2;
+    }
+
+    .hq-pulse {
+      width: 16px;
+      height: 16px;
+      background: #C8A951;
+      border-radius: 50%;
+      position: absolute;
+      top: 0;
+      left: 0;
+      z-index: 1;
+      animation: pulse 2s ease-out infinite;
+    }
+
+    @keyframes pulse {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(3); opacity: 0; }
+    }
+
+    .hq-label {
+      background: #C8A951;
+      color: #0D1E40;
+      font-weight: 700;
+      font-size: 13px;
+      padding: 5px 14px;
+      border-radius: 4px;
+      white-space: nowrap;
+      font-family: 'Outfit', sans-serif;
+      text-align: center;
+      margin-top: 4px;
+    }
+
+    .district-dot {
+      width: 10px;
+      height: 10px;
+      background: #C8A951;
+      border-radius: 50%;
+    }
+
+    .district-label {
+      background: rgba(8,20,41,0.92);
+      color: #fff;
+      font-size: 12px;
+      padding: 4px 10px;
+      border-radius: 4px;
+      border: 1px solid rgba(200,169,81,0.35);
+      white-space: nowrap;
+      font-family: 'Outfit', sans-serif;
+    }
+
+    /* Flowing dash animation */
+    @keyframes dashFlow {
+      0% { stroke-dashoffset: 0; }
+      100% { stroke-dashoffset: -26; }
+    }
+
+    .flowing-dash {
+      animation: dashFlow 1.5s linear infinite;
+    }
+
+    /* Legend */
+    .legend {
+      display: flex;
+      justify-content: center;
+      gap: 32px;
+      margin-top: 16px;
+      flex-wrap: wrap;
+    }
+
+    .legend-item {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: rgba(255,255,255,0.5);
+      font-family: 'Outfit', sans-serif;
+    }
+
+    .legend-dot {
+      width: 8px;
+      height: 8px;
+      background: #C8A951;
+      border-radius: 50%;
+      flex-shrink: 0;
+    }
+
+    .legend-dash {
+      width: 24px;
+      height: 0;
+      border-top: 2px dashed #C8A951;
+      opacity: 0.55;
+      flex-shrink: 0;
+    }
+
+    .legend-region {
+      width: 20px;
+      height: 14px;
+      background: rgba(200,169,81,0.10);
+      border: 1.5px solid #C8A951;
+      border-radius: 3px;
+      flex-shrink: 0;
+    }
+  </style>
+</head>
+<body>
+  <div class="map-wrapper">
+    <div id="map"></div>
+    <div class="legend">
+      <div class="legend-item">
+        <span class="legend-dot"></span>
+        Dağıtım Noktası
+      </div>
+      <div class="legend-item">
+        <span class="legend-dash"></span>
+        Dağıtım Güzergahı
+      </div>
+      <div class="legend-item">
+        <span class="legend-region"></span>
+        Naxçıvan MR
+      </div>
+    </div>
+  </div>
+
+  <script>
+    window.addEventListener('load', function () {
+
+      var map = L.map('map', {
+        center: [39.25, 45.35],
+        zoom: 9,
+        dragging: false,
+        scrollWheelZoom: false,
+        zoomControl: false,
+        doubleClickZoom: false,
+        attributionControl: false
+      });
+
+      L.tileLayer('https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png', {
+        maxZoom: 19
+      }).addTo(map);
+
+      /* ── Polygon ── */
+      var polygonCoords = [
+        [39.770,44.878],[39.755,44.910],[39.730,44.945],[39.700,44.970],
+        [39.668,44.985],[39.640,45.000],[39.608,45.025],[39.578,45.055],
+        [39.555,45.085],[39.530,45.105],[39.498,45.125],[39.468,45.148],
+        [39.440,45.168],[39.408,45.185],[39.375,45.198],[39.342,45.215],
+        [39.308,45.238],[39.272,45.258],[39.238,45.278],[39.200,45.295],
+        [39.162,45.318],[39.128,45.348],[39.098,45.375],[39.065,45.408],
+        [39.032,45.442],[38.998,45.475],[38.965,45.512],[38.935,45.548],
+        [38.905,45.585],[38.880,45.625],[38.862,45.665],[38.855,45.712],
+        [38.858,45.762],[38.868,45.808],[38.882,45.848],[38.898,45.888],
+        [38.912,45.928],[38.922,45.972],[38.928,46.018],[38.932,46.058],
+        [38.935,46.095],[38.938,46.132],[38.940,46.168],[38.945,46.185],
+        [38.952,46.158],[38.960,46.125],[38.968,46.092],[38.978,46.058],
+        [38.990,46.025],[39.005,45.995],[39.025,45.965],[39.048,45.938],
+        [39.072,45.912],[39.098,45.888],[39.125,45.865],[39.152,45.845],
+        [39.178,45.828],[39.205,45.812],[39.232,45.798],[39.258,45.782],
+        [39.285,45.768],[39.312,45.755],[39.342,45.742],[39.372,45.730],
+        [39.402,45.718],[39.432,45.705],[39.462,45.692],[39.492,45.678],
+        [39.522,45.662],[39.552,45.645],[39.582,45.625],[39.612,45.602],
+        [39.640,45.578],[39.668,45.552],[39.695,45.522],[39.720,45.490],
+        [39.742,45.458],[39.758,45.422],[39.768,45.385],[39.772,45.348],
+        [39.772,45.308],[39.768,45.268],[39.760,45.228],[39.748,45.188],
+        [39.732,45.148],[39.712,45.108],[39.688,45.068],[39.660,45.030],
+        [39.628,44.995],[39.594,44.962],[39.558,44.932],[39.520,44.905],
+        [39.482,44.882],[39.770,44.878]
+      ];
+
+      L.polygon(polygonCoords, {
+        color: '#C8A951',
+        weight: 2,
+        opacity: 0.8,
+        fillColor: '#C8A951',
+        fillOpacity: 0.10
+      }).addTo(map);
+
+      /* ── Districts ── */
+      var DISTRICTS = [
+        { name: 'Naxçıvan', lat: 39.2092, lng: 45.4122, isHQ: true },
+        { name: 'Şərur',    lat: 39.5553, lng: 44.9839 },
+        { name: 'Kəngərli', lat: 39.3897, lng: 45.1603 },
+        { name: 'Babək',    lat: 39.1514, lng: 45.4489 },
+        { name: 'Şahbuz',   lat: 39.4078, lng: 45.5706 },
+        { name: 'Culfa',    lat: 38.9583, lng: 45.6317 },
+        { name: 'Ordubad',  lat: 38.9022, lng: 46.0236 },
+        { name: 'Sədərək',  lat: 39.7197, lng: 44.8797 }
+      ];
+
+      var hq = DISTRICTS[0];
+      var districts = DISTRICTS.slice(1);
+
+      /* ── HQ Marker ── */
+      var hqIcon = L.divIcon({
+        className: '',
+        html: '<div class="hq-marker"><div class="hq-pulse"></div><div class="hq-dot"></div></div>',
+        iconSize: [16, 16],
+        iconAnchor: [8, 8]
+      });
+
+      L.marker([hq.lat, hq.lng], { icon: hqIcon, interactive: false }).addTo(map);
+
+      /* HQ Label */
+      var hqLabelIcon = L.divIcon({
+        className: '',
+        html: '<div class="hq-label">' + hq.name + '</div>',
+        iconSize: [0, 0],
+        iconAnchor: [0, -14]
+      });
+
+      L.marker([hq.lat, hq.lng], { icon: hqLabelIcon, interactive: false }).addTo(map);
+
+      /* ── Animate districts sequentially ── */
+      districts.forEach(function (d, i) {
+        setTimeout(function () {
+
+          /* Dashed polyline from HQ to district */
+          var line = L.polyline([[hq.lat, hq.lng], [d.lat, d.lng]], {
+            color: '#C8A951',
+            weight: 1.5,
+            opacity: 0.55,
+            dashArray: '8 5'
+          }).addTo(map);
+
+          /* Add flowing dash animation */
+          var lineEl = line.getElement();
+          if (lineEl) {
+            lineEl.classList.add('flowing-dash');
+          }
+
+          /* District dot marker */
+          var dotIcon = L.divIcon({
+            className: '',
+            html: '<div class="district-dot"></div>',
+            iconSize: [10, 10],
+            iconAnchor: [5, 5]
+          });
+
+          L.marker([d.lat, d.lng], { icon: dotIcon, interactive: false }).addTo(map);
+
+          /* District label (always visible) */
+          var labelIcon = L.divIcon({
+            className: '',
+            html: '<div class="district-label">' + d.name + '</div>',
+            iconSize: [0, 0],
+            iconAnchor: [-10, 12]
+          });
+
+          L.marker([d.lat, d.lng], { icon: labelIcon, interactive: false }).addTo(map);
+
+        }, (i + 1) * 300);
+      });
+
+    });
+  </script>
+</body>
+</html>
