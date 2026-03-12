@@ -19,6 +19,9 @@ const outfit = Outfit({
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html suppressHydrationWarning>
+      <head>
+        <link rel="preload" href="/images/facility/exterior-front-wide.jpg" as="image" />
+      </head>
       <body className={`${playfair.variable} ${outfit.variable}`}>
         {children}
       </body>

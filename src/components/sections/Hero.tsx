@@ -1,8 +1,6 @@
 'use client';
 import { useState, useEffect, useCallback } from 'react';
-import Image from 'next/image';
 import { useTranslations } from 'next-intl';
-import { Link } from '@/i18n/navigation';
 import CountUp from '@/components/animations/CountUp';
 import styles from './Hero.module.css';
 
@@ -38,25 +36,28 @@ export default function Hero() {
 
   return (
     <section className={styles.hero}>
-      {/* Background slideshow */}
+      {/* Background slideshow — plain CSS background-image, no Next Image */}
       <div className={styles.slideshow}>
-        {heroSlides.map((src, i) => (
-          <div
-            key={src}
-            className={`${styles.slide} ${
-              i === current ? (hasTransitioned ? styles.slideActive : styles.slideFirst) : ''
-            } ${i === prev ? styles.slideExit : ''}`}
-          >
-            <Image
-              src={src}
-              alt=""
-              fill
-              sizes="100vw"
-              style={{ objectFit: 'cover' }}
-              priority={i === 0}
+        {heroSlides.map((src, i) => {
+          const isActive = i === current;
+          const isExit = i === prev;
+          // Only render slides that are visible or transitioning
+          if (!isActive && !isExit && !(i === 0 && !hasTransitioned)) return null;
+
+          return (
+            <div
+              key={src}
+              className={`${styles.slide} ${
+                isActive ? (hasTransitioned ? styles.slideActive : styles.slideFirst) : ''
+              } ${isExit ? styles.slideExit : ''}`}
+              style={{
+                backgroundImage: `url(${src})`,
+                backgroundSize: 'cover',
+                backgroundPosition: 'center',
+              }}
             />
-          </div>
-        ))}
+          );
+        })}
       </div>
 
       <div className={styles.heroBg} />
