@@ -27,13 +27,17 @@ export default function Navbar() {
         {/* Logo */}
         <Link href="/" className={styles['nav-logo']}>
           <Image
-            src="/images/logo/BİZİM GIDA LOGO.png"
+            src="/images/logo/bizim-qida-logo.png"
             alt="Bizim Qida"
             width={180}
             height={50}
             className={styles['logo-img']}
             priority
           />
+          <div className={styles['logo-text-wrap']}>
+            <div className={styles['logo-name']}>Bizim Qida</div>
+            <div className={styles['logo-sub']}>Dağıtım MMC</div>
+          </div>
         </Link>
 
         {/* Desktop Nav Menu */}

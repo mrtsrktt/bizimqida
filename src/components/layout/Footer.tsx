@@ -15,12 +15,16 @@ export default function Footer() {
         <div className={styles['footer-brand']}>
           <div className={styles['nav-logo']}>
             <Image
-              src="/images/logo/BİZİM GIDA LOGO.png"
+              src="/images/logo/bizim-qida-logo.png"
               alt="Bizim Qida"
               width={160}
               height={45}
               className={styles['logo-img']}
             />
+            <div className={styles['logo-text-wrap']}>
+              <div className={styles['logo-name']}>Bizim Qida</div>
+              <div className={styles['logo-sub']}>Dağıtım MMC</div>
+            </div>
           </div>
           <p>{t('description')}</p>
         </div>

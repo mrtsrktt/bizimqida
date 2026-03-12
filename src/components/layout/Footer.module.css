@@ -64,8 +64,20 @@
   line-height: 1.15;
 }
 
-.footer-brand .logo-name span {
-  color: var(--gold);
+.logo-name {
+  font-family: 'Playfair Display', serif;
+  font-size: 18px;
+  font-weight: 700;
+  color: #fff;
+  letter-spacing: 0.02em;
+}
+
+.logo-sub {
+  font-size: 9px;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+  color: rgba(255,255,255,0.5);
+  font-weight: 400;
 }
 
 /* Foot columns */
