@@ -39,7 +39,7 @@
 }
 
 .logo-img {
-  height: 45px;
+  height: 58px;
   width: auto;
   object-fit: contain;
   filter: brightness(0) invert(1);
@@ -66,14 +66,14 @@
 
 .logo-name {
   font-family: 'Playfair Display', serif;
-  font-size: 18px;
+  font-size: 23px;
   font-weight: 700;
   color: #fff;
   letter-spacing: 0.02em;
 }
 
 .logo-sub {
-  font-size: 9px;
+  font-size: 11px;
   letter-spacing: 0.18em;
   text-transform: uppercase;
   color: rgba(255,255,255,0.5);
