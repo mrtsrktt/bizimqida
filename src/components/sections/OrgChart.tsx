@@ -28,21 +28,6 @@ export default function OrgChart() {
           <div className={styles.orgWrap}>
             <div className={styles.orgChart}>
 
-              {/* Tier 1: Holding */}
-              <div className={styles.tier} style={{ marginBottom: 0 }}>
-                <div className={`${styles.pcard} ${styles.ceo} ${styles.holding}`}>
-                  <div className={styles.pcardAvatar}>SH</div>
-                  <div className={styles.pcardName}>S&uuml;rkit Holding</div>
-                  <div className={styles.pcardTitle}>Ana Ortakl&#305;k / Parent Company</div>
-                  <div className={styles.pcardDesc}>I&#287;d&#305;r &middot; Baku &middot; Tbilisi &middot; Nax&#231;&#305;van</div>
-                </div>
-              </div>
-
-              {/* Connector: single vertical */}
-              <div className={styles.connectorSingle}>
-                <div className={styles.connectorSingleLine} />
-              </div>
-
               {/* Tier 2: General Manager */}
               <div className={styles.tier} style={{ marginBottom: 0 }}>
                 <div className={`${styles.pcard} ${styles.ceo}`}>
