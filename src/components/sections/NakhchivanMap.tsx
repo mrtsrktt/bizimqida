@@ -5,13 +5,27 @@ import styles from './NakhchivanMap.module.css';
 const HUB = { lat: 39.2092, lng: 45.4122, name: 'Naxçıvan' };
 
 const cities = [
-  { lat: 39.7105, lng: 44.8850, name: 'Sədərək' },
-  { lat: 39.5536, lng: 44.9839, name: 'Şərur' },
-  { lat: 39.3872, lng: 45.1641, name: 'Kəngərli' },
-  { lat: 39.1508, lng: 45.4470, name: 'Babək' },
-  { lat: 38.9614, lng: 45.6294, name: 'Culfa' },
-  { lat: 38.9070, lng: 46.0230, name: 'Ordubad' },
-  { lat: 39.4000, lng: 45.5800, name: 'Şahbuz' },
+  { lat: 39.7197, lng: 44.8797, name: 'Sədərək' },
+  { lat: 39.5553, lng: 44.9839, name: 'Şərur' },
+  { lat: 39.3897, lng: 45.1603, name: 'Kəngərli' },
+  { lat: 39.1514, lng: 45.4489, name: 'Babək' },
+  { lat: 38.9583, lng: 45.6317, name: 'Culfa' },
+  { lat: 38.9022, lng: 46.0236, name: 'Ordubad' },
+  { lat: 39.4078, lng: 45.5706, name: 'Şahbuz' },
+];
+
+// Simplified Nakhchivan AR boundary polygon
+const nakhchivanBoundary: [number, number][] = [
+  [39.78, 44.76], [39.72, 44.77], [39.65, 44.82], [39.58, 44.85],
+  [39.50, 44.87], [39.42, 44.92], [39.35, 45.00], [39.28, 45.05],
+  [39.22, 45.10], [39.15, 45.18], [39.10, 45.28], [39.05, 45.38],
+  [39.00, 45.48], [38.95, 45.55], [38.90, 45.60], [38.86, 45.70],
+  [38.84, 45.82], [38.85, 45.95], [38.87, 46.05], [38.90, 46.10],
+  [38.95, 46.15], [39.00, 46.12], [39.05, 46.05], [39.10, 45.95],
+  [39.15, 45.88], [39.20, 45.82], [39.25, 45.75], [39.30, 45.70],
+  [39.35, 45.65], [39.40, 45.62], [39.45, 45.55], [39.50, 45.48],
+  [39.55, 45.40], [39.60, 45.30], [39.65, 45.20], [39.70, 45.10],
+  [39.75, 45.00], [39.78, 44.90], [39.80, 44.82], [39.78, 44.76],
 ];
 
 export default function NakhchivanMap() {
@@ -25,87 +39,100 @@ export default function NakhchivanMap() {
       const L = (await import('leaflet')).default;
 
       const map = L.map(mapRef.current!, {
-        center: [39.25, 45.45],
+        center: [39.2092, 45.4122],
         zoom: 9,
         zoomControl: false,
         attributionControl: false,
         scrollWheelZoom: false,
-        dragging: true,
+        dragging: false,
+        doubleClickZoom: false,
+        touchZoom: false,
+        boxZoom: false,
+        keyboard: false,
       });
 
-      // Dark tile layer
+      // Standard tile layer — styled via CSS filter
       L.tileLayer(
-        'https://{s}.basemaps.cartocdn.com/dark_all/{z}/{x}/{y}{r}.png',
+        'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
         { maxZoom: 13, minZoom: 8 }
       ).addTo(map);
 
-      // Custom gold marker icon
-      const goldIcon = L.divIcon({
-        className: styles.goldMarker,
-        iconSize: [14, 14],
-        iconAnchor: [7, 7],
-      });
+      // Nakhchivan boundary polygon with glow
+      L.polygon(nakhchivanBoundary, {
+        fillColor: 'rgba(200, 169, 81, 0.08)',
+        fillOpacity: 1,
+        color: '#C8A951',
+        weight: 2,
+        opacity: 0.7,
+      }).addTo(map);
 
-      // Hub marker (larger)
+      // Hub marker — appears first with delay
       const hubIcon = L.divIcon({
         className: styles.hubMarker,
-        iconSize: [22, 22],
-        iconAnchor: [11, 11],
+        html: `<div class="${styles.hubPulseRing}"></div><div class="${styles.hubDot}"></div>`,
+        iconSize: [40, 40],
+        iconAnchor: [20, 20],
       });
 
-      // Add hub marker
-      L.marker([HUB.lat, HUB.lng], { icon: hubIcon })
-        .addTo(map)
-        .bindTooltip(HUB.name, {
+      setTimeout(() => {
+        const hubMarker = L.marker([HUB.lat, HUB.lng], { icon: hubIcon }).addTo(map);
+        hubMarker.bindTooltip(HUB.name, {
           permanent: true,
           direction: 'top',
-          offset: [0, -14],
+          offset: [0, -22],
           className: styles.hubTooltip,
         });
+      }, 500);
 
-      // Add city markers with animated polylines
+      // City markers + polylines with staggered animation
       cities.forEach((city, i) => {
-        // Marker
-        L.marker([city.lat, city.lng], { icon: goldIcon })
-          .addTo(map)
-          .bindTooltip(city.name, {
-            permanent: true,
-            direction: 'top',
-            offset: [0, -10],
-            className: styles.cityTooltip,
-          });
+        const delay = 800 + i * 300;
 
         // Polyline from hub to city
-        const latlngs: [number, number][] = [
-          [HUB.lat, HUB.lng],
-          [city.lat, city.lng],
-        ];
+        setTimeout(() => {
+          const latlngs: [number, number][] = [
+            [HUB.lat, HUB.lng],
+            [city.lat, city.lng],
+          ];
 
-        const polyline = L.polyline(latlngs, {
-          color: '#C8A951',
-          weight: 2,
-          opacity: 0.5,
-          dashArray: '8, 6',
-        }).addTo(map);
+          const polyline = L.polyline(latlngs, {
+            color: '#C8A951',
+            weight: 2,
+            opacity: 0.5,
+            dashArray: '8, 6',
+            className: styles.animatedLine,
+          }).addTo(map);
 
-        // Animate: start hidden, reveal after delay
-        const el = polyline.getElement() as SVGElement | null;
-        if (el) {
-          const svgPath = el as unknown as SVGPathElement;
-          const length = svgPath.getTotalLength?.() || 500;
-          el.style.strokeDasharray = `${length}`;
-          el.style.strokeDashoffset = `${length}`;
-          el.style.transition = `stroke-dashoffset 1.2s ease ${0.5 + i * 0.2}s`;
-          setTimeout(() => {
-            el.style.strokeDashoffset = '0';
-          }, 100);
-        }
+          // Animate the dash
+          const el = polyline.getElement() as SVGElement | null;
+          if (el) {
+            el.classList.add(styles.dashAnimate);
+          }
+        }, delay);
+
+        // City marker with fade-in
+        setTimeout(() => {
+          const cityIcon = L.divIcon({
+            className: `${styles.cityMarker} ${styles.fadeIn}`,
+            iconSize: [14, 14],
+            iconAnchor: [7, 7],
+          });
+
+          L.marker([city.lat, city.lng], { icon: cityIcon })
+            .addTo(map)
+            .bindTooltip(city.name, {
+              permanent: true,
+              direction: 'top',
+              offset: [0, -10],
+              className: `${styles.cityTooltip} ${styles.fadeIn}`,
+            });
+        }, delay + 200);
       });
 
       setLoaded(true);
     };
 
-    // Observe visibility
+    // Observe visibility before init
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
