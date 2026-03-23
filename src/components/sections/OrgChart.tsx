@@ -94,7 +94,7 @@ export default function OrgChart() {
               <div className={styles.deptRow}>
 
                 {/* ── MUHASİBAT ── */}
-                <div className={styles.deptCol} style={{ minWidth: 215 }}>
+                <div className={styles.deptCol} style={{ minWidth: 115 }}>
                   <div className={`${styles.vline}`} style={{ height: 28 }} />
                   <div className={`${styles.deptPill} ${styles.dpF}`}>{t('deptAccounting')}</div>
                   <div className={`${styles.card} ${styles.acF}`}>
@@ -102,37 +102,37 @@ export default function OrgChart() {
                     <div className={styles.cardName}>Hüseyn Quliyev</div>
                   </div>
                   <div className={styles.vline} style={{ height: 13 }} />
-                  <div className={`${styles.card} ${styles.cardSub} ${styles.acF}`} style={{ minWidth: 145, maxWidth: 180 }}>
+                  <div className={`${styles.card} ${styles.cardSub} ${styles.acF}`} style={{ minWidth: 115, maxWidth: 160 }}>
                     <div className={styles.cardRole}>{t('accountant')}</div>
                     <div className={styles.cardName}>Murad Əliyev</div>
                   </div>
                   <div className={styles.vline} style={{ height: 13 }} />
-                  <div className={`${styles.card} ${styles.cardSub} ${styles.acF}`} style={{ minWidth: 145, maxWidth: 200 }}>
+                  <div className={`${styles.card} ${styles.cardSub} ${styles.acF}`} style={{ minWidth: 115, maxWidth: 170 }}>
                     <div className={styles.cardRole}>{t('vehicleMaintenance')}</div>
                     <div className={styles.cardName}>Etibar Quliyev</div>
                   </div>
                 </div>
 
                 {/* ── İNSAN RESURSLARI ── */}
-                <div className={styles.deptCol} style={{ minWidth: 230 }}>
+                <div className={styles.deptCol} style={{ minWidth: 160 }}>
                   <div className={styles.vline} style={{ height: 28 }} />
                   <div className={`${styles.deptPill} ${styles.dpH}`}>{t('deptHR')}</div>
-                  <div className={`${styles.card} ${styles.acH}`} style={{ maxWidth: 215 }}>
+                  <div className={`${styles.card} ${styles.acH}`} style={{ maxWidth: 185 }}>
                     <div className={styles.cardRole}>{t('hrManager')}</div>
                     <div className={styles.cardName}>Amid Zülfüqarov</div>
                   </div>
                   <div className={styles.vline} style={{ height: 13 }} />
-                  <div className={`${styles.card} ${styles.cardSub} ${styles.acH}`} style={{ minWidth: 165, maxWidth: 205 }}>
+                  <div className={`${styles.card} ${styles.cardSub} ${styles.acH}`} style={{ minWidth: 130, maxWidth: 175 }}>
                     <div className={styles.cardRole}>{t('lawyer')}</div>
                     <div className={styles.cardName}>Gülnur İsmayılova</div>
                   </div>
                 </div>
 
                 {/* ── A GRUBU SATIŞ ── */}
-                <div className={styles.deptCol} style={{ flex: '2.4', minWidth: 580 }}>
+                <div className={styles.deptCol} style={{ flex: '2.4', minWidth: 400 }}>
                   <div className={styles.vline} style={{ height: 28 }} />
                   <div className={`${styles.deptPill} ${styles.dpA}`}>{t('deptSalesA')}</div>
-                  <div className={`${styles.card} ${styles.acA}`} style={{ minWidth: 200 }}>
+                  <div className={`${styles.card} ${styles.acA}`} style={{ minWidth: 115 }}>
                     <div className={styles.cardRole}>{t('salesManagerA')}</div>
                     <div className={styles.cardName}>Cəmil Quliyev</div>
                   </div>
@@ -140,17 +140,17 @@ export default function OrgChart() {
                   <div className={styles.spine} style={{ width: '100%' }} />
                   <div className={styles.row} style={{ width: '100%', gap: 0 }}>
                     {/* Baş Operator */}
-                    <div className={styles.col} style={{ flex: 1, padding: '0 8px' }}>
+                    <div className={styles.col} style={{ flex: 1, padding: '0 4px' }}>
                       <div className={styles.vline} style={{ height: 20 }} />
-                      <div className={`${styles.card} ${styles.cardSub} ${styles.acA}`} style={{ minWidth: 150 }}>
+                      <div className={`${styles.card} ${styles.cardSub} ${styles.acA}`} style={{ minWidth: 115 }}>
                         <div className={styles.cardRole}>{t('headOperator')}</div>
                         <div className={styles.cardName}>Aidə Seyidova</div>
                       </div>
                     </div>
                     {/* Supervisor 1 → 4 Satıcı */}
-                    <div className={styles.col} style={{ flex: 1.7, padding: '0 8px' }}>
+                    <div className={styles.col} style={{ flex: 1.7, padding: '0 4px' }}>
                       <div className={styles.vline} style={{ height: 20 }} />
-                      <div className={`${styles.card} ${styles.cardSub} ${styles.acA}`} style={{ minWidth: 158 }}>
+                      <div className={`${styles.card} ${styles.cardSub} ${styles.acA}`} style={{ minWidth: 120 }}>
                         <div className={styles.cardRole}>{t('supervisor')}</div>
                         <div className={styles.cardName}>Vaqif Mehdiyev</div>
                       </div>
@@ -163,9 +163,9 @@ export default function OrgChart() {
                       </div>
                     </div>
                     {/* Supervisor 2 → 4 Satıcı */}
-                    <div className={styles.col} style={{ flex: 1.7, padding: '0 8px' }}>
+                    <div className={styles.col} style={{ flex: 1.7, padding: '0 4px' }}>
                       <div className={styles.vline} style={{ height: 20 }} />
-                      <div className={`${styles.card} ${styles.cardSub} ${styles.acA}`} style={{ minWidth: 158 }}>
+                      <div className={`${styles.card} ${styles.cardSub} ${styles.acA}`} style={{ minWidth: 120 }}>
                         <div className={styles.cardRole}>{t('supervisor')}</div>
                         <div className={styles.cardName}>Orxan Rüstəmov</div>
                       </div>
@@ -181,10 +181,10 @@ export default function OrgChart() {
                 </div>
 
                 {/* ── B GRUBU SATIŞ ── */}
-                <div className={styles.deptCol} style={{ flex: '1.2', minWidth: 320 }}>
+                <div className={styles.deptCol} style={{ flex: '1.2', minWidth: 230 }}>
                   <div className={styles.vline} style={{ height: 28 }} />
                   <div className={`${styles.deptPill} ${styles.dpB}`}>{t('deptSalesB')}</div>
-                  <div className={`${styles.card} ${styles.acB}`} style={{ minWidth: 195 }}>
+                  <div className={`${styles.card} ${styles.acB}`} style={{ minWidth: 140 }}>
                     <div className={styles.cardRole}>{t('salesManagerB')}</div>
                     <div className={styles.cardName}>Hafiz Hümbətov</div>
                   </div>
@@ -192,15 +192,15 @@ export default function OrgChart() {
                   <div className={styles.spine} style={{ width: '100%' }} />
                   <div className={styles.row} style={{ width: '100%', gap: 0 }}>
                     {/* Operator */}
-                    <div className={styles.col} style={{ flex: 1, padding: '0 8px' }}>
+                    <div className={styles.col} style={{ flex: 1, padding: '0 4px' }}>
                       <div className={styles.vline} style={{ height: 18 }} />
-                      <div className={`${styles.card} ${styles.cardSub} ${styles.acB}`} style={{ minWidth: 150 }}>
+                      <div className={`${styles.card} ${styles.cardSub} ${styles.acB}`} style={{ minWidth: 115 }}>
                         <div className={styles.cardRole}>{t('groupOperator')}</div>
                         <div className={styles.cardName}>Zərifə Fərəyeva</div>
                       </div>
                     </div>
                     {/* Satıcılar */}
-                    <div className={styles.col} style={{ flex: 1, padding: '0 8px' }}>
+                    <div className={styles.col} style={{ flex: 1, padding: '0 4px' }}>
                       <div className={styles.vline} style={{ height: 18 }} />
                       <div className={styles.saticiCol}>
                         <div className={`${styles.card} ${styles.cardSatici} ${styles.acB}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Ruzi Əhmədli</div></div>
@@ -213,10 +213,10 @@ export default function OrgChart() {
                 </div>
 
                 {/* ── C GRUBU SATIŞ ── */}
-                <div className={styles.deptCol} style={{ minWidth: 310 }}>
+                <div className={styles.deptCol} style={{ minWidth: 220 }}>
                   <div className={styles.vline} style={{ height: 28 }} />
                   <div className={`${styles.deptPill} ${styles.dpC}`}>{t('deptSalesC')}</div>
-                  <div className={`${styles.card} ${styles.acC}`} style={{ maxWidth: 220 }}>
+                  <div className={`${styles.card} ${styles.acC}`} style={{ maxWidth: 190 }}>
                     <div className={styles.cardRole}>{t('salesManagerC')}</div>
                     <div className={styles.cardName}>Elçin Əlimədanov</div>
                   </div>
@@ -224,15 +224,15 @@ export default function OrgChart() {
                   <div className={styles.spine} style={{ width: '100%' }} />
                   <div className={styles.row} style={{ width: '100%', gap: 0 }}>
                     {/* Operator */}
-                    <div className={styles.col} style={{ flex: 1, padding: '0 8px' }}>
+                    <div className={styles.col} style={{ flex: 1, padding: '0 4px' }}>
                       <div className={styles.vline} style={{ height: 18 }} />
-                      <div className={`${styles.card} ${styles.cardSub} ${styles.acC}`} style={{ minWidth: 150 }}>
+                      <div className={`${styles.card} ${styles.cardSub} ${styles.acC}`} style={{ minWidth: 115 }}>
                         <div className={styles.cardRole}>{t('groupOperator')}</div>
                         <div className={styles.cardName}>Şəhla Rzayeva</div>
                       </div>
                     </div>
                     {/* Satıcılar */}
-                    <div className={styles.col} style={{ flex: 1, padding: '0 8px' }}>
+                    <div className={styles.col} style={{ flex: 1, padding: '0 4px' }}>
                       <div className={styles.vline} style={{ height: 18 }} />
                       <div className={styles.saticiCol}>
                         <div className={`${styles.card} ${styles.cardSatici} ${styles.acC}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Rəşad Talıbov</div></div>
@@ -244,19 +244,19 @@ export default function OrgChart() {
                 </div>
 
                 {/* ── LOJİSTİK & DEPO ── */}
-                <div className={styles.deptCol} style={{ minWidth: 230 }}>
+                <div className={styles.deptCol} style={{ minWidth: 155 }}>
                   <div className={styles.vline} style={{ height: 28 }} />
                   <div className={`${styles.deptPill} ${styles.dpL}`}>{t('deptLogistics')}</div>
                   <div className={styles.col} style={{ gap: 8 }}>
-                    <div className={`${styles.card} ${styles.acL}`} style={{ maxWidth: 208 }}>
+                    <div className={`${styles.card} ${styles.acL}`} style={{ maxWidth: 175 }}>
                       <div className={styles.cardRole}>{t('logisticsManagerA')}</div>
                       <div className={styles.cardName}>Cavid Eylazlı</div>
                     </div>
-                    <div className={`${styles.card} ${styles.acL}`} style={{ maxWidth: 208 }}>
+                    <div className={`${styles.card} ${styles.acL}`} style={{ maxWidth: 175 }}>
                       <div className={styles.cardRole}>{t('logisticsManagerB')}</div>
                       <div className={styles.cardName}>Samiddin Mikayılov</div>
                     </div>
-                    <div className={`${styles.card} ${styles.acL}`} style={{ maxWidth: 208 }}>
+                    <div className={`${styles.card} ${styles.acL}`} style={{ maxWidth: 175 }}>
                       <div className={styles.cardRole}>{t('logisticsManagerC')}</div>
                       <div className={styles.cardName}>Əsədullayev Bəxtiyar</div>
                     </div>
