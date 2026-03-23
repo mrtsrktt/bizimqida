@@ -6,7 +6,6 @@ import styles from './BrandsGrid.module.css';
 
 const brands = [
   { logo: '/images/markalar/ulker.png', name: 'Ülker' },
-  { logo: '/images/markalar/solen.png', name: 'Şölen' },
   { logo: '/images/markalar/azersun.png', name: 'Azersun' },
   { logo: '/images/markalar/ABC.png', name: 'ABC' },
   { logo: '/images/markalar/karmen.png', name: 'Karmen' },
