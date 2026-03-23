@@ -28,85 +28,253 @@ export default function OrgChart() {
           <div className={styles.orgWrap}>
             <div className={styles.orgChart}>
 
-              {/* Tier 2: General Manager */}
-              <div className={styles.tier} style={{ marginBottom: 0 }}>
-                <div className={`${styles.pcard} ${styles.ceo}`}>
-                  <div className={styles.pcardAvatar}>GM</div>
-                  <div className={styles.pcardName}>{t('generalManager')}</div>
-                  <div className={styles.pcardTitle}>Bizim Qida</div>
-                  <div className={styles.pcardDesc}>{t('gmDescription')}</div>
+              {/* Board Section Label */}
+              <div className={styles.sectionLabel}>{t('boardSection')}</div>
+
+              {/* Chairman */}
+              <div className={styles.cardChairman}>
+                <div className={styles.cardRole}>{t('chairman')}</div>
+                <div className={styles.cardName}>Mehmet Sürkit</div>
+              </div>
+
+              {/* Line: Chairman → Board */}
+              <div className={`${styles.vline} ${styles.vlineGold}`} style={{ height: 24 }} />
+              <div className={styles.boardSpine} />
+
+              {/* Board Members */}
+              <div className={styles.boardRow}>
+                {/* Vice Chairman */}
+                <div className={styles.col}>
+                  <div className={`${styles.vline} ${styles.vlineGoldLight}`} style={{ height: 20 }} />
+                  <div className={`${styles.card} ${styles.cardBoard}`}>
+                    <div className={styles.cardRole}>{t('viceChairman')}</div>
+                    <div className={styles.cardName}>İbrahim Onur Sürkit</div>
+                  </div>
+                </div>
+                {/* Board Member 2 */}
+                <div className={styles.col}>
+                  <div className={`${styles.vline} ${styles.vlineGoldLight}`} style={{ height: 20 }} />
+                  <div className={`${styles.card} ${styles.cardBoard}`}>
+                    <div className={styles.cardRole}>{t('boardMember')}</div>
+                    <div className={styles.cardName}>Aziz Hasan Sürkit</div>
+                  </div>
+                </div>
+                {/* Board Member 3 */}
+                <div className={styles.col}>
+                  <div className={`${styles.vline} ${styles.vlineGoldLight}`} style={{ height: 20 }} />
+                  <div className={`${styles.card} ${styles.cardBoard}`}>
+                    <div className={styles.cardRole}>{t('boardMember')}</div>
+                    <div className={styles.cardName}>Vaqif Əliyev</div>
+                  </div>
+                </div>
+                {/* Board Member 4 */}
+                <div className={styles.col}>
+                  <div className={`${styles.vline} ${styles.vlineGoldLight}`} style={{ height: 20 }} />
+                  <div className={`${styles.card} ${styles.cardBoard}`}>
+                    <div className={styles.cardRole}>{t('boardMember')}</div>
+                    <div className={styles.cardName}>Necmi Parlar</div>
+                  </div>
                 </div>
               </div>
 
-              {/* Connector: GM down to 4 directors */}
-              <div className={styles.connectorMulti}>
-                <div className={styles.connectorCenterUp} />
-                <div className={styles.connectorHBar} />
-                <div className={styles.connectorDrop} style={{ left: '12.5%' }} />
-                <div className={styles.connectorDrop} style={{ left: '37.5%' }} />
-                <div className={styles.connectorDrop} style={{ left: '62.5%' }} />
-                <div className={styles.connectorDrop} style={{ left: '87.5%' }} />
+              {/* Line: Board → Director */}
+              <div className={`${styles.vline} ${styles.vlineGold}`} style={{ height: 36 }} />
+
+              {/* Director */}
+              <div className={`${styles.card} ${styles.cardDirector}`}>
+                <div className={styles.cardRole}>{t('director')}</div>
+                <div className={styles.cardName}>Vaqif Əliyev</div>
               </div>
 
-              {/* Tier 3: 4 Directors */}
-              <div className={styles.tier} style={{ gap: 16, marginBottom: 0 }}>
-                <div className={styles.pcard}>
-                  <div className={`${styles.pcardAvatar} ${styles.directorAvatar}`}>SF</div>
-                  <div className={styles.pcardName}>{t('salesDirector')}</div>
-                  <div className={styles.pcardTitle}>Sales &amp; Distribution</div>
-                  <div className={styles.pcardDesc}>{t('salesDirectorDesc')}</div>
+              {/* Line: Director → Departments */}
+              <div className={`${styles.vline} ${styles.vlineSilver}`} style={{ height: 36 }} />
+              <div className={styles.mainSpine} />
+
+              {/* ══ DEPARTMENTS ══ */}
+              <div className={styles.deptRow}>
+
+                {/* ── MUHASİBAT ── */}
+                <div className={styles.deptCol} style={{ minWidth: 215 }}>
+                  <div className={`${styles.vline}`} style={{ height: 28 }} />
+                  <div className={`${styles.deptPill} ${styles.dpF}`}>{t('deptAccounting')}</div>
+                  <div className={`${styles.card} ${styles.acF}`}>
+                    <div className={styles.cardRole}>{t('chiefAccountant')}</div>
+                    <div className={styles.cardName}>Hüseyn Quliyev</div>
+                  </div>
+                  <div className={styles.vline} style={{ height: 13 }} />
+                  <div className={`${styles.card} ${styles.cardSub} ${styles.acF}`} style={{ minWidth: 145, maxWidth: 180 }}>
+                    <div className={styles.cardRole}>{t('accountant')}</div>
+                    <div className={styles.cardName}>Murad Əliyev</div>
+                  </div>
+                  <div className={styles.vline} style={{ height: 13 }} />
+                  <div className={`${styles.card} ${styles.cardSub} ${styles.acF}`} style={{ minWidth: 145, maxWidth: 200 }}>
+                    <div className={styles.cardRole}>{t('vehicleMaintenance')}</div>
+                    <div className={styles.cardName}>Etibar Quliyev</div>
+                  </div>
                 </div>
-                <div className={styles.pcard}>
-                  <div className={`${styles.pcardAvatar} ${styles.directorAvatar}`}>LO</div>
-                  <div className={styles.pcardName}>{t('logisticsDirector')}</div>
-                  <div className={styles.pcardTitle}>Operations &amp; Logistics</div>
-                  <div className={styles.pcardDesc}>{t('logisticsDirectorDesc')}</div>
+
+                {/* ── İNSAN RESURSLARI ── */}
+                <div className={styles.deptCol} style={{ minWidth: 230 }}>
+                  <div className={styles.vline} style={{ height: 28 }} />
+                  <div className={`${styles.deptPill} ${styles.dpH}`}>{t('deptHR')}</div>
+                  <div className={`${styles.card} ${styles.acH}`} style={{ maxWidth: 215 }}>
+                    <div className={styles.cardRole}>{t('hrManager')}</div>
+                    <div className={styles.cardName}>Amid Zülfüqarov</div>
+                  </div>
+                  <div className={styles.vline} style={{ height: 13 }} />
+                  <div className={`${styles.card} ${styles.cardSub} ${styles.acH}`} style={{ minWidth: 165, maxWidth: 205 }}>
+                    <div className={styles.cardRole}>{t('lawyer')}</div>
+                    <div className={styles.cardName}>Gülnur İsmayılova</div>
+                  </div>
                 </div>
-                <div className={styles.pcard}>
-                  <div className={`${styles.pcardAvatar} ${styles.directorAvatar}`}>MF</div>
-                  <div className={styles.pcardName}>{t('financeDirector')}</div>
-                  <div className={styles.pcardTitle}>Finance &amp; Accounting</div>
-                  <div className={styles.pcardDesc}>{t('financeDirectorDesc')}</div>
+
+                {/* ── A GRUBU SATIŞ ── */}
+                <div className={styles.deptCol} style={{ flex: '2.4', minWidth: 580 }}>
+                  <div className={styles.vline} style={{ height: 28 }} />
+                  <div className={`${styles.deptPill} ${styles.dpA}`}>{t('deptSalesA')}</div>
+                  <div className={`${styles.card} ${styles.acA}`} style={{ minWidth: 200 }}>
+                    <div className={styles.cardRole}>{t('salesManagerA')}</div>
+                    <div className={styles.cardName}>Cəmil Quliyev</div>
+                  </div>
+                  <div className={styles.vline} style={{ height: 18 }} />
+                  <div className={styles.spine} style={{ width: '100%' }} />
+                  <div className={styles.row} style={{ width: '100%', gap: 0 }}>
+                    {/* Baş Operator */}
+                    <div className={styles.col} style={{ flex: 1, padding: '0 8px' }}>
+                      <div className={styles.vline} style={{ height: 20 }} />
+                      <div className={`${styles.card} ${styles.cardSub} ${styles.acA}`} style={{ minWidth: 150 }}>
+                        <div className={styles.cardRole}>{t('headOperator')}</div>
+                        <div className={styles.cardName}>Aidə Seyidova</div>
+                      </div>
+                    </div>
+                    {/* Supervisor 1 → 4 Satıcı */}
+                    <div className={styles.col} style={{ flex: 1.7, padding: '0 8px' }}>
+                      <div className={styles.vline} style={{ height: 20 }} />
+                      <div className={`${styles.card} ${styles.cardSub} ${styles.acA}`} style={{ minWidth: 158 }}>
+                        <div className={styles.cardRole}>{t('supervisor')}</div>
+                        <div className={styles.cardName}>Vaqif Mehdiyev</div>
+                      </div>
+                      <div className={styles.vline} style={{ height: 12 }} />
+                      <div className={styles.saticiCol}>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acA}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Kərəm Quliyev</div></div>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acA}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Nicat Kazımlı</div></div>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acA}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Nurxan Məmmədli</div></div>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acA}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>İbadulla Yusifov</div></div>
+                      </div>
+                    </div>
+                    {/* Supervisor 2 → 4 Satıcı */}
+                    <div className={styles.col} style={{ flex: 1.7, padding: '0 8px' }}>
+                      <div className={styles.vline} style={{ height: 20 }} />
+                      <div className={`${styles.card} ${styles.cardSub} ${styles.acA}`} style={{ minWidth: 158 }}>
+                        <div className={styles.cardRole}>{t('supervisor')}</div>
+                        <div className={styles.cardName}>Orxan Rüstəmov</div>
+                      </div>
+                      <div className={styles.vline} style={{ height: 12 }} />
+                      <div className={styles.saticiCol}>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acA}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Ceyhun Xəlilov</div></div>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acA}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Araz Qasimov</div></div>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acA}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Ehtiram Quliyev</div></div>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acA}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Ayaz Mədədov</div></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
-                <div className={styles.pcard}>
-                  <div className={`${styles.pcardAvatar} ${styles.directorAvatar}`}>IK</div>
-                  <div className={styles.pcardName}>{t('hrDirector')}</div>
-                  <div className={styles.pcardTitle}>Human Resources</div>
-                  <div className={styles.pcardDesc}>{t('hrDirectorDesc')}</div>
+
+                {/* ── B GRUBU SATIŞ ── */}
+                <div className={styles.deptCol} style={{ flex: '1.2', minWidth: 320 }}>
+                  <div className={styles.vline} style={{ height: 28 }} />
+                  <div className={`${styles.deptPill} ${styles.dpB}`}>{t('deptSalesB')}</div>
+                  <div className={`${styles.card} ${styles.acB}`} style={{ minWidth: 195 }}>
+                    <div className={styles.cardRole}>{t('salesManagerB')}</div>
+                    <div className={styles.cardName}>Hafiz Hümbətov</div>
+                  </div>
+                  <div className={styles.vline} style={{ height: 16 }} />
+                  <div className={styles.spine} style={{ width: '100%' }} />
+                  <div className={styles.row} style={{ width: '100%', gap: 0 }}>
+                    {/* Operator */}
+                    <div className={styles.col} style={{ flex: 1, padding: '0 8px' }}>
+                      <div className={styles.vline} style={{ height: 18 }} />
+                      <div className={`${styles.card} ${styles.cardSub} ${styles.acB}`} style={{ minWidth: 150 }}>
+                        <div className={styles.cardRole}>{t('groupOperator')}</div>
+                        <div className={styles.cardName}>Zərifə Fərəyeva</div>
+                      </div>
+                    </div>
+                    {/* Satıcılar */}
+                    <div className={styles.col} style={{ flex: 1, padding: '0 8px' }}>
+                      <div className={styles.vline} style={{ height: 18 }} />
+                      <div className={styles.saticiCol}>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acB}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Ruzi Əhmədli</div></div>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acB}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Murad Həsənov</div></div>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acB}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Elçin Məmmədli</div></div>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acB}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Hüseyn Orucov</div></div>
+                      </div>
+                    </div>
+                  </div>
                 </div>
+
+                {/* ── C GRUBU SATIŞ ── */}
+                <div className={styles.deptCol} style={{ minWidth: 310 }}>
+                  <div className={styles.vline} style={{ height: 28 }} />
+                  <div className={`${styles.deptPill} ${styles.dpC}`}>{t('deptSalesC')}</div>
+                  <div className={`${styles.card} ${styles.acC}`} style={{ maxWidth: 220 }}>
+                    <div className={styles.cardRole}>{t('salesManagerC')}</div>
+                    <div className={styles.cardName}>Elçin Əlimədanov</div>
+                  </div>
+                  <div className={styles.vline} style={{ height: 16 }} />
+                  <div className={styles.spine} style={{ width: '100%' }} />
+                  <div className={styles.row} style={{ width: '100%', gap: 0 }}>
+                    {/* Operator */}
+                    <div className={styles.col} style={{ flex: 1, padding: '0 8px' }}>
+                      <div className={styles.vline} style={{ height: 18 }} />
+                      <div className={`${styles.card} ${styles.cardSub} ${styles.acC}`} style={{ minWidth: 150 }}>
+                        <div className={styles.cardRole}>{t('groupOperator')}</div>
+                        <div className={styles.cardName}>Şəhla Rzayeva</div>
+                      </div>
+                    </div>
+                    {/* Satıcılar */}
+                    <div className={styles.col} style={{ flex: 1, padding: '0 8px' }}>
+                      <div className={styles.vline} style={{ height: 18 }} />
+                      <div className={styles.saticiCol}>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acC}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Rəşad Talıbov</div></div>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acC}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Rəvan Məmmədov</div></div>
+                        <div className={`${styles.card} ${styles.cardSatici} ${styles.acC}`}><div className={styles.cardRole}>{t('salesperson')}</div><div className={styles.cardName}>Səxavət Həsənov</div></div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+
+                {/* ── LOJİSTİK & DEPO ── */}
+                <div className={styles.deptCol} style={{ minWidth: 230 }}>
+                  <div className={styles.vline} style={{ height: 28 }} />
+                  <div className={`${styles.deptPill} ${styles.dpL}`}>{t('deptLogistics')}</div>
+                  <div className={styles.col} style={{ gap: 8 }}>
+                    <div className={`${styles.card} ${styles.acL}`} style={{ maxWidth: 208 }}>
+                      <div className={styles.cardRole}>{t('logisticsManagerA')}</div>
+                      <div className={styles.cardName}>Cavid Eylazlı</div>
+                    </div>
+                    <div className={`${styles.card} ${styles.acL}`} style={{ maxWidth: 208 }}>
+                      <div className={styles.cardRole}>{t('logisticsManagerB')}</div>
+                      <div className={styles.cardName}>Samiddin Mikayılov</div>
+                    </div>
+                    <div className={`${styles.card} ${styles.acL}`} style={{ maxWidth: 208 }}>
+                      <div className={styles.cardRole}>{t('logisticsManagerC')}</div>
+                      <div className={styles.cardName}>Əsədullayev Bəxtiyar</div>
+                    </div>
+                  </div>
+                </div>
+
               </div>
 
-              {/* Connector: Directors down to Department Heads */}
-              <div className={styles.connectorMultiLower}>
-                <div className={styles.connectorHBarLower} />
-                <div className={styles.connectorDropLower} style={{ left: '12.5%' }} />
-                <div className={styles.connectorDropLower} style={{ left: '37.5%' }} />
-                <div className={styles.connectorDropLower} style={{ left: '62.5%' }} />
-                <div className={styles.connectorDropLower} style={{ left: '87.5%' }} />
-              </div>
-
-              {/* Tier 4: Department Heads */}
-              <div className={styles.tier} style={{ gap: 16 }}>
-                <div className={`${styles.pcard} ${styles.deptCard}`}>
-                  <div className={`${styles.pcardAvatar} ${styles.deptAvatar}`}>S1</div>
-                  <div className={`${styles.pcardName} ${styles.deptName}`}>{t('regionalSalesManager')}</div>
-                  <div className={`${styles.pcardTitle} ${styles.deptTitle}`}>x3 Regions</div>
-                </div>
-                <div className={`${styles.pcard} ${styles.deptCard}`}>
-                  <div className={`${styles.pcardAvatar} ${styles.deptAvatar}`}>D1</div>
-                  <div className={`${styles.pcardName} ${styles.deptName}`}>{t('warehouseManager')}</div>
-                  <div className={`${styles.pcardTitle} ${styles.deptTitle}`}>Cold Chain</div>
-                </div>
-                <div className={`${styles.pcard} ${styles.deptCard}`}>
-                  <div className={`${styles.pcardAvatar} ${styles.deptAvatar}`}>MH</div>
-                  <div className={`${styles.pcardName} ${styles.deptName}`}>{t('chiefAccountant')}</div>
-                  <div className={`${styles.pcardTitle} ${styles.deptTitle}`}>Accounting</div>
-                </div>
-                <div className={`${styles.pcard} ${styles.deptCard}`}>
-                  <div className={`${styles.pcardAvatar} ${styles.deptAvatar}`}>IK</div>
-                  <div className={`${styles.pcardName} ${styles.deptName}`}>{t('hrSpecialist')}</div>
-                  <div className={`${styles.pcardTitle} ${styles.deptTitle}`}>Training &amp; Dev</div>
-                </div>
+              {/* ══ LEGEND ══ */}
+              <div className={styles.legend}>
+                <span className={styles.legendTitle}>{t('legendTitle')}</span>
+                <div className={styles.legendItem}><div className={styles.legendDot} style={{ background: 'var(--gold)' }} />{t('legendBoard')}</div>
+                <div className={styles.legendItem}><div className={styles.legendDot} style={{ background: '#935116' }} />{t('deptAccounting')}</div>
+                <div className={styles.legendItem}><div className={styles.legendDot} style={{ background: '#117a65' }} />{t('legendHRLaw')}</div>
+                <div className={styles.legendItem}><div className={styles.legendDot} style={{ background: '#1a5276' }} />{t('deptSalesA')}</div>
+                <div className={styles.legendItem}><div className={styles.legendDot} style={{ background: '#145a32' }} />{t('deptSalesB')}</div>
+                <div className={styles.legendItem}><div className={styles.legendDot} style={{ background: '#6c3483' }} />{t('deptSalesC')}</div>
+                <div className={styles.legendItem}><div className={styles.legendDot} style={{ background: '#0e6655' }} />{t('deptLogistics')}</div>
               </div>
 
             </div>

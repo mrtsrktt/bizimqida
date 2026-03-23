@@ -6,10 +6,6 @@
   text-align: center;
 }
 
-.mgmtIntro .sectionP {
-  margin: 0 auto;
-}
-
 /* Org chart wrapper — allows horizontal scroll on small screens */
 .orgWrap {
   width: 100%;
@@ -18,278 +14,460 @@
 }
 
 .orgChart {
-  min-width: 900px;
+  min-width: 1400px;
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 0;
-}
-
-/* Tier row */
-.tier {
-  display: flex;
-  justify-content: center;
-  gap: 20px;
-  position: relative;
-}
-
-/* Person Card */
-.pcard {
-  background: var(--white);
-  border: 1px solid var(--gray-light);
-  border-radius: 8px;
-  padding: 28px 24px;
-  text-align: center;
-  min-width: 180px;
-  max-width: 210px;
-  transition: all 0.3s;
-  position: relative;
-  overflow: hidden;
-}
-
-.pcard::after {
-  content: '';
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  height: 3px;
-  background: var(--gold);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform 0.4s;
-}
-
-.pcard:hover::after {
-  transform: scaleX(1);
-}
-
-.pcard:hover {
-  border-color: rgba(200, 169, 81, 0.4);
-  box-shadow: var(--shadow);
-}
-
-/* CEO variant */
-.ceo {
-  min-width: 220px;
-  max-width: 260px;
-  border-top: 3px solid var(--gold);
-  box-shadow: var(--shadow);
-}
-
-/* Avatar */
-.pcardAvatar {
-  width: 80px;
-  height: 80px;
-  border-radius: 50%;
-  margin: 0 auto 14px;
-  overflow: hidden;
-  background: linear-gradient(135deg, var(--navy-mid), var(--navy-soft));
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: var(--font-playfair, 'Playfair Display'), serif;
-  font-size: 24px;
-  font-weight: 700;
-  color: var(--gold);
-  border: 2px solid var(--gold-pale);
-}
-
-.ceo .pcardAvatar {
-  width: 96px;
-  height: 96px;
-  font-size: 28px;
-}
-
-/* Tier 1 holding card — special navy background */
-.holding {
-  border-top-color: #081429;
-  background: var(--navy);
-  color: white;
-}
-
-.holding .pcardAvatar {
-  background: rgba(200, 169, 81, 0.15);
-  color: var(--gold);
-}
-
-.holding .pcardName {
-  color: white;
-}
-
-.holding .pcardDesc {
-  color: rgba(255, 255, 255, 0.5);
-}
-
-/* Name */
-.pcardName {
-  font-size: 14px;
-  font-weight: 600;
-  color: var(--navy);
-  margin-bottom: 4px;
-}
-
-.ceo .pcardName {
-  font-size: 16px;
-}
-
-/* Title/Role */
-.pcardTitle {
-  font-size: 11px;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: var(--gold);
-  font-weight: 500;
-  margin-bottom: 8px;
-}
-
-/* Description */
-.pcardDesc {
-  font-size: 12px;
-  color: var(--text-soft);
-  line-height: 1.5;
+  padding: 0 24px;
 }
 
 /* ============================================================
-   TREE CONNECTORS
+   SECTION LABEL
    ============================================================ */
+.sectionLabel {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2.5px;
+  text-transform: uppercase;
+  color: var(--gray);
+  padding: 4px 16px;
+  border: 1px solid var(--gray-light);
+  border-radius: 30px;
+  margin-bottom: 20px;
+  background: rgba(13, 30, 64, 0.04);
+}
 
-/* Single vertical connector */
-.connectorSingle {
+/* ============================================================
+   LAYOUT HELPERS
+   ============================================================ */
+.col {
   display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.row {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
   justify-content: center;
-  height: 48px;
 }
 
-.connectorSingleLine {
+/* ============================================================
+   VERTICAL & HORIZONTAL LINES
+   ============================================================ */
+.vline {
   width: 2px;
-  height: 48px;
-  background: linear-gradient(var(--gold), rgba(200, 169, 81, 0.4));
+  background: var(--gray-light);
 }
 
-/* Multi connector: vertical from parent + horizontal bar + 4 vertical drops */
-.connectorMulti {
-  position: relative;
-  width: 880px;
-  height: 48px;
-  margin: 0 auto;
+.vlineGold {
+  background: linear-gradient(180deg, var(--gold), rgba(200, 169, 81, 0.3));
 }
 
-.connectorHBar {
-  position: absolute;
-  top: 0;
-  left: 12.5%;
-  right: 12.5%;
-  height: 2px;
-  background: rgba(200, 169, 81, 0.3);
-}
-
-.connectorDrop {
-  position: absolute;
-  top: 0;
-  width: 2px;
-  height: 48px;
+.vlineGoldLight {
   background: rgba(200, 169, 81, 0.4);
 }
 
-.connectorCenterUp {
-  position: absolute;
-  top: -48px;
-  left: 50%;
-  transform: translateX(-50%);
-  width: 2px;
-  height: 48px;
-  background: linear-gradient(var(--gold), rgba(200, 169, 81, 0.3));
+.vlineSilver {
+  background: linear-gradient(180deg, var(--gray), rgba(157, 175, 200, 0.3));
 }
 
-/* Lower tier connector (lighter opacity) */
-.connectorMultiLower {
-  position: relative;
-  width: 880px;
-  height: 48px;
-  margin: 0 auto;
-}
-
-.connectorHBarLower {
-  position: absolute;
-  top: 0;
-  left: 12.5%;
-  right: 12.5%;
+.spine {
   height: 2px;
-  background: rgba(200, 169, 81, 0.15);
+  background: var(--gray-light);
 }
 
-.connectorDropLower {
+.boardSpine {
+  width: 860px;
+  height: 2px;
+  background: rgba(200, 169, 81, 0.4);
+}
+
+.mainSpine {
+  width: 100%;
+  height: 2px;
+  background: var(--gray-light);
+}
+
+/* ============================================================
+   CARD BASE
+   ============================================================ */
+.card {
+  background: var(--white);
+  border-radius: 8px;
+  border: 1.5px solid var(--gray-light);
+  padding: 12px 16px;
+  text-align: center;
+  min-width: 155px;
+  max-width: 215px;
+  position: relative;
+  transition: box-shadow 0.22s, transform 0.22s;
+  overflow: hidden;
+}
+
+.card::before {
+  content: '';
   position: absolute;
   top: 0;
-  width: 2px;
-  height: 48px;
-  background: rgba(200, 169, 81, 0.2);
+  left: 0;
+  right: 0;
+  height: 3px;
 }
 
-/* Tier 3 directors — slightly smaller avatar override */
-.directorAvatar {
-  width: 64px !important;
-  height: 64px !important;
-  font-size: 18px !important;
+.card:hover {
+  box-shadow: 0 8px 28px rgba(0, 0, 0, 0.13);
+  transform: translateY(-2px);
+  z-index: 20;
 }
 
-/* Tier 4 department heads — compact cards */
-.deptCard {
-  min-width: 160px;
-  max-width: 180px;
-  padding: 20px 18px;
+.cardRole {
+  font-size: 8.5px;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  text-transform: uppercase;
+  margin-bottom: 6px;
+  line-height: 1.4;
 }
 
-.deptAvatar {
-  width: 52px !important;
-  height: 52px !important;
-  font-size: 14px !important;
-  background: var(--gray-light) !important;
-  color: var(--navy) !important;
+.cardName {
+  font-size: 12.5px;
+  font-weight: 600;
+  color: var(--text);
+  line-height: 1.35;
 }
 
-.deptName {
-  font-size: 12px !important;
+/* ============================================================
+   CHAIRMAN CARD
+   ============================================================ */
+.cardChairman {
+  background: var(--navy);
+  border: 2px solid var(--gold);
+  padding: 18px 32px;
+  border-radius: 10px;
+  text-align: center;
+  min-width: 250px;
+  box-shadow: 0 6px 32px rgba(200, 169, 81, 0.22), 0 0 0 4px rgba(200, 169, 81, 0.08);
+  position: relative;
+  overflow: hidden;
 }
 
-.deptTitle {
-  font-size: 10px !important;
+.cardChairman::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse at 50% -20%, rgba(200, 169, 81, 0.12), transparent 70%);
+  pointer-events: none;
+}
+
+.cardChairman .cardRole {
+  color: var(--gold-light);
+  font-size: 9px;
+  letter-spacing: 2px;
+  margin-bottom: 8px;
+}
+
+.cardChairman .cardName {
+  color: #fff;
+  font-size: 17px;
+  font-family: var(--font-playfair, 'Playfair Display'), serif;
+  font-weight: 600;
+}
+
+/* ============================================================
+   BOARD MEMBER CARD
+   ============================================================ */
+.cardBoard {
+  background: var(--navy-mid);
+  border-color: rgba(200, 169, 81, 0.4);
+}
+
+.cardBoard::before {
+  background: var(--gold);
+}
+
+.cardBoard .cardRole {
+  color: var(--gold-light);
+}
+
+.cardBoard .cardName {
+  color: #fff;
+  font-size: 13px;
+}
+
+/* ============================================================
+   DIRECTOR CARD
+   ============================================================ */
+.cardDirector {
+  background: var(--navy-soft);
+  border-color: var(--gray);
+  padding: 14px 24px;
+  min-width: 210px;
+}
+
+.cardDirector::before {
+  background: var(--gray);
+}
+
+.cardDirector .cardRole {
+  color: var(--gold-pale);
+}
+
+.cardDirector .cardName {
+  color: #fff;
+  font-size: 14px;
+}
+
+/* ============================================================
+   BOARD ROW
+   ============================================================ */
+.boardRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 860px;
+  gap: 0;
+}
+
+.boardRow > .col {
+  flex: 1;
+}
+
+/* ============================================================
+   DEPARTMENT ROW & COLUMNS
+   ============================================================ */
+.deptRow {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: center;
+  width: 100%;
+  gap: 0;
+}
+
+.deptCol {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 0 14px;
+  border-right: 1.5px solid rgba(200, 208, 220, 0.4);
+}
+
+.deptCol:last-child {
+  border-right: none;
+}
+
+.deptPill {
+  font-size: 8px;
+  font-weight: 700;
+  letter-spacing: 1.8px;
+  text-transform: uppercase;
+  padding: 3px 12px;
+  border-radius: 20px;
+  margin-bottom: 14px;
+  background: rgba(255, 255, 255, 0.7);
+  border: 1px solid currentColor;
+}
+
+/* ============================================================
+   DEPARTMENT ACCENT COLORS
+   ============================================================ */
+.acF::before { background: #935116; }
+.acF .cardRole { color: #935116; }
+.dpF { color: #935116; }
+
+.acH::before { background: #117a65; }
+.acH .cardRole { color: #117a65; }
+.dpH { color: #117a65; }
+
+.acA::before { background: #1a5276; }
+.acA .cardRole { color: #1a5276; }
+.dpA { color: #1a5276; }
+
+.acB::before { background: #145a32; }
+.acB .cardRole { color: #145a32; }
+.dpB { color: #145a32; }
+
+.acC::before { background: #6c3483; }
+.acC .cardRole { color: #6c3483; }
+.dpC { color: #6c3483; }
+
+.acL::before { background: #0e6655; }
+.acL .cardRole { color: #0e6655; }
+.dpL { color: #0e6655; }
+
+/* ============================================================
+   SUB CARDS & SALESPERSON CARDS
+   ============================================================ */
+.cardSub {
+  background: #f9f8f6;
+  border-color: #d8dce4;
+  padding: 10px 14px;
+}
+
+.cardSatici {
+  min-width: 130px;
+  max-width: 152px;
+  padding: 8px 11px;
+  background: #f7f9fb;
+  border-color: #dde3ed;
+}
+
+.cardSatici .cardRole {
+  font-size: 7.5px;
+  letter-spacing: 1px;
+}
+
+.cardSatici .cardName {
+  font-size: 11px;
+  font-weight: 500;
+}
+
+/* Vertical stack of salesperson cards */
+.saticiCol {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-top: 4px;
+}
+
+/* ============================================================
+   LEGEND
+   ============================================================ */
+.legend {
+  background: var(--navy);
+  border-top: 2px solid rgba(200, 169, 81, 0.25);
+  padding: 20px 40px;
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+  align-items: center;
+  border-radius: 0 0 8px 8px;
+  margin-top: 48px;
+  width: 100%;
+}
+
+.legendTitle {
+  font-size: 9px;
+  font-weight: 600;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: var(--gray);
+  margin-right: 8px;
+}
+
+.legendItem {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10.5px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+.legendDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+}
+
+/* ============================================================
+   ANIMATION
+   ============================================================ */
+@keyframes fadeDown {
+  from {
+    opacity: 0;
+    transform: translateY(-12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.card,
+.cardChairman,
+.cardBoard,
+.cardDirector {
+  animation: fadeDown 0.4s ease both;
 }
 
 /* ============================================================
    RESPONSIVE
    ============================================================ */
+@media (max-width: 1440px) {
+  .orgChart {
+    min-width: 1200px;
+  }
+}
+
 @media (max-width: 900px) {
   .orgChart {
     min-width: auto;
+    padding: 0;
   }
 
-  .tier {
+  .boardRow {
+    width: 100%;
     flex-direction: column;
     align-items: center;
-    gap: 12px;
+    gap: 8px;
   }
 
-  .connectorMulti,
-  .connectorMultiLower {
+  .boardSpine {
     display: none;
   }
 
-  .pcard {
+  .deptRow {
+    flex-direction: column;
+    align-items: center;
+    gap: 24px;
+  }
+
+  .deptCol {
+    border-right: none;
+    border-bottom: 1.5px solid rgba(200, 208, 220, 0.4);
+    padding-bottom: 24px;
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .deptCol:last-child {
+    border-bottom: none;
+  }
+
+  .mainSpine {
+    display: none;
+  }
+
+  .card {
     min-width: auto;
     max-width: 260px;
     width: 100%;
   }
 
-  .ceo {
+  .cardChairman {
     min-width: auto;
     max-width: 280px;
     width: 100%;
   }
 
-  .deptCard {
+  .cardDirector {
     min-width: auto;
-    max-width: 220px;
+    max-width: 260px;
+    width: 100%;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .legend {
+    justify-content: center;
   }
 }
