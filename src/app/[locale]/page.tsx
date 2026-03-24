@@ -5,7 +5,6 @@ import ServicesGrid from '@/components/sections/ServicesGrid';
 import BrandsGrid from '@/components/sections/BrandsGrid';
 import DistributionSection from '@/components/sections/DistributionSection';
 import GallerySection from '@/components/sections/GallerySection';
-import ApplySection from '@/components/sections/ApplySection';
 import ContactSection from '@/components/sections/ContactSection';
 
 export default function HomePage() {
@@ -18,7 +17,6 @@ export default function HomePage() {
       <div id="brands"><BrandsGrid /></div>
       <div id="distribution"><DistributionSection /></div>
       <div id="gallery"><GallerySection /></div>
-      <div id="apply"><ApplySection /></div>
       <div id="contact"><ContactSection /></div>
     </>
   );
