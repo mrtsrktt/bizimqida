@@ -104,12 +104,6 @@ export default function Hero() {
               </div>
               <div className={styles.hstatL}>{t('statVehicles')}</div>
             </div>
-            <div className={styles.hstat}>
-              <div className={styles.hstatN}>
-                <CountUp target={70} delay={3100} />
-              </div>
-              <div className={styles.hstatL}>{t('statStaff')}</div>
-            </div>
           </div>
         </div>
       </div>

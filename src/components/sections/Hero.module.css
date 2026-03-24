@@ -239,7 +239,7 @@
 /* Hero stat cards */
 .heroStats {
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: repeat(3, 1fr);
   gap: 6px;
   border-radius: 16px;
   overflow: hidden;
@@ -258,7 +258,6 @@
 .hstat:nth-child(1) { animation-delay: 2.0s; }
 .hstat:nth-child(2) { animation-delay: 2.3s; }
 .hstat:nth-child(3) { animation-delay: 2.6s; }
-.hstat:nth-child(4) { animation-delay: 2.9s; }
 
 .hstat:hover {
   background: rgba(255, 255, 255, 0.09);
