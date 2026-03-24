@@ -23,11 +23,6 @@ export default function Topbar() {
           <a href="tel:+99436000000">&#9742; +994 36 XXX XX XX</a>
         </div>
         <div className={styles['topbar-right']}>
-          <div className={styles['topbar-social']}>
-            <a href="#" title="LinkedIn">in</a>
-            <a href="#" title="Instagram">ig</a>
-            <a href="#" title="Facebook">fb</a>
-          </div>
           <div className={styles['lang-switcher']}>
             {locales.map((loc) => (
               <button
