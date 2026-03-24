@@ -86,7 +86,6 @@ export default function ContactSection() {
                 <select>
                   <option>{t('subjectSupply')}</option>
                   <option>{t('subjectPartnership')}</option>
-                  <option>{t('subjectCareer')}</option>
                   <option>{t('subjectGeneral')}</option>
                 </select>
               </div>

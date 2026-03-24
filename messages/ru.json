@@ -13,7 +13,6 @@
     "services": "Услуги",
     "brands": "Бренды",
     "distribution": "Дистрибуция",
-    "career": "Карьера",
     "contact": "Контакт",
     "apply": "Заявка"
   },
@@ -147,18 +146,6 @@
 "news3Tag": "Инвестиции",
     "news3Title": "Крупные инвестиции в холодильную инфраструктуру"
   },
-  "career": {
-    "eyebrow": "Кадры",
-    "title": "Присоединяйтесь к",
-    "titleEmphasis": "нам",
-    "description": "Займите своё место в динамичной команде Sürkit Holding, способствующей росту Нахчывана.",
-    "ctaApply": "Подать заявку",
-    "job1Title": "Торговый представитель",
-    "job2Title": "Координатор логистики",
-    "job3Title": "Заведующий складом",
-    "job4Title": "Специалист бухгалтерии",
-    "fullTime": "Полный день"
-  },
   "contact": {
     "eyebrow": "Контакт",
     "title": "Свяжитесь",
@@ -176,7 +163,6 @@
     "formSubmit": "Отправить",
     "subjectSupply": "Запрос на поставку",
     "subjectPartnership": "Деловое партнёрство",
-    "subjectCareer": "Заявка на вакансию",
     "subjectGeneral": "Общая информация"
   },
   "gallery": {
@@ -218,7 +204,6 @@
     "distribution": "Дистрибуция",
     "brands": "Бренды",
     "logistics": "Логистика",
-    "career": "Карьера",
     "contactTitle": "Контакт",
     "copyright": "Все права защищены.",
     "subsidiary": "Дочерняя компания"

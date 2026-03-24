@@ -13,7 +13,6 @@
     "services": "Hizmetler",
     "brands": "Markalar",
     "distribution": "Dağıtım",
-    "career": "Kariyer",
     "contact": "İletişim",
     "apply": "Başvuru"
   },
@@ -147,18 +146,6 @@
 "news3Tag": "Yatırım",
     "news3Title": "Soğuk zincir altyapısında büyük yatırım"
   },
-  "career": {
-    "eyebrow": "İnsan Kaynakları",
-    "title": "Ekibimize",
-    "titleEmphasis": "Katılın",
-    "description": "Sürkit Holding ailesinin bir parçası olarak Nahçıvan'ın büyümesine katkı sağlayan dinamik bir ekipte yerinizi alın.",
-    "ctaApply": "Başvuru Yap",
-    "job1Title": "Satış Temsilcisi",
-    "job2Title": "Lojistik Koordinatörü",
-    "job3Title": "Depo Sorumlusu",
-    "job4Title": "Muhasebe Uzmanı",
-    "fullTime": "Tam Zamanlı"
-  },
   "contact": {
     "eyebrow": "İletişim",
     "title": "Bizimle",
@@ -176,7 +163,6 @@
     "formSubmit": "Gönder",
     "subjectSupply": "Tedarik Talebi",
     "subjectPartnership": "İş Ortaklığı",
-    "subjectCareer": "Kariyer Başvurusu",
     "subjectGeneral": "Genel Bilgi"
   },
   "gallery": {
@@ -218,7 +204,6 @@
     "distribution": "Dağıtım",
     "brands": "Markalar",
     "logistics": "Lojistik",
-    "career": "Kariyer",
     "contactTitle": "İletişim",
     "copyright": "Tüm hakları saklıdır.",
     "subsidiary": "İştirakıdır"

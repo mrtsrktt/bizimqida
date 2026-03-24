@@ -13,7 +13,6 @@
     "services": "Services",
     "brands": "Brands",
     "distribution": "Distribution",
-    "career": "Career",
     "contact": "Contact",
     "apply": "Apply"
   },
@@ -147,18 +146,6 @@
 "news3Tag": "Investment",
     "news3Title": "Major investment in cold chain infrastructure"
   },
-  "career": {
-    "eyebrow": "Human Resources",
-    "title": "Join Our",
-    "titleEmphasis": "Team",
-    "description": "Take your place in a dynamic team contributing to Nakhchivan's growth as part of the Sürkit Holding family.",
-    "ctaApply": "Apply Now",
-    "job1Title": "Sales Representative",
-    "job2Title": "Logistics Coordinator",
-    "job3Title": "Warehouse Manager",
-    "job4Title": "Accounting Specialist",
-    "fullTime": "Full-Time"
-  },
   "contact": {
     "eyebrow": "Contact",
     "title": "Get in",
@@ -176,7 +163,6 @@
     "formSubmit": "Send",
     "subjectSupply": "Supply Request",
     "subjectPartnership": "Business Partnership",
-    "subjectCareer": "Career Application",
     "subjectGeneral": "General Information"
   },
   "gallery": {
@@ -218,7 +204,6 @@
     "distribution": "Distribution",
     "brands": "Brands",
     "logistics": "Logistics",
-    "career": "Career",
     "contactTitle": "Contact",
     "copyright": "All rights reserved.",
     "subsidiary": "Subsidiary"

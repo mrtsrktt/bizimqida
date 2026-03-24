@@ -40,7 +40,6 @@ export default function Footer() {
           <Link href="/distribution">{t('distribution')}</Link>
           <Link href="/brands">{t('brands')}</Link>
           <Link href="/services">{t('logistics')}</Link>
-          <Link href="/career">{t('career')}</Link>
         </div>
 
         {/* Contact Column */}

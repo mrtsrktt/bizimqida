@@ -78,13 +78,6 @@ export default function Navbar() {
             </Link>
           </li>
 
-          {/* Career */}
-          <li className={styles['nav-item']}>
-            <Link href="/career" className={styles['nav-link']}>
-              {t('career')}
-            </Link>
-          </li>
-
           {/* Apply */}
           <li className={styles['nav-item']}>
             <Link href="/apply" className={styles['nav-link']}>
@@ -126,9 +119,6 @@ export default function Navbar() {
         </Link>
         <Link href="/distribution" onClick={() => setMobileOpen(false)}>
           {t('distribution')}
-        </Link>
-        <Link href="/career" onClick={() => setMobileOpen(false)}>
-          {t('career')}
         </Link>
         <Link href="/apply" onClick={() => setMobileOpen(false)}>
           {t('apply')}

@@ -13,7 +13,6 @@
     "services": "Xidmətlər",
     "brands": "Brendlər",
     "distribution": "Paylama",
-    "career": "Karyera",
     "contact": "Əlaqə",
     "apply": "Müraciət"
   },
@@ -147,18 +146,6 @@
 "news3Tag": "İnvestisiya",
     "news3Title": "Soyuq zəncir infrastrukturuna böyük investisiya"
   },
-  "career": {
-    "eyebrow": "İnsan Resursları",
-    "title": "Komandamıza",
-    "titleEmphasis": "Qoşulun",
-    "description": "Sürkit Holdinq ailəsinin bir hissəsi kimi Naxçıvanın inkişafına töhfə verən dinamik komandada yerini al.",
-    "ctaApply": "Müraciət Et",
-    "job1Title": "Satış Nümayəndəsi",
-    "job2Title": "Logistika Koordinatoru",
-    "job3Title": "Anbar Müdiri",
-    "job4Title": "Mühasibat Mütəxəssisi",
-    "fullTime": "Tam Ştat"
-  },
   "contact": {
     "eyebrow": "Əlaqə",
     "title": "Bizimlə",
@@ -176,7 +163,6 @@
     "formSubmit": "Göndər",
     "subjectSupply": "Təchizat Tələbi",
     "subjectPartnership": "İş Ortaqlığı",
-    "subjectCareer": "Karyera Müraciəti",
     "subjectGeneral": "Ümumi Məlumat"
   },
   "gallery": {
@@ -218,7 +204,6 @@
     "distribution": "Paylama",
     "brands": "Brendlər",
     "logistics": "Logistika",
-    "career": "Karyera",
     "contactTitle": "Əlaqə",
     "copyright": "Bütün hüquqlar qorunur.",
     "subsidiary": "Törəməsidir"
