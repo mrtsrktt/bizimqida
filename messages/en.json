@@ -33,17 +33,11 @@
   },
   "about": {
     "eyebrow": "About Us",
-    "title": "We Always",
-    "titleEmphasis": "Keep Delivering",
-    "titleSuffix": "",
-    "description": "Bizim Qida is Sürkit Holding's food distribution subsidiary in Nakhchivan. With the most comprehensive distribution network in the region, we provide uninterrupted service to supermarkets, restaurants, hotels, and wholesale outlets.",
-    "founded": "Founded",
-    "value1Title": "01 — Belief",
-    "value1Desc": "We believe in the power of producing together. Our employees are our greatest driving force.",
-    "value2Title": "02 — Innovation",
-    "value2Desc": "With an entrepreneurial spirit, we place great emphasis on creativity in all our activities.",
-    "value3Title": "03 — Integrity",
-    "value3Desc": "We establish rightful relationships with all stakeholders through an honest, hardworking, and responsible approach."
+    "title": "Bizim",
+    "titleEmphasis": "Qida",
+    "description": "Founded in 1995 in Nakhchivan, Bizim Qida has served as a reliable and stable supply bridge in our industry with over a quarter century of experience. Our primary focus is delivering the products of the valuable brands we represent to our business partners in the most accurate, fast, and secure way. Thanks to the respect we have for our work and our discipline in the field, we have built a strong sales and distribution network serving over 450 active customers today. By closely monitoring market dynamics and needs, we carefully manage over 1,500 product varieties; with our modern distribution fleet of more than 35 vehicles, we ensure operational continuity at every step of the supply process.",
+    "description2": "At Bizim Qida, we believe that the greatest force behind our steady growth is the mutual trust we have built with our business partners; we continue to add value to our region with the experience we carry from the past.",
+    "founded": "Founded"
   },
   "boardMessage": {
     "eyebrow": "Board Message",

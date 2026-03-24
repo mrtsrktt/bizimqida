@@ -24,7 +24,7 @@ export default function AboutSection() {
                 />
               </div>
               <div className={styles.aboutBadge}>
-                <div className={styles.aboutBadgeN}>1997</div>
+                <div className={styles.aboutBadgeN}>1995</div>
                 <p className={styles.aboutBadgeP}>{t('founded')}</p>
               </div>
             </div>
@@ -35,33 +35,10 @@ export default function AboutSection() {
             <div className={styles.aboutText}>
               <div className="eyebrow">{t('eyebrow')}</div>
               <h2 className="section-h">
-                {t('title')} <em>{t('titleEmphasis')}</em> {t('titleSuffix')}
+                {t('title')} <em>{t('titleEmphasis')}</em>
               </h2>
               <p className="section-p">{t('description')}</p>
-
-              <div className={styles.valueCards}>
-                <div className={styles.vc}>
-                  <div className={styles.vcIcon}>&#127942;</div>
-                  <div>
-                    <h4>{t('value1Title')}</h4>
-                    <p>{t('value1Desc')}</p>
-                  </div>
-                </div>
-                <div className={styles.vc}>
-                  <div className={styles.vcIcon}>&#128161;</div>
-                  <div>
-                    <h4>{t('value2Title')}</h4>
-                    <p>{t('value2Desc')}</p>
-                  </div>
-                </div>
-                <div className={styles.vc}>
-                  <div className={styles.vcIcon}>&#129309;</div>
-                  <div>
-                    <h4>{t('value3Title')}</h4>
-                    <p>{t('value3Desc')}</p>
-                  </div>
-                </div>
-              </div>
+              <p className="section-p">{t('description2')}</p>
             </div>
           </RevealOnScroll>
         </div>

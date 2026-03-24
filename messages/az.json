@@ -33,17 +33,11 @@
   },
   "about": {
     "eyebrow": "Haqqımızda",
-    "title": "Həmişə",
-    "titleEmphasis": "İstehsal etməyə",
-    "titleSuffix": "Davam Edirik",
-    "description": "Bizim Qida, Sürkit Holdinqin Naxçıvandakı ərzaq paylama törəmə şirkətidir. Bölgənin ən geniş paylama şəbəkəsinə malik şirkətimiz marketlərə, restoranlara, otellərə fasiləsiz xidmət göstərir.",
-    "founded": "Quruluş",
-    "value1Title": "01 — İnanc",
-    "value1Desc": "Birlikdə istehsalın gücünə inanırıq. Əməkdaşlarımız ən böyük hərəkətverici qüvvəmizdir.",
-    "value2Title": "02 — İnnovasiya",
-    "value2Desc": "Sahibkarlıq ruhu ilə bütün fəaliyyətlərimizdə yaradıcılığa böyük əhəmiyyət veririk.",
-    "value3Title": "03 — Dürüstlük",
-    "value3Desc": "Dürüst, çalışqan və məsuliyyətli yanaşma ilə bütün maraqlı tərəflərlə düzgün münasibətlər qururuq."
+    "title": "Bizim",
+    "titleEmphasis": "Qida",
+    "description": "1995-ci ildə Naxçıvanda qurulan Bizim Qida olaraq, dörddə əsri aşan təcrübəmizlə sektorumuzda etibarlı və sabit təchizat körpüsü rolunu oynayırıq. Əsas prioritetimiz təmsil etdiyimiz dəyərli brendlərin məhsullarını iş ortaqlarımıza ən doğru, sürətli və təhlükəsiz şəkildə çatdırmaqdır. İşimizə olan hörmətimiz və sahədəki intizamımız sayəsində bu gün 450-dən çox aktiv müştərimizə xidmət edən güclü satış və paylama şəbəkəsi yaratdıq. Bazarın dinamiklərini və ehtiyaclarını yaxından izləyərək 1.500-dən çox məhsul çeşidini diqqətlə idarə edir; 35-dən artıq nəqliyyat vasitəsindən ibarət müasir paylama filomuzla təchizat prosesinin hər addımında əməliyyat davamlılığını təmin edirik.",
+    "description2": "Bizim Qida olaraq, sabit böyüməmizin arxasındakı ən böyük gücün iş ortaqlarımızla qurduğumuz qarşılıqlı etibar olduğuna inanır; dünəndən aldığımız təcrübə ilə bölgəmizə dəyər qatmağa davam edirik.",
+    "founded": "Quruluş"
   },
   "boardMessage": {
     "eyebrow": "İdarə Heyəti Mesajı",

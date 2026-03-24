@@ -33,17 +33,11 @@
   },
   "about": {
     "eyebrow": "Hakkımızda",
-    "title": "Her Zaman",
-    "titleEmphasis": "Üretmeye",
-    "titleSuffix": "Devam Ediyoruz",
-    "description": "Bizim Qida, Sürkit Holding'in Nahçıvan'daki gıda dağıtım iştirakidir. Bölgenin en kapsamlı dağıtım ağına sahip şirketimiz; marketlere, restoranlara, otellere ve toptan satış noktalarına kesintisiz hizmet vermektedir.",
-    "founded": "Kuruluş",
-    "value1Title": "01 — İnanç",
-    "value1Desc": "Birlikte üretmenin gücüne inanıyoruz. Çalışanlarımız en büyük itici gücümüzdür.",
-    "value2Title": "02 — Yenilikçilik",
-    "value2Desc": "Girişimci ve yenilikçi anlayışla, tüm faaliyetlerimizde yaratıcılığa büyük önem veririz.",
-    "value3Title": "03 — Dürüstlük",
-    "value3Desc": "Dürüst, çalışkan ve sorumluluk sahibi bir yaklaşımla tüm paydaşlarımızla doğru ilişkiler kurarız."
+    "title": "Bizim",
+    "titleEmphasis": "Qida",
+    "description": "1995 yılında Nahçıvan'da kurulan Bizim Qida olarak, çeyrek asrı aşan tecrübemizle sektörümüzde güvenilir ve istikrarlı bir tedarik köprüsü görevi görüyoruz. Temel önceliğimiz, temsil ettiğimiz değerli markaların ürünlerini iş ortaklarımıza en doğru, hızlı ve güvenli şekilde ulaştırmaktır. İşimize duyduğumuz saygı ve sahadaki disiplinimiz sayesinde, bugün 450'den fazla aktif müşterimize hizmet veren güçlü bir satış ve dağıtım ağı oluşturduk. Pazarın dinamiklerini ve ihtiyaçlarını yakından takip ederek 1.500'ün üzerindeki ürün çeşidini özenle yönetiyor; 35 aracı aşkın modern dağıtım filomuzla tedarik sürecinin her adımında operasyonel sürekliliği sağlıyoruz.",
+    "description2": "Bizim Qida olarak, istikrarlı büyümemizin ardındaki en büyük gücün iş ortaklarımızla kurduğumuz karşılıklı güven olduğuna inanıyor; dünden aldığımız tecrübeyle bölgemize değer katmaya devam ediyoruz.",
+    "founded": "Kuruluş"
   },
   "boardMessage": {
     "eyebrow": "Yönetim Kurulu Mesajı",
