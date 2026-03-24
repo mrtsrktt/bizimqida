@@ -12,20 +12,37 @@ export default function DistributionSection() {
     const el = iframeRef.current;
     if (!el) return;
     let fired = false;
+    let visible = false;
+    let iframeReady = false;
+
     const startAnimations = () => {
-      if (fired) return;
+      if (fired || !visible || !iframeReady) return;
+      fired = true;
       try {
         const body = el.contentDocument?.body;
-        if (body) { body.classList.remove('waiting'); fired = true; }
+        if (body) { body.classList.remove('waiting'); return; }
       } catch { /* cross-origin fallback */ }
-      if (!fired) {
-        el.contentWindow?.postMessage('startAnimations', '*');
-        fired = true;
+      el.contentWindow?.postMessage('startAnimations', '*');
+    };
+
+    const onMessage = (e: MessageEvent) => {
+      if (e.data === 'mapReady') {
+        iframeReady = true;
+        startAnimations();
       }
     };
+    window.addEventListener('message', onMessage);
+
+    const onLoad = () => {
+      iframeReady = true;
+      startAnimations();
+    };
+    el.addEventListener('load', onLoad);
+
     const obs = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          visible = true;
           startAnimations();
           obs.disconnect();
         }
@@ -33,7 +50,12 @@ export default function DistributionSection() {
       { threshold: 0.15 }
     );
     obs.observe(el);
-    return () => obs.disconnect();
+
+    return () => {
+      obs.disconnect();
+      window.removeEventListener('message', onMessage);
+      el.removeEventListener('load', onLoad);
+    };
   }, []);
 
   return (
