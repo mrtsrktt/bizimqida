@@ -33,7 +33,6 @@ export default function Footer() {
           <Link href="/about">{t('aboutUs')}</Link>
           <Link href="/board-message">{t('boardMessage')}</Link>
           <Link href="/management">{t('management')}</Link>
-          <Link href="/news">{t('news')}</Link>
         </div>
 
         {/* Services Column */}
