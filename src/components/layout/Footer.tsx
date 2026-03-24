@@ -31,7 +31,6 @@ export default function Footer() {
         <div className={styles['foot-col']}>
           <h5>{t('corporateTitle')}</h5>
           <Link href="/about">{t('aboutUs')}</Link>
-          <Link href="/board-message">{t('boardMessage')}</Link>
           <Link href="/management">{t('management')}</Link>
         </div>
 

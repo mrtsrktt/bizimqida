@@ -52,9 +52,6 @@ export default function Navbar() {
                 <Link href="/about">{t('aboutUs')}</Link>
               </li>
               <li>
-                <Link href="/board-message">{t('boardMessage')}</Link>
-              </li>
-              <li>
                 <Link href="/management">{t('management')}</Link>
               </li>
             </ul>
@@ -117,9 +114,6 @@ export default function Navbar() {
       <div className={`${styles['mobile-menu']}${mobileOpen ? ` ${styles.open}` : ''}`}>
         <Link href="/about" onClick={() => setMobileOpen(false)}>
           {t('aboutUs')}
-        </Link>
-        <Link href="/board-message" onClick={() => setMobileOpen(false)}>
-          {t('boardMessage')}
         </Link>
         <Link href="/management" onClick={() => setMobileOpen(false)}>
           {t('management')}
