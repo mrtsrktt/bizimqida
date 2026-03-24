@@ -46,7 +46,7 @@ export default function Footer() {
         <div className={styles['foot-col']}>
           <h5>{t('contactTitle')}</h5>
           <a href="mailto:info@bizimqida.az">info@bizimqida.az</a>
-          <a href="tel:+99436000000">+994 36 XXX XX XX</a>
+          <a href="tel:+994365513038">+994 36 551 30 38</a>
           <a href="https://www.surkit.com.tr" target="_blank" rel="noopener noreferrer">surkit.com.tr</a>
           <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
           <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>

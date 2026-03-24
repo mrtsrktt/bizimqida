@@ -38,7 +38,7 @@ export default function ContactSection() {
                 <div className={styles.ciIcon}>&#x1F4DE;</div>
                 <div>
                   <div className={styles.ciLabel}>{t('phoneLabel')}</div>
-                  <div className={styles.ciVal}>+994 36 XXX XX XX</div>
+                  <div className={styles.ciVal}>+994 36 551 30 38</div>
                 </div>
               </div>
 

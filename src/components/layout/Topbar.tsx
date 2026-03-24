@@ -20,7 +20,7 @@ export default function Topbar() {
       <div className={styles['topbar-inner']}>
         <div className={styles['topbar-left']}>
           <a href="mailto:info@bizimqida.az">&#9993; info@bizimqida.az</a>
-          <a href="tel:+99436000000">&#9742; +994 36 XXX XX XX</a>
+          <a href="tel:+994365513038">&#9742; +994 36 551 30 38</a>
         </div>
         <div className={styles['topbar-right']}>
           <div className={styles['lang-switcher']}>
