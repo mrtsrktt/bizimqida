@@ -179,6 +179,12 @@
     "subjectCareer": "Kariyer Başvurusu",
     "subjectGeneral": "Genel Bilgi"
   },
+  "gallery": {
+    "eyebrow": "Galeri",
+    "title": "Bizden",
+    "titleEmphasis": "Kareler",
+    "description": "Modern tesislerimiz, güçlü filomuz ve alanında uzman ekibimizle Nahçıvan'ın gıda tedarik zincirini güçlendiriyoruz."
+  },
   "apply": {
     "eyebrow": "Müşteri Başvurusu",
     "title": "Bizimle",

@@ -179,6 +179,12 @@
     "subjectCareer": "Career Application",
     "subjectGeneral": "General Information"
   },
+  "gallery": {
+    "eyebrow": "Gallery",
+    "title": "Inside",
+    "titleEmphasis": "Our Operations",
+    "description": "Modern facilities, a powerful fleet, and an expert team — strengthening Nakhchivan's food supply chain."
+  },
   "apply": {
     "eyebrow": "Customer Application",
     "title": "Want to",
