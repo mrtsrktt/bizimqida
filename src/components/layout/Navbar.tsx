@@ -27,7 +27,7 @@ export default function Navbar() {
         <Link href="/" className={styles['nav-logo']}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src="/images/logo/bizim-qida-logo.png"
+            src="/images/logo/bizim-qida-logo.svg"
             alt="Bizim Qida"
             className={styles['logo-img']}
           />
