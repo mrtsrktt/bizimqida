@@ -50,7 +50,7 @@ export default function Footer() {
       </div>
 
       <div className={styles['footer-bottom']}>
-        <p>&copy; 2025 Bizim Qida &mdash; {t('copyright')}</p>
+        <p>&copy; {new Date().getFullYear()} Bizim Qida &mdash; {t('copyright')}</p>
         <a href="https://www.surkit.com.tr" target="_blank" rel="noopener noreferrer" className={styles['surkit-ref']}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
