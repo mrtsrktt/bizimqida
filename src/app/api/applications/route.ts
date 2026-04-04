@@ -14,11 +14,6 @@ function writeApplications(data: unknown[]) {
   fs.writeFileSync(DATA_FILE, JSON.stringify(data, null, 2), 'utf-8');
 }
 
-export async function GET() {
-  const applications = readApplications();
-  return NextResponse.json(applications);
-}
-
 export async function POST(request: NextRequest) {
   const body = await request.json();
 
