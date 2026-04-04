@@ -293,5 +293,10 @@
 
   .nav-inner {
     padding: 0 20px;
+    height: 60px;
+  }
+
+  .logo-img {
+    height: 38px;
   }
 }

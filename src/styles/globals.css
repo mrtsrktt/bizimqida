@@ -94,3 +94,11 @@ h2.section-h.light{color:var(--white);}
   transition:all .3s;align-self:flex-start;
 }
 .btn-nav:hover{background:var(--gold);color:var(--navy);}
+
+/* ============================================================
+   RESPONSIVE — Global mobile adjustments
+   ============================================================ */
+@media (max-width: 900px) {
+  .section{padding:60px 0;}
+  .section-inner{padding:0 20px;}
+}

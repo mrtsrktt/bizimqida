@@ -156,6 +156,10 @@
     padding-bottom: 40px;
   }
 
+  .logo-img {
+    height: 44px;
+  }
+
   .footer-bottom {
     padding: 20px;
     flex-direction: column;
