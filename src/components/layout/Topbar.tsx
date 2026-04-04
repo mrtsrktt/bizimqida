@@ -19,7 +19,7 @@ export default function Topbar() {
     <div className={styles.topbar}>
       <div className={styles['topbar-inner']}>
         <div className={styles['topbar-left']}>
-          <a href="mailto:info@bizimqida.az">&#9993; info@bizimqida.az</a>
+          <a href="mailto:info@surkit.com.tr">&#9993; info@surkit.com.tr</a>
           <a href="tel:+994365513038">&#9742; +994 36 551 30 38</a>
         </div>
         <div className={styles['topbar-right']}>

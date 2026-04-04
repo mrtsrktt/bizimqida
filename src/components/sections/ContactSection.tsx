@@ -46,7 +46,7 @@ export default function ContactSection() {
                 <div className={styles.ciIcon}>&#x2709;&#xFE0F;</div>
                 <div>
                   <div className={styles.ciLabel}>E-mail</div>
-                  <div className={styles.ciVal}>info@bizimqida.az</div>
+                  <div className={styles.ciVal}>info@surkit.com.tr</div>
                 </div>
               </div>
 
