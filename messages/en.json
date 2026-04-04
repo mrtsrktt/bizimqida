@@ -157,7 +157,11 @@
     "formSubmit": "Send",
     "subjectSupply": "Supply Request",
     "subjectPartnership": "Business Partnership",
-    "subjectGeneral": "General Information"
+    "subjectSelect": "— Select —",
+    "subjectGeneral": "General Information",
+    "formSending": "Sending...",
+    "successMessage": "Your message has been sent successfully!",
+    "errorMessage": "An error occurred. Please try again."
   },
   "gallery": {
     "eyebrow": "Gallery",

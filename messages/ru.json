@@ -157,7 +157,11 @@
     "formSubmit": "Отправить",
     "subjectSupply": "Запрос на поставку",
     "subjectPartnership": "Деловое партнёрство",
-    "subjectGeneral": "Общая информация"
+    "subjectSelect": "— Выберите —",
+    "subjectGeneral": "Общая информация",
+    "formSending": "Отправка...",
+    "successMessage": "Ваше сообщение успешно отправлено!",
+    "errorMessage": "Произошла ошибка. Попробуйте ещё раз."
   },
   "gallery": {
     "eyebrow": "Галерея",

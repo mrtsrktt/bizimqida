@@ -157,7 +157,11 @@
     "formSubmit": "Gönder",
     "subjectSupply": "Tedarik Talebi",
     "subjectPartnership": "İş Ortaklığı",
-    "subjectGeneral": "Genel Bilgi"
+    "subjectSelect": "— Seçin —",
+    "subjectGeneral": "Genel Bilgi",
+    "formSending": "Gönderiliyor...",
+    "successMessage": "Mesajınız başarıyla gönderildi!",
+    "errorMessage": "Bir hata oluştu. Lütfen tekrar deneyin."
   },
   "gallery": {
     "eyebrow": "Galeri",

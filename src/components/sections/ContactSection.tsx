@@ -117,7 +117,7 @@ export default function ContactSection() {
               <div className={styles.ff}>
                 <label>{t('formSubject')}</label>
                 <select name="subject" required>
-                  <option value="">{t('subjectSelect') || '— Seçin —'}</option>
+                  <option value="">{t('subjectSelect')}</option>
                   <option>{t('subjectSupply')}</option>
                   <option>{t('subjectPartnership')}</option>
                   <option>{t('subjectGeneral')}</option>
@@ -131,18 +131,18 @@ export default function ContactSection() {
 
               {status === 'success' && (
                 <div className={styles.msgSuccess}>
-                  {t('successMessage') || 'Mesajiniz ugurla gonderildi!'}
+                  {t('successMessage')}
                 </div>
               )}
               {status === 'error' && (
                 <div className={styles.msgError}>
-                  {t('errorMessage') || 'Xeta bas verdi. Yeniden cehd edin.'}
+                  {t('errorMessage')}
                 </div>
               )}
 
               <button type="submit" className="btn-nav" disabled={sending}>
                 {sending
-                  ? (t('formSending') || 'Gonderilir...')
+                  ? t('formSending')
                   : t('formSubmit')}
               </button>
             </form>

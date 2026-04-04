@@ -157,7 +157,11 @@
     "formSubmit": "Göndər",
     "subjectSupply": "Təchizat Tələbi",
     "subjectPartnership": "İş Ortaqlığı",
-    "subjectGeneral": "Ümumi Məlumat"
+    "subjectSelect": "— Seçin —",
+    "subjectGeneral": "Ümumi Məlumat",
+    "formSending": "Göndərilir...",
+    "successMessage": "Mesajınız uğurla göndərildi!",
+    "errorMessage": "Xəta baş verdi. Yenidən cəhd edin."
   },
   "gallery": {
     "eyebrow": "Qalereya",
