@@ -19,10 +19,6 @@ export default function Footer() {
               alt="Bizim Qida"
               className={styles['logo-img']}
             />
-            <div className={styles['logo-text-wrap']}>
-              <div className={styles['logo-name']}>Bizim Qida</div>
-              <div className={styles['logo-sub']}>Dağıtım MMC</div>
-            </div>
           </div>
           <p>{t('description')}</p>
         </div>

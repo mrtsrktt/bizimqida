@@ -31,10 +31,6 @@ export default function Navbar() {
             alt="Bizim Qida"
             className={styles['logo-img']}
           />
-          <div className={styles['logo-text-wrap']}>
-            <div className={styles['logo-name']}>Bizim Qida</div>
-            <div className={styles['logo-sub']}>Dağıtım MMC</div>
-          </div>
         </Link>
 
         {/* Desktop Nav Menu */}
