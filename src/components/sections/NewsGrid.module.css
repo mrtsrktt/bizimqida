@@ -78,5 +78,14 @@
 @media (max-width: 900px) {
   .newsGrid {
     grid-template-columns: 1fr;
+    margin-top: 32px;
+  }
+
+  .nc {
+    padding: 24px 20px;
+  }
+
+  .featured .ncTitle {
+    font-size: 20px;
   }
 }

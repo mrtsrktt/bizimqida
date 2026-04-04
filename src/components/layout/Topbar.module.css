@@ -96,7 +96,19 @@
   }
 
   .topbar-left {
-    gap: 16px;
+    gap: 12px;
     font-size: 11px;
+  }
+}
+
+@media (max-width: 480px) {
+  .topbar-left {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+
+  .topbar-left a {
+    font-size: 10px;
   }
 }

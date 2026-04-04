@@ -85,4 +85,8 @@
   .inner {
     padding: 40px 20px 60px;
   }
+  .diagTop,
+  .diagBottom {
+    height: 50px;
+  }
 }

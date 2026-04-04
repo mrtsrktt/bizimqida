@@ -228,6 +228,8 @@
   .item:nth-child(7) { grid-column: span 2; grid-row: span 1; }
   .item { min-height: 160px; }
   .inner { padding: 48px 20px 60px; }
+  .diagTop,
+  .diagBottom { height: 50px; }
   .lightboxNav { display: none; }
 }
 

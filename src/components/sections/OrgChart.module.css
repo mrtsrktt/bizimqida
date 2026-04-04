@@ -407,6 +407,10 @@
 }
 
 @media (max-width: 900px) {
+  .orgWrap {
+    padding: 20px 12px;
+  }
+
   .orgChart {
     min-width: auto;
     padding: 0;

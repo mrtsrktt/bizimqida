@@ -78,7 +78,26 @@
    RESPONSIVE
    ============================================================ */
 @media (max-width: 900px) {
+  .boardMessageSection {
+    padding: 60px 0;
+  }
+
   .msgGrid {
     grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 0 20px;
+  }
+
+  .msgPhotoInner {
+    height: 360px;
+  }
+
+  .msgQuote {
+    font-size: 20px;
+    padding-left: 16px;
+  }
+
+  .msgBody {
+    font-size: 14px;
   }
 }
