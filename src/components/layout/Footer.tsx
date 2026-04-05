@@ -44,8 +44,6 @@ export default function Footer() {
           <a href="mailto:info@surkit.com.tr">info@surkit.com.tr</a>
           <a href="tel:+994365513038">+994 36 551 30 38</a>
           <a href="https://www.surkit.com.tr" target="_blank" rel="noopener noreferrer">surkit.com.tr</a>
-          <a href="#" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="#" target="_blank" rel="noopener noreferrer">Instagram</a>
         </div>
       </div>
 
