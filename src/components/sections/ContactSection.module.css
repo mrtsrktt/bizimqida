@@ -136,6 +136,15 @@
   font-weight: 500;
 }
 
+/* Google Maps */
+.mapWrapper {
+  margin-top: 64px;
+  height: 420px;
+  border-radius: 12px;
+  overflow: hidden;
+  border: 1px solid var(--gray-light);
+}
+
 /* Responsive */
 @media (max-width: 900px) {
   .contactGrid {

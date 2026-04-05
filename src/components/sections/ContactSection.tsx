@@ -66,7 +66,7 @@ export default function ContactSection() {
                 <div>
                   <div className={styles.ciLabel}>{t('addressLabel')}</div>
                   <div className={styles.ciVal}>
-                    Naxcivan Muxtar Respublikasi, Naxcivan seheri, Azerbaycan
+                    {t('addressValue')}
                   </div>
                 </div>
               </div>
@@ -146,6 +146,22 @@ export default function ContactSection() {
                   : t('formSubmit')}
               </button>
             </form>
+          </div>
+        </RevealOnScroll>
+
+        {/* Google Maps */}
+        <RevealOnScroll>
+          <div className={styles.mapWrapper}>
+            <iframe
+              src="https://maps.google.com/maps?q=Babek+Nakhchivan+Azerbaijan&output=embed&hl=az&z=14"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+              title="Bizim Qida Konum"
+            />
           </div>
         </RevealOnScroll>
       </div>
