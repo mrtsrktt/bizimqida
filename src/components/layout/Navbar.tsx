@@ -35,6 +35,13 @@ export default function Navbar() {
 
         {/* Desktop Nav Menu */}
         <ul className={styles['nav-menu']}>
+          {/* Home */}
+          <li className={styles['nav-item']}>
+            <Link href="/" className={styles['nav-link']}>
+              {t('home')}
+            </Link>
+          </li>
+
           {/* Corporate Dropdown */}
           <li className={styles['nav-item']}>
             <span className={styles['nav-link']}>
@@ -101,6 +108,9 @@ export default function Navbar() {
 
       {/* Mobile Menu */}
       <div className={`${styles['mobile-menu']}${mobileOpen ? ` ${styles.open}` : ''}`}>
+        <Link href="/" onClick={() => setMobileOpen(false)}>
+          {t('home')}
+        </Link>
         <Link href="/about" onClick={() => setMobileOpen(false)}>
           {t('aboutUs')}
         </Link>
