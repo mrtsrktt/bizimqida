@@ -153,7 +153,7 @@ export default function ContactSection() {
         <RevealOnScroll>
           <div className={styles.mapWrapper}>
             <iframe
-              src="https://maps.google.com/maps?q=Babek+Nakhchivan+Azerbaijan&output=embed&hl=az&z=14"
+              src="https://maps.google.com/maps?q=39.179842,45.437903&output=embed&hl=az&z=17"
               width="100%"
               height="100%"
               style={{ border: 0 }}
