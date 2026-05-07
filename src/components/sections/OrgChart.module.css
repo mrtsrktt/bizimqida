@@ -406,6 +406,60 @@
   }
 }
 
+/* ============================================================
+   RESPONSIVE — TABLET  (901 – 1100 px)
+   ============================================================ */
+@media (max-width: 1100px) and (min-width: 901px) {
+  .orgChart {
+    min-width: auto;
+  }
+
+  .boardRow {
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .boardSpine {
+    width: 100%;
+    max-width: 680px;
+  }
+
+  .deptRow {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+  }
+
+  .deptCol {
+    flex: 1 1 calc(50% - 24px) !important;
+    min-width: 260px !important;
+    border-right: none;
+  }
+
+  .spine {
+    display: none;
+  }
+
+  .row {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px !important;
+    width: 100% !important;
+  }
+
+  .col {
+    width: 100%;
+    max-width: 280px;
+    padding: 0 !important;
+  }
+
+  .cardSatici {
+    min-width: 100px;
+    max-width: 220px;
+    width: 100%;
+  }
+}
+
 @media (max-width: 900px) {
   .orgWrap {
     padding: 20px 12px;
