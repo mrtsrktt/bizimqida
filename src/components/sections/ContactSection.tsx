@@ -15,22 +15,31 @@ export default function ContactSection() {
     setStatus('idle');
 
     const form = e.currentTarget;
-    const data = {
-      name: (form.elements.namedItem('name') as HTMLInputElement).value,
-      email: (form.elements.namedItem('email') as HTMLInputElement).value,
-      phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
-      subject: (form.elements.namedItem('subject') as HTMLSelectElement).value,
-      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
-    };
+    const name = (form.elements.namedItem('name') as HTMLInputElement).value;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value;
+    const subject = (form.elements.namedItem('subject') as HTMLSelectElement).value;
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
 
     try {
-      const res = await fetch('/api/contact', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: 'c6b7ba7b-8e80-4926-9587-87b2e4b36204',
+          subject: `Bizim Qida — yeni mesaj: ${name}`,
+          from_name: 'Bizim Qida Website',
+          replyto: email,
+          name,
+          email,
+          phone,
+          Konu: subject,
+          message,
+        }),
       });
 
-      if (res.ok) {
+      const result = await res.json();
+      if (result.success) {
         setStatus('success');
         form.reset();
       } else {
