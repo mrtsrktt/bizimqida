@@ -14,23 +14,34 @@ export default function ApplySection() {
     setLoading(true);
 
     const form = e.currentTarget;
-    const data = {
-      businessName: (form.elements.namedItem('businessName') as HTMLInputElement).value,
-      businessType: (form.elements.namedItem('businessType') as HTMLSelectElement).value,
-      contactName: (form.elements.namedItem('contactName') as HTMLInputElement).value,
-      phone: (form.elements.namedItem('phone') as HTMLInputElement).value,
-      email: (form.elements.namedItem('email') as HTMLInputElement).value,
-      address: (form.elements.namedItem('address') as HTMLTextAreaElement).value,
-      message: (form.elements.namedItem('message') as HTMLTextAreaElement).value,
-    };
+    const businessName = (form.elements.namedItem('businessName') as HTMLInputElement).value;
+    const businessType = (form.elements.namedItem('businessType') as HTMLSelectElement).value;
+    const contactName = (form.elements.namedItem('contactName') as HTMLInputElement).value;
+    const phone = (form.elements.namedItem('phone') as HTMLInputElement).value;
+    const email = (form.elements.namedItem('email') as HTMLInputElement).value;
+    const address = (form.elements.namedItem('address') as HTMLTextAreaElement).value;
+    const message = (form.elements.namedItem('message') as HTMLTextAreaElement).value;
 
     try {
-      const res = await fetch('/api/applications', {
+      const res = await fetch('https://api.web3forms.com/submit', {
         method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
+        headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+        body: JSON.stringify({
+          access_key: 'c6b7ba7b-8e80-4926-9587-87b2e4b36204',
+          subject: `Bizim Qida — yeni başvuru: ${businessName}`,
+          from_name: 'Bizim Qida Website',
+          replyto: email,
+          'İşletme Adı': businessName,
+          'İşletme Türü': businessType,
+          'Yetkili Kişi': contactName,
+          phone,
+          email,
+          'Adres': address,
+          message,
+        }),
       });
-      if (res.ok) setSubmitted(true);
+      const result = await res.json();
+      if (result.success) setSubmitted(true);
     } finally {
       setLoading(false);
     }
