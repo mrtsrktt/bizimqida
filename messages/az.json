@@ -134,12 +134,16 @@
     "mapHoverPrompt": "Bölgə detalları üçün xəritəyə klikləyin"
   },
   "news": {
+    "badge": "SÜRKİT HOLDİNQ MEDİA VƏ MƏTBUAT OTAĞI",
     "eyebrow": "Xəbərlər & Elanlar",
     "title": "Son",
     "titleEmphasis": "Yeniliklər",
+    "subDesc": "Sürkit Holdinq və törəmə şirkətlərimizə aid ən son inkişaflar, mətbuat açıqlamaları və korporativ elanlar.",
+    "viewAll": "Bütün Mətbuat Otağına Bax",
+    "readMore": "Ətraflı Oxu",
     "news1Tag": "Korporativ Xəbər",
     "news1Title": "Sürkit Holdinq çərçivəsində yeni paylama mərkəzi Naxçıvanda istifadəyə verildi",
-"news3Tag": "İnvestisiya",
+    "news3Tag": "İnvestisiya",
     "news3Title": "Soyuq zəncir infrastrukturuna böyük investisiya"
   },
   "contact": {

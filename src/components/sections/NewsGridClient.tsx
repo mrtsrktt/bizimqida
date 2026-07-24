@@ -18,9 +18,10 @@ export interface HoldingNewsItem {
 
 interface Props {
   apiNews: HoldingNewsItem[] | null;
+  locale?: string;
 }
 
-export default function NewsGridClient({ apiNews }: Props) {
+export default function NewsGridClient({ apiNews, locale = 'tr' }: Props) {
   const t = useTranslations('news');
 
   const defaultItems = [
@@ -33,7 +34,7 @@ export default function NewsGridClient({ apiNews }: Props) {
       date: 'Mart 2025',
       image: '/images/facility/exterior-loading-docks.jpg',
       portrait: false,
-      href: 'https://surkit.com.tr/basin-odasi',
+      href: `https://surkit.com.tr/${locale}/basin-odasi`,
     },
     {
       id: 'news-2',
@@ -44,14 +45,14 @@ export default function NewsGridClient({ apiNews }: Props) {
       date: 'Ocak 2025',
       image: '/images/warehouse/interior-tall-racks-b.jpg',
       portrait: false,
-      href: 'https://surkit.com.tr/basin-odasi',
+      href: `https://surkit.com.tr/${locale}/basin-odasi`,
     },
   ];
 
   const items =
     apiNews && apiNews.length > 0
       ? apiNews.map((item, index) => {
-          const rawHref = item.href || `https://surkit.com.tr/basin-odasi#haber-${index}`;
+          const rawHref = item.href || `https://surkit.com.tr/${locale}/basin-odasi#haber-${index}`;
           const href =
             typeof window !== 'undefined' && window.location.hostname === 'localhost'
               ? rawHref.replace('https://surkit.com.tr', 'http://localhost:3001')
@@ -70,6 +71,11 @@ export default function NewsGridClient({ apiNews }: Props) {
         })
       : defaultItems;
 
+  const basinOdasiUrl =
+    typeof window !== 'undefined' && window.location.hostname === 'localhost'
+      ? `http://localhost:3001/${locale}/basin-odasi`
+      : `https://surkit.com.tr/${locale}/basin-odasi`;
+
   return (
     <section className={styles.newsSection}>
       <div className="section-inner">
@@ -78,26 +84,20 @@ export default function NewsGridClient({ apiNews }: Props) {
             <div className={styles.newsHeaderLeft}>
               <div className={styles.newsHeaderBadge}>
                 <span className={styles.livePulse} />
-                <span>SÜRKİT HOLDİNG MEDYA & BASIN ODASI</span>
+                <span>{t('badge')}</span>
               </div>
               <h2 className="section-h">
                 {t('title')} <em>{t('titleEmphasis')}</em>
               </h2>
-              <p className={styles.newsSubDesc}>
-                Sürkit Holding ve iştiraklerimize ait en son gelişmeler, basın açıklamaları ve kurumsal duyurular.
-              </p>
+              <p className={styles.newsSubDesc}>{t('subDesc')}</p>
             </div>
             <a
-              href={
-                typeof window !== 'undefined' && window.location.hostname === 'localhost'
-                  ? 'http://localhost:3001/tr/basin-odasi'
-                  : 'https://surkit.com.tr/basin-odasi'
-              }
+              href={basinOdasiUrl}
               target="_blank"
               rel="noopener noreferrer"
               className={styles.allNewsBtn}
             >
-              <span>Tüm Basın Odasını Gör</span>
+              <span>{t('viewAll')}</span>
               <svg
                 width="14"
                 height="14"
@@ -163,7 +163,7 @@ export default function NewsGridClient({ apiNews }: Props) {
                   <div className={styles.ncFooter}>
                     <span className={styles.ndate}>{item.date}</span>
                     <span className={styles.readMoreLink}>
-                      <span>Devamını Oku</span>
+                      <span>{t('readMore')}</span>
                       <svg
                         width="14"
                         height="14"

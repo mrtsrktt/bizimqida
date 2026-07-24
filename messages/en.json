@@ -134,12 +134,16 @@
     "mapHoverPrompt": "Click on the map for region details"
   },
   "news": {
+    "badge": "SÜRKİT HOLDING MEDIA & PRESS ROOM",
     "eyebrow": "News & Announcements",
     "title": "Latest",
     "titleEmphasis": "Developments",
+    "subDesc": "The latest developments, press releases and corporate announcements from Sürkit Holding and our subsidiaries.",
+    "viewAll": "View Press Room",
+    "readMore": "Read More",
     "news1Tag": "Corporate News",
     "news1Title": "New distribution center within Sürkit Holding opened in Nakhchivan",
-"news3Tag": "Investment",
+    "news3Tag": "Investment",
     "news3Title": "Major investment in cold chain infrastructure"
   },
   "contact": {

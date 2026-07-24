@@ -28,5 +28,5 @@ async function getHoldingNews(locale: string): Promise<HoldingNewsItem[] | null>
 
 export default async function NewsGrid({ locale = 'tr' }: { locale?: string }) {
   const apiNews = await getHoldingNews(locale);
-  return <NewsGridClient apiNews={apiNews} />;
+  return <NewsGridClient apiNews={apiNews} locale={locale} />;
 }
