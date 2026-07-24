@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef, useEffect, useCallback } from 'react';
+import { useState, useRef, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import RevealOnScroll from '@/components/animations/RevealOnScroll';
@@ -26,6 +26,8 @@ interface Props {
 export default function NewsGridClient({ apiNews, locale = 'tr' }: Props) {
   const t = useTranslations('news');
   const [activeIndex, setActiveIndex] = useState(0);
+  const [touchDeltaX, setTouchDeltaX] = useState(0);
+  const [isSwiping, setIsSwiping] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
   const defaultItems = [
@@ -87,20 +89,30 @@ export default function NewsGridClient({ apiNews, locale = 'tr' }: Props) {
 
   const handleTouchStart = (e: React.TouchEvent) => {
     touchStartX.current = e.touches[0].clientX;
+    setIsSwiping(true);
+    setTouchDeltaX(0);
   };
 
-  const handleTouchEnd = (e: React.TouchEvent) => {
+  const handleTouchMove = (e: React.TouchEvent) => {
     if (touchStartX.current === null) return;
-    const diffX = touchStartX.current - e.changedTouches[0].clientX;
-    touchStartX.current = null;
-
-    if (Math.abs(diffX) > 40) {
-      if (diffX > 0) handleNext();
-      else handlePrev();
-    }
+    const currentX = e.touches[0].clientX;
+    const delta = currentX - touchStartX.current;
+    setTouchDeltaX(delta);
   };
 
-  const currentItem = items[activeIndex] || items[0];
+  const handleTouchEnd = () => {
+    if (touchStartX.current === null) return;
+    setIsSwiping(false);
+
+    if (touchDeltaX < -45) {
+      handleNext();
+    } else if (touchDeltaX > 45) {
+      handlePrev();
+    }
+    setTouchDeltaX(0);
+    touchStartX.current = null;
+  };
+
   const basinOdasiUrl =
     typeof window !== 'undefined' && window.location.hostname === 'localhost'
       ? `http://localhost:3001/${locale}/basin-odasi`
@@ -175,83 +187,97 @@ export default function NewsGridClient({ apiNews, locale = 'tr' }: Props) {
           </div>
         </RevealOnScroll>
 
-        {/* SINGLE FEATURED NEWS CARD SLIDER */}
+        {/* HARDWARE-ACCELERATED TRACK CAROUSEL */}
         <RevealOnScroll>
-          <div
-            className={styles.singleCardWrapper}
-            onTouchStart={handleTouchStart}
-            onTouchEnd={handleTouchEnd}
-          >
-            <a
-              key={activeIndex}
-              href={currentItem.href}
-              target="_blank"
-              rel="noopener noreferrer"
-              className={`${styles.singleCard} ${styles.singleCardAnim}`}
+          <div className={styles.sliderOuterWrapper}>
+            <div
+              className={styles.sliderTrackWrapper}
+              onTouchStart={handleTouchStart}
+              onTouchMove={handleTouchMove}
+              onTouchEnd={handleTouchEnd}
             >
-              {/* LEFT / TOP IMAGE AREA */}
-              <div className={styles.singleImgWrapper}>
-                {currentItem.portrait ? (
-                  <>
-                    <Image
-                      src={currentItem.image}
-                      alt={currentItem.title}
-                      fill
-                      unoptimized={currentItem.image.startsWith('http')}
-                      className={styles.ncImgBlurBg}
-                    />
-                    <Image
-                      src={currentItem.image}
-                      alt={currentItem.title}
-                      fill
-                      unoptimized={currentItem.image.startsWith('http')}
-                      className={styles.ncImgContain}
-                    />
-                  </>
-                ) : (
-                  <Image
-                    src={currentItem.image}
-                    alt={currentItem.title}
-                    fill
-                    unoptimized={currentItem.image.startsWith('http')}
-                    className={styles.ncImg}
-                  />
-                )}
-                <span className={styles.ntagBadge}>{currentItem.tag}</span>
-              </div>
-
-              {/* RIGHT / BOTTOM CONTENT AREA */}
-              <div className={styles.singleContent}>
-                <div className={styles.singleMeta}>
-                  <span className={styles.singleDate}>{currentItem.date}</span>
-                </div>
-
-                <h3 className={styles.singleTitle}>{currentItem.title}</h3>
-
-                {currentItem.description && (
-                  <p className={styles.singleDesc}>{currentItem.description}</p>
-                )}
-
-                <div className={styles.singleFooter}>
-                  <span className={styles.singleCtaBtn}>
-                    <span>{t('readMore')}</span>
-                    <svg
-                      width="16"
-                      height="16"
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2.5"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
+              <div
+                className={styles.sliderTrack}
+                style={{
+                  transform: `translate3d(calc(-${activeIndex * 100}% + ${touchDeltaX}px), 0, 0)`,
+                  transition: isSwiping ? 'none' : 'transform 0.5s cubic-bezier(0.22, 1, 0.36, 1)',
+                }}
+              >
+                {items.map((item, idx) => (
+                  <div key={item.id || idx} className={styles.slideItem}>
+                    <a
+                      href={item.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={styles.singleCard}
                     >
-                      <line x1="7" y1="17" x2="17" y2="7" />
-                      <polyline points="7 7 17 7 17 17" />
-                    </svg>
-                  </span>
-                </div>
+                      {/* LEFT / TOP IMAGE AREA */}
+                      <div className={styles.singleImgWrapper}>
+                        {item.portrait ? (
+                          <>
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              fill
+                              unoptimized={item.image.startsWith('http')}
+                              className={styles.ncImgBlurBg}
+                            />
+                            <Image
+                              src={item.image}
+                              alt={item.title}
+                              fill
+                              unoptimized={item.image.startsWith('http')}
+                              className={styles.ncImgContain}
+                            />
+                          </>
+                        ) : (
+                          <Image
+                            src={item.image}
+                            alt={item.title}
+                            fill
+                            unoptimized={item.image.startsWith('http')}
+                            className={styles.ncImg}
+                          />
+                        )}
+                        <span className={styles.ntagBadge}>{item.tag}</span>
+                      </div>
+
+                      {/* RIGHT / BOTTOM CONTENT AREA */}
+                      <div className={styles.singleContent}>
+                        <div className={styles.singleMeta}>
+                          <span className={styles.singleDate}>{item.date}</span>
+                        </div>
+
+                        <h3 className={styles.singleTitle}>{item.title}</h3>
+
+                        {item.description && (
+                          <p className={styles.singleDesc}>{item.description}</p>
+                        )}
+
+                        <div className={styles.singleFooter}>
+                          <span className={styles.singleCtaBtn}>
+                            <span>{t('readMore')}</span>
+                            <svg
+                              width="16"
+                              height="16"
+                              viewBox="0 0 24 24"
+                              fill="none"
+                              stroke="currentColor"
+                              strokeWidth="2.5"
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                            >
+                              <line x1="7" y1="17" x2="17" y2="7" />
+                              <polyline points="7 7 17 7 17 17" />
+                            </svg>
+                          </span>
+                        </div>
+                      </div>
+                    </a>
+                  </div>
+                ))}
               </div>
-            </a>
+            </div>
 
             {/* FLOATING SIDE NAV BUTTONS */}
             <button

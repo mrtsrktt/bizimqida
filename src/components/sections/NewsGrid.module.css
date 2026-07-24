@@ -1,5 +1,5 @@
 /* ============================================================
-   NEWS GRID SECTION STYLES — SINGLE FEATURED CARD SLIDER
+   NEWS GRID SECTION STYLES — CONTINUOUS HARDWARE 3D SLIDER
    ============================================================ */
 
 .newsSection {
@@ -137,9 +137,34 @@
   padding: 0 4px;
 }
 
-/* SINGLE CARD WRAPPER */
-.singleCardWrapper {
+/* HARDWARE-ACCELERATED TRACK CAROUSEL */
+.sliderOuterWrapper {
   position: relative;
+  width: 100%;
+}
+
+.sliderTrackWrapper {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+  border-radius: 18px;
+  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06);
+  touch-action: pan-y;
+}
+
+.sliderTrack {
+  display: flex;
+  width: 100%;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.slideItem {
+  flex: 0 0 100%;
+  width: 100%;
+  min-width: 100%;
+  box-sizing: border-box;
 }
 
 .singleCard {
@@ -148,28 +173,12 @@
   background: #ffffff;
   border-radius: 18px;
   border: 1px solid rgba(15, 23, 42, 0.08);
-  box-shadow: 0 12px 36px rgba(15, 23, 42, 0.06);
   overflow: hidden;
   text-decoration: none;
   color: inherit;
   min-height: 440px;
-  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
-  will-change: transform, opacity;
-}
-
-.singleCardAnim {
-  animation: fadeInSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-@keyframes fadeInSlide {
-  0% {
-    opacity: 0.35;
-    transform: scale(0.985) translateY(4px);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) translateY(0);
-  }
+  transition: box-shadow 0.35s cubic-bezier(0.16, 1, 0.3, 1),
+              border-color 0.35s ease;
 }
 
 .singleCard:hover {
