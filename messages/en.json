@@ -10,6 +10,7 @@
     "aboutUs": "About Us",
     "boardMessage": "Board Message",
     "management": "Management",
+    "pressRoom": "Press Room",
     "news": "News",
     "services": "Services",
     "brands": "Brands",
@@ -192,6 +193,22 @@
     "formSubmit": "Submit Application",
     "successTitle": "Application Received!",
     "successMessage": "We will contact you as soon as possible. Thank you."
+  },
+  "pressRoomPage": {
+    "heroEyebrow": "SÜRKİT HOLDING SUBSIDIARY · BİZİM QİDA MMC",
+    "heroTitle": "Press Room",
+    "heroTitleEmphasis": "& Media",
+    "heroDesc": "All corporate news, official press releases, investments and media resources within Bizim Qida MMC and Sürkit Holding.",
+    "featuredBadge": "FEATURED STORY",
+    "featuredTitle": "Top Stories",
+    "readMore": "Read Full Press Release",
+    "allReleasesBadge": "ALL PRESS RELEASES",
+    "allReleasesTitle": "Latest News & Announcements",
+    "readMoreShort": "Read More",
+    "mediaContactEyebrow": "MEDIA RELATIONS",
+    "mediaContactTitle": "Press Contact & Media Kit",
+    "mediaContactDesc": "For corporate news, interview requests, and brand/logo assets regarding Bizim Qida MMC and Sürkit Holding, please reach out to our media relations team.",
+    "viewPressRoomBtn": "Sürkit Holding Press Room"
   },
   "footer": {
     "description": "Nakhchivan's leading food distribution company, a Sürkit Holding subsidiary.",

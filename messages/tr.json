@@ -10,6 +10,7 @@
     "aboutUs": "Hakkımızda",
     "boardMessage": "Yönetim Kurulu Mesajı",
     "management": "Yönetim",
+    "pressRoom": "Basın Odası",
     "news": "Haberler",
     "services": "Hizmetler",
     "brands": "Markalar",
@@ -192,6 +193,22 @@
     "formSubmit": "Başvuruyu Gönder",
     "successTitle": "Başvurunuz Alındı!",
     "successMessage": "En kısa sürede sizinle iletişime geçeceğiz. Teşekkür ederiz."
+  },
+  "pressRoomPage": {
+    "heroEyebrow": "SÜRKİT HOLDİNG İŞTİRAKİ · BİZİM QİDA MMC",
+    "heroTitle": "Basın Odası",
+    "heroTitleEmphasis": "& Medya",
+    "heroDesc": "Bizim Qida MMC ve Sürkit Holding bünyesindeki tüm kurumsal haberler, resmi basın açıklamaları, yatırımlar ve medya kaynakları.",
+    "featuredBadge": "ÖNE ÇIKAN HABER",
+    "featuredTitle": "Gündemdekiler",
+    "readMore": "Haberin Detaylarını Oku",
+    "allReleasesBadge": "TÜM BASIN BÜLTENLERİ",
+    "allReleasesTitle": "Son Haberler & Açıklamalar",
+    "readMoreShort": "Devamını Oku",
+    "mediaContactEyebrow": "MEDYA İLİŞKİLERİ",
+    "mediaContactTitle": "Basın İletişimi & Medya Kiti",
+    "mediaContactDesc": "Bizim Qida MMC ve Sürkit Holding kurumsal haberleri, röportaj talepleri ve logo/görsel varlıkları için basın birimimizle iletişime geçebilirsiniz.",
+    "viewPressRoomBtn": "Sürkit Holding Basın Odası"
   },
   "footer": {
     "description": "Nahçıvan'ın lider gıda dağıtım şirketi. Sürkit Holding bünyesinde faaliyet göstermektedir.",

@@ -10,6 +10,7 @@
     "aboutUs": "О нас",
     "boardMessage": "Послание совета",
     "management": "Руководство",
+    "pressRoom": "Пресс-центр",
     "news": "Новости",
     "services": "Услуги",
     "brands": "Бренды",
@@ -192,6 +193,22 @@
     "formSubmit": "Отправить заявку",
     "successTitle": "Заявка принята!",
     "successMessage": "Мы свяжемся с вами в ближайшее время. Спасибо."
+  },
+  "pressRoomPage": {
+    "heroEyebrow": "ДОЧЕРНЕЕ ПРЕДПРИЯТИЕ SÜRKİT HOLDING · BİZİM QİDA MMC",
+    "heroTitle": "Пресс-центр",
+    "heroTitleEmphasis": "и СМИ",
+    "heroDesc": "Все корпоративные новости, официальные пресс-релизы, инвестиции и медиаресурсы Bizim Qida MMC и Sürkit Holding.",
+    "featuredBadge": "ГЛАВНАЯ НОВОСТЬ",
+    "featuredTitle": "В центре внимания",
+    "readMore": "Читать полностью",
+    "allReleasesBadge": "ВСЕ ПРЕСС-РЕЛИЗЫ",
+    "allReleasesTitle": "Последние новости и заявления",
+    "readMoreShort": "Подробнее",
+    "mediaContactEyebrow": "СВЯЗИ СО СМИ",
+    "mediaContactTitle": "Контакты для прессы и медиакит",
+    "mediaContactDesc": "Для получения корпоративных новостей, запросов на интервью и логотипов/медиа-материалов Bizim Qida MMC и Sürkit Holding свяжитесь с нашим отделом по связям со СМИ.",
+    "viewPressRoomBtn": "Пресс-центр Sürkit Holding"
   },
   "footer": {
     "description": "Ведущая компания по дистрибуции продовольствия, дочерняя компания Sürkit Holding.",

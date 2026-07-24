@@ -10,6 +10,7 @@
     "aboutUs": "Haqqımızda",
     "boardMessage": "İdarə Heyəti Mesajı",
     "management": "İdarəetmə",
+    "pressRoom": "Mətbuat Otağı",
     "news": "Xəbərlər",
     "services": "Xidmətlər",
     "brands": "Brendlər",
@@ -190,8 +191,24 @@
     "formAddress": "Ünvan",
     "formMessage": "Mesaj / Qeyd",
     "formSubmit": "Müraciəti Göndər",
-    "successTitle": "Müraciətiniz Qəbul Edildi!",
-    "successMessage": "Ən qısa zamanda sizinlə əlaqə saxlayacağıq. Təşəkkür edirik."
+    "successTitle": "Müraciətiniz Qəbul Olundu!",
+    "successMessage": "Ən qısa müddətdə sizinlə əlaqə saxlayacağıq. Təşəkkür edirik."
+  },
+  "pressRoomPage": {
+    "heroEyebrow": "SÜRKİT HOLDİNQ ÇƏRÇİVƏSİNDƏ · BİZİM QİDA MMC",
+    "heroTitle": "Mətbuat Otağı",
+    "heroTitleEmphasis": "və Media",
+    "heroDesc": "Bizim Qida MMC və Sürkit Holdinq çərçivəsindəki bütün korporativ xəbərlər, rəsmi mətbuat açıqlamaları, sərmayələr və media resursları.",
+    "featuredBadge": "XÜSUSİ XƏBƏR",
+    "featuredTitle": "Gündəmdəkilər",
+    "readMore": "Xəbərin Ətraflı Mətnini Oxu",
+    "allReleasesBadge": "BÜTÜN MƏTBUAT BURAXILIŞLARI",
+    "allReleasesTitle": "Son Xəbərlər və Açıqlamalar",
+    "readMoreShort": "Ətraflı Oxu",
+    "mediaContactEyebrow": "MEDİA İLƏ ƏLAQƏLƏR",
+    "mediaContactTitle": "Mətbuat Əlaqəsi və Media Kiti",
+    "mediaContactDesc": "Bizim Qida MMC və Sürkit Holdinq korporativ xəbərləri, müsahibə sorğuları və loqo/görünüş resursları üçün mətbuat şöbəmizlə əlaqə saxlaya bilərsiniz.",
+    "viewPressRoomBtn": "Sürkit Holdinq Mətbuat Otağı"
   },
   "footer": {
     "description": "Naxçıvanın lider ərzaq paylama şirkəti. Sürkit Holdinq bünyəsindədir.",

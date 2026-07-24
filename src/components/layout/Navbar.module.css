@@ -278,6 +278,17 @@
   color: var(--navy) !important;
 }
 
+.nav-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.lang-box {
+  display: flex;
+  align-items: center;
+}
+
 /* ============================================================
    RESPONSIVE
    ============================================================ */

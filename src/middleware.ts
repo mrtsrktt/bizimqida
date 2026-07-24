@@ -1,5 +1,5 @@
 import createMiddleware from 'next-intl/middleware';
-import { routing } from './src/i18n/routing';
+import { routing } from '@/i18n/routing';
 import { NextRequest, NextResponse } from 'next/server';
 
 const intlMiddleware = createMiddleware(routing);
@@ -22,11 +22,12 @@ export default function middleware(request: NextRequest) {
     if (!savedLocale) {
       // Vercel'in ülke header'ını oku
       const country = request.headers.get('x-vercel-ip-country') ?? '';
-      const locale = countryLocaleMap[country.toUpperCase()] ?? 'en';
-
-      const url = request.nextUrl.clone();
-      url.pathname = `/${locale}`;
-      return NextResponse.redirect(url);
+      if (country && countryLocaleMap[country.toUpperCase()]) {
+        const locale = countryLocaleMap[country.toUpperCase()];
+        const url = request.nextUrl.clone();
+        url.pathname = `/${locale}`;
+        return NextResponse.redirect(url);
+      }
     }
   }
 
@@ -34,5 +35,5 @@ export default function middleware(request: NextRequest) {
 }
 
 export const config = {
-  matcher: ['/', '/(tr|az|en|ru)/:path*']
+  matcher: ['/((?!api|_next/static|_next/image|favicon.ico|.*\\..*).*)']
 };

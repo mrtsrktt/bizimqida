@@ -1,0 +1,120 @@
+/* ============================================================
+   FLAG LANGUAGE DROPDOWN STYLES
+   ============================================================ */
+
+.langWrap {
+  position: relative;
+  display: inline-block;
+}
+
+.activeBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  padding: 6px 12px;
+  background: rgba(13, 27, 62, 0.04);
+  border: 1px solid rgba(13, 27, 62, 0.12);
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--navy, #0d1b3e);
+  font-family: var(--font-outfit, 'Outfit'), sans-serif;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+  transition: all 0.2s ease;
+}
+
+.activeBtn:hover {
+  background: #ffffff;
+  border-color: var(--gold, #c5a059);
+  box-shadow: 0 2px 8px rgba(13, 27, 62, 0.08);
+}
+
+.arrowIcon {
+  color: #64748b;
+  transition: transform 0.2s ease;
+}
+
+.arrowOpen {
+  transform: rotate(180deg);
+}
+
+.dropdownMenu {
+  position: absolute;
+  top: calc(100% + 6px);
+  right: 0;
+  background: #ffffff;
+  border: 1px solid rgba(13, 27, 62, 0.12);
+  border-radius: 10px;
+  box-shadow: 0 12px 32px rgba(13, 27, 62, 0.15);
+  min-width: 155px;
+  z-index: 1000;
+  padding: 6px;
+  animation: fadeIn 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.dropdownOption {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
+  padding: 8px 12px;
+  font-size: 13px;
+  font-weight: 500;
+  color: #334155;
+  background: transparent;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  text-align: left;
+}
+
+.dropdownOption:hover {
+  background: #f1f5f9;
+  color: var(--navy, #0d1b3e);
+}
+
+.selectedOption {
+  background: rgba(197, 160, 89, 0.12);
+  color: #926f28;
+  font-weight: 700;
+}
+
+.optionName {
+  flex: 1;
+}
+
+.optionCode {
+  font-size: 11px;
+  font-weight: 700;
+  color: #94a3b8;
+  letter-spacing: 0.05em;
+}
+
+/* DARK THEME VARIANT FOR TOPBAR */
+.darkTheme .activeBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.18);
+  color: #ffffff;
+}
+
+.darkTheme .activeBtn:hover {
+  background: rgba(255, 255, 255, 0.18);
+  border-color: var(--gold, #c5a059);
+}
+
+.darkTheme .arrowIcon {
+  color: rgba(255, 255, 255, 0.7);
+}

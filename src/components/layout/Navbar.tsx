@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { useTranslations } from 'next-intl';
 import { Link } from '@/i18n/navigation';
+import LangDropdown from '@/components/ui/LangDropdown';
 import styles from './Navbar.module.css';
 
 export default function Navbar() {
@@ -60,6 +61,13 @@ export default function Navbar() {
             </ul>
           </li>
 
+          {/* Press Room */}
+          <li className={styles['nav-item']}>
+            <Link href="/news" className={styles['nav-link']}>
+              {t('pressRoom')}
+            </Link>
+          </li>
+
           {/* Services */}
           <li className={styles['nav-item']}>
             <Link href="/services" className={styles['nav-link']}>
@@ -89,21 +97,26 @@ export default function Navbar() {
           </li>
         </ul>
 
-        {/* Desktop CTA */}
-        <Link href="/contact" className={styles['nav-cta']}>
-          {t('contact')}
-        </Link>
+        {/* Nav Actions: Contact CTA, LangDropdown & Hamburger */}
+        <div className={styles['nav-actions']}>
+          <Link href="/contact" className={styles['nav-cta']}>
+            {t('contact')}
+          </Link>
 
-        {/* Hamburger (mobile) */}
-        <button
-          className={`${styles.hamburger}${mobileOpen ? ` ${styles.open}` : ''}`}
-          onClick={() => setMobileOpen(!mobileOpen)}
-          aria-label="Toggle menu"
-        >
-          <span />
-          <span />
-          <span />
-        </button>
+          <div className={styles['lang-box']}>
+            <LangDropdown />
+          </div>
+
+          <button
+            className={`${styles.hamburger}${mobileOpen ? ` ${styles.open}` : ''}`}
+            onClick={() => setMobileOpen(!mobileOpen)}
+            aria-label="Toggle menu"
+          >
+            <span />
+            <span />
+            <span />
+          </button>
+        </div>
       </div>
 
       {/* Mobile Menu */}
@@ -116,6 +129,9 @@ export default function Navbar() {
         </Link>
         <Link href="/management" onClick={() => setMobileOpen(false)}>
           {t('management')}
+        </Link>
+        <Link href="/news" onClick={() => setMobileOpen(false)}>
+          {t('pressRoom')}
         </Link>
         <Link href="/services" onClick={() => setMobileOpen(false)}>
           {t('services')}

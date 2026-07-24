@@ -88,27 +88,7 @@
 }
 
 @media (max-width: 900px) {
-  .topbar-inner {
-    padding: 0 20px;
-    flex-wrap: wrap;
-    gap: 8px;
-    justify-content: center;
-  }
-
-  .topbar-left {
-    gap: 12px;
-    font-size: 11px;
-  }
-}
-
-@media (max-width: 480px) {
-  .topbar-left {
-    flex-direction: column;
-    gap: 4px;
-    text-align: center;
-  }
-
-  .topbar-left a {
-    font-size: 10px;
+  .topbar {
+    display: none !important;
   }
 }
