@@ -56,7 +56,7 @@ export default function ApplySection() {
               {t('eyebrow')}
             </div>
             <h2 className="section-h" style={{ textAlign: 'center' }}>
-              {t('title')} <em>{t('titleEmphasis')}</em> {t('titleSuffix')}
+              {t('title')} {t('titleEmphasis')} {t('titleSuffix')}
             </h2>
             <p style={{ fontSize: '15px', color: 'var(--text-soft)', lineHeight: 1.7, marginTop: '16px' }}>
               {t('description')}

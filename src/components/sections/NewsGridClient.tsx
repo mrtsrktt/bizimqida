@@ -129,7 +129,7 @@ export default function NewsGridClient({ apiNews, locale = 'tr' }: Props) {
                 <span>{t('badge')}</span>
               </div>
               <h2 className="section-h">
-                {t('title')} <em>{t('titleEmphasis')}</em>
+                {t('title')} {t('titleEmphasis')}
               </h2>
               <p className={styles.newsSubDesc}>{t('subDesc')}</p>
             </div>

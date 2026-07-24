@@ -74,9 +74,7 @@ export default function Hero() {
           </div>
 
           <h1 className={styles.heroH1}>
-            {t('title')}
-            <br />
-            <em>{t('titleEmphasis')}</em>
+            {t('title')} {t('titleEmphasis')}
           </h1>
 
           <p className={styles.heroP}>{t('description')}</p>

@@ -84,7 +84,7 @@ export default function PressRoomSection({ apiNews }: Props) {
           <RevealOnScroll>
             <div className={styles.heroContent}>
               <h1 className={styles.heroTitle}>
-                {t('heroTitle')} <em>{t('heroTitleEmphasis')}</em>
+                {t('heroTitle')} {t('heroTitleEmphasis')}
               </h1>
               <p className={styles.heroDesc}>{t('heroDesc')}</p>
             </div>

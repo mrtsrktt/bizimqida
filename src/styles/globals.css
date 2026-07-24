@@ -6,7 +6,7 @@
    ============================================================ */
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{font-family:var(--font-outfit, 'Outfit'),sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
+body{font-family:var(--font-sans, 'Plus Jakarta Sans'),sans-serif;color:var(--text);background:var(--white);overflow-x:hidden;}
 img{max-width:100%;}
 a{text-decoration:none;color:inherit;}
 
@@ -23,13 +23,31 @@ a{text-decoration:none;color:inherit;}
   color:var(--gold);font-weight:500;margin-bottom:14px;
 }
 .eyebrow::before{content:'';display:block;width:28px;height:1px;background:var(--gold);}
-h2.section-h{
-  font-family:var(--font-playfair, 'Playfair Display'),serif;
-  font-size:clamp(32px,4vw,52px);font-weight:700;
-  line-height:1.1;color:var(--navy);margin-bottom:16px;
+h1, h2, h3, h4, h5, h6, .section-h {
+  font-family: var(--font-sans, 'Plus Jakarta Sans'), sans-serif !important;
 }
-h2.section-h em{font-style:italic;color:var(--gold);}
-h2.section-h.light{color:var(--white);}
+
+h2.section-h {
+  font-size: clamp(30px, 3.8vw, 48px);
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--navy);
+  margin-bottom: 16px;
+  padding-bottom: 4px;
+  letter-spacing: -0.02em;
+}
+
+h2.section-h.light {
+  color: #ffffff !important;
+}
+
+h1 *, h2 *, h3 *, .section-h * {
+  color: inherit !important;
+  font-style: normal !important;
+  background: none !important;
+  -webkit-text-fill-color: initial !important;
+}
+
 .section-p{font-size:15px;line-height:1.8;color:var(--text-soft);font-weight:300;max-width:580px;}
 .section-p.light{color:rgba(255,255,255,0.6);}
 

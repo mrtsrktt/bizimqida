@@ -74,7 +74,7 @@ export default function GallerySection() {
               {t('eyebrow')}
             </div>
             <h2 className="section-h light" style={{ textAlign: 'center' }}>
-              {t('title')} <em>{t('titleEmphasis')}</em>
+              {t('title')} {t('titleEmphasis')}
             </h2>
             <p className="section-p light" style={{ textAlign: 'center', margin: '0 auto' }}>
               {t('description')}

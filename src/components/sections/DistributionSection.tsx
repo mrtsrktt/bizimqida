@@ -69,7 +69,7 @@ export default function DistributionSection() {
                 {t('eyebrow')}
               </div>
               <h2 className="section-h light">
-                {t('title')} <em>{t('titleEmphasis')}</em> {t('titleSuffix')}
+                {t('title')} {t('titleEmphasis')} {t('titleSuffix')}
               </h2>
               <p className="section-p light">
                 {t('description')}

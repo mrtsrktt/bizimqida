@@ -1,6 +1,13 @@
-import { Playfair_Display, Outfit } from 'next/font/google';
+import { Plus_Jakarta_Sans, Playfair_Display, Outfit } from 'next/font/google';
 import Script from 'next/script';
 import '@/styles/globals.css';
+
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ['latin', 'latin-ext'],
+  variable: '--font-sans',
+  display: 'swap',
+  weight: ['300', '400', '500', '600', '700', '800'],
+});
 
 const playfair = Playfair_Display({
   subsets: ['latin'],
@@ -23,7 +30,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <head>
         <link rel="preload" href="/images/facility/exterior-front-wide.jpg" as="image" />
       </head>
-      <body className={`${playfair.variable} ${outfit.variable}`}>
+      <body className={`${jakarta.variable} ${playfair.variable} ${outfit.variable}`}>
         {children}
         {/* Google Analytics */}
         <Script

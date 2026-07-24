@@ -76,17 +76,18 @@
 }
 
 .heroTitle {
-  font-family: var(--font-playfair, 'Playfair Display'), serif;
-  font-size: 54px;
+  font-family: var(--font-sans, 'Plus Jakarta Sans'), sans-serif;
+  font-size: 50px;
   font-weight: 700;
-  line-height: 1.15;
+  line-height: 1.25;
   margin-bottom: 20px;
+  padding-bottom: 4px;
   color: #ffffff;
 }
 
 .heroTitle em {
-  font-style: italic;
-  color: var(--gold, #c5a059);
+  font-style: normal;
+  color: inherit;
 }
 
 .heroDesc {

@@ -23,7 +23,7 @@ export default function BrandsGrid() {
           <div>
             <div className="eyebrow">{t('eyebrow')}</div>
             <h2 className="section-h">
-              {t('title')} <em>{t('titleEmphasis')}</em>
+              {t('title')} {t('titleEmphasis')}
             </h2>
           </div>
           <p className={`section-p ${styles.brandsHeaderDesc}`}>

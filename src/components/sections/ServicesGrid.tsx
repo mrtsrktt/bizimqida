@@ -67,7 +67,7 @@ export default function ServicesGrid() {
         <RevealOnScroll>
           <div className="eyebrow" style={{ color: 'var(--gold)' }}>{t('eyebrow')}</div>
           <h2 className="section-h" style={{ color: '#fff' }}>
-            {t('title')} <em style={{ color: 'var(--gold)' }}>{t('titleEmphasis')}</em>
+            {t('title')} {t('titleEmphasis')}
           </h2>
         </RevealOnScroll>
 

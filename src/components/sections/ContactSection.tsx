@@ -61,7 +61,7 @@ export default function ContactSection() {
               {t('eyebrow')}
             </div>
             <h2 className="section-h" style={{ textAlign: 'center' }}>
-              {t('title')} <em>{t('titleEmphasis')}</em> {t('titleSuffix')}
+              {t('title')} {t('titleEmphasis')} {t('titleSuffix')}
             </h2>
           </div>
         </RevealOnScroll>

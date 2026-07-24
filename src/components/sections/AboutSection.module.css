@@ -53,8 +53,8 @@
 }
 
 .aboutBadgeN {
-  font-family: var(--font-playfair, 'Playfair Display'), serif;
-  font-size: 40px;
+  font-family: var(--font-sans, 'Plus Jakarta Sans'), sans-serif;
+  font-size: 38px;
   font-weight: 700;
   color: var(--navy);
   line-height: 1;
