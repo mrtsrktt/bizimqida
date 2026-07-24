@@ -183,10 +183,11 @@ export default function NewsGridClient({ apiNews, locale = 'tr' }: Props) {
             onTouchEnd={handleTouchEnd}
           >
             <a
+              key={activeIndex}
               href={currentItem.href}
               target="_blank"
               rel="noopener noreferrer"
-              className={styles.singleCard}
+              className={`${styles.singleCard} ${styles.singleCardAnim}`}
             >
               {/* LEFT / TOP IMAGE AREA */}
               <div className={styles.singleImgWrapper}>

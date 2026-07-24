@@ -154,6 +154,22 @@
   color: inherit;
   min-height: 440px;
   transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.singleCardAnim {
+  animation: fadeInSlide 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes fadeInSlide {
+  0% {
+    opacity: 0.35;
+    transform: scale(0.985) translateY(4px);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
 }
 
 .singleCard:hover {
