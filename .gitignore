@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# raw camera files
+public/images/Gallery/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts

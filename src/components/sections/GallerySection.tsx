@@ -6,15 +6,15 @@ import RevealOnScroll from '@/components/animations/RevealOnScroll';
 import styles from './GallerySection.module.css';
 
 const images = [
-  { src: '/images/warehouse/interior-wide-angle.jpg', alt: 'Depo genel görünüm' },
-  { src: '/images/fleet/branded-trucks-lineup.jpg', alt: 'Araç filosu' },
-  { src: '/images/warehouse/interior-tall-racks-a.jpg', alt: 'Depo rafları' },
-  { src: '/images/fleet/delivery-vans-lineup.jpg', alt: 'Dağıtım araçları' },
-  { src: '/images/warehouse/interior-forklift-aisle.jpg', alt: 'Forklift operasyonu' },
-  { src: '/images/warehouse/interior-flour-stacks.jpg', alt: 'Ürün depolama' },
-  { src: '/images/fleet/branded-transit-vans.jpg', alt: 'Transit araçlar' },
-  { src: '/images/warehouse/interior-workers.jpg', alt: 'Depo çalışanları' },
-  { src: '/images/warehouse/interior-tall-racks-b.jpg', alt: 'Depo kapasitesi' },
+  { src: '/images/gallery/gallery-1.jpg', alt: 'Bizim Qida Kurumsal Tesis ve Lojistik 1' },
+  { src: '/images/gallery/gallery-2.jpg', alt: 'Bizim Qida Kurumsal Tesis ve Lojistik 2' },
+  { src: '/images/gallery/gallery-3.jpg', alt: 'Bizim Qida Kurumsal Tesis ve Lojistik 3' },
+  { src: '/images/gallery/gallery-4.jpg', alt: 'Bizim Qida Kurumsal Tesis ve Lojistik 4' },
+  { src: '/images/gallery/gallery-5.jpg', alt: 'Bizim Qida Kurumsal Tesis ve Lojistik 5' },
+  { src: '/images/gallery/gallery-6.jpg', alt: 'Bizim Qida Kurumsal Tesis ve Lojistik 6' },
+  { src: '/images/gallery/gallery-7.jpg', alt: 'Bizim Qida Kurumsal Tesis ve Lojistik 7' },
+  { src: '/images/gallery/gallery-8.jpg', alt: 'Bizim Qida Kurumsal Tesis ve Lojistik 8' },
+  { src: '/images/gallery/gallery-9.jpg', alt: 'Bizim Qida Kurumsal Tesis ve Lojistik 9' },
 ];
 
 export default function GallerySection() {
