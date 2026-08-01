@@ -1,66 +1,32 @@
 'use client';
-import { useState, useEffect, useCallback } from 'react';
+
 import { useTranslations } from 'next-intl';
 import CountUp from '@/components/animations/CountUp';
 import styles from './Hero.module.css';
 
-const heroSlides = [
-  '/images/facility/exterior-front-wide.jpg',
-  '/images/facility/exterior-loading-docks.jpg',
-  '/images/warehouse/interior-workers.jpg',
-];
-
 export default function Hero() {
   const t = useTranslations('hero');
-  const [current, setCurrent] = useState(0);
-  const [prev, setPrev] = useState<number | null>(null);
-  const [hasTransitioned, setHasTransitioned] = useState(false);
-
-  const goNext = useCallback(() => {
-    setHasTransitioned(true);
-    setPrev(current);
-    setCurrent((c) => (c + 1) % heroSlides.length);
-  }, [current]);
-
-  useEffect(() => {
-    const id = setInterval(goNext, 4000);
-    return () => clearInterval(id);
-  }, [goNext]);
-
-  // Clear prev after transition ends
-  useEffect(() => {
-    if (prev === null) return;
-    const id = setTimeout(() => setPrev(null), 800);
-    return () => clearTimeout(id);
-  }, [prev]);
 
   return (
     <section className={styles.hero}>
-      {/* Background slideshow — plain CSS background-image, no Next Image */}
-      <div className={styles.slideshow}>
-        {heroSlides.map((src, i) => {
-          const isActive = i === current;
-          const isExit = i === prev;
-          // Only render slides that are visible or transitioning
-          if (!isActive && !isExit && !(i === 0 && !hasTransitioned)) return null;
-
-          return (
-            <div
-              key={src}
-              className={`${styles.slide} ${
-                isActive ? (hasTransitioned ? styles.slideActive : styles.slideFirst) : ''
-              } ${isExit ? styles.slideExit : ''}`}
-              style={{
-                backgroundImage: `url(${src})`,
-                backgroundSize: 'cover',
-                backgroundPosition: 'center',
-              }}
-            />
-          );
-        })}
+      {/* Background Video Wrapper with Soft Opening Entrance Animation */}
+      <div className={styles.videoWrapper}>
+        <div className={styles.videoContainer}>
+          <video
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            poster="/images/facility/exterior-front-wide.jpg"
+            className={styles.heroVideo}
+          >
+            <source src="/videos/hero-video.mp4" type="video/mp4" />
+          </video>
+          <div className={styles.videoOverlay} />
+        </div>
       </div>
 
-      <div className={styles.heroBg} />
       <div className={styles.heroGridOverlay} />
       <div className={styles.heroGlow} />
       <div className={styles.heroDiag} />
@@ -78,7 +44,6 @@ export default function Hero() {
           </h1>
 
           <p className={styles.heroP}>{t('description')}</p>
-
         </div>
 
         {/* Right column — stats */}
