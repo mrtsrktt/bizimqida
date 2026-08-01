@@ -1,43 +1,78 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useEffect, useRef, useCallback } from 'react';
 import { useTranslations } from 'next-intl';
 import CountUp from '@/components/animations/CountUp';
 import styles from './Hero.module.css';
 
 export default function Hero() {
   const t = useTranslations('hero');
-  const [showText, setShowText] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
+  const contentRef = useRef<HTMLDivElement>(null);
+  const isVisibleRef = useRef(false);
+  const countUpContainerRef = useRef<HTMLDivElement>(null);
+
+  const updateVisibility = useCallback(() => {
+    const video = videoRef.current;
+    const content = contentRef.current;
+    if (!video || !content) return;
+
+    const cur = video.currentTime;
+    // Video is 21.53s total
+    // Show text: 3.0s <= currentTime < 16.5s
+    // Hide text: currentTime < 3.0s OR currentTime >= 16.5s
+    const shouldShow = cur >= 3.0 && cur < 16.5;
+
+    if (shouldShow !== isVisibleRef.current) {
+      isVisibleRef.current = shouldShow;
+
+      if (shouldShow) {
+        content.style.opacity = '1';
+        content.style.visibility = 'visible';
+        content.style.transform = 'translateY(0)';
+        content.style.pointerEvents = 'auto';
+      } else {
+        content.style.opacity = '0';
+        content.style.visibility = 'hidden';
+        content.style.transform = 'translateY(22px)';
+        content.style.pointerEvents = 'none';
+      }
+    }
+  }, []);
 
   useEffect(() => {
+    // Force page to start at top on every load/refresh
+    if ('scrollRestoration' in history) {
+      history.scrollRestoration = 'manual';
+    }
+    window.scrollTo(0, 0);
+
     const video = videoRef.current;
-    if (!video) return;
+    const content = contentRef.current;
+    if (!video || !content) return;
 
-    const checkTime = () => {
-      const cur = video.currentTime;
-      // Total video length is 21.53 seconds.
-      // Show text at 3.0 seconds.
-      // Hide text at 16.5 seconds (exactly 5 seconds before 21.5s end, for logo sequence).
-      const shouldShow = cur >= 3.0 && cur < 16.5;
+    // Set initial hidden state immediately via DOM
+    content.style.opacity = '0';
+    content.style.visibility = 'hidden';
+    content.style.transform = 'translateY(22px)';
+    content.style.pointerEvents = 'none';
+    content.style.transition = 'opacity 0.7s ease, visibility 0.7s ease, transform 0.7s ease';
 
-      setShowText(shouldShow);
-    };
+    // Listen for timeupdate
+    video.addEventListener('timeupdate', updateVisibility);
 
-    video.addEventListener('timeupdate', checkTime);
-    const interval = setInterval(checkTime, 150); // Fallback ticker every 150ms
-
-    checkTime();
+    // Also poll every 200ms as a safety net
+    const interval = setInterval(updateVisibility, 200);
 
     return () => {
-      video.removeEventListener('timeupdate', checkTime);
+      video.removeEventListener('timeupdate', updateVisibility);
       clearInterval(interval);
     };
-  }, []);
+  }, [updateVisibility]);
 
   return (
     <section className={styles.hero}>
-      {/* Background Video Wrapper */}
+      {/* Background Video */}
       <div className={styles.videoWrapper}>
         <div className={styles.videoContainer}>
           <video
@@ -48,9 +83,10 @@ export default function Hero() {
             playsInline
             preload="auto"
             poster="/images/facility/exterior-front-wide.jpg"
-            src="/videos/hero-video.mp4"
             className={styles.heroVideo}
-          />
+          >
+            <source src="/videos/hero-video.mp4" type="video/mp4" />
+          </video>
           <div className={styles.videoOverlay} />
         </div>
       </div>
@@ -59,16 +95,7 @@ export default function Hero() {
       <div className={styles.heroGlow} />
       <div className={styles.heroDiag} />
 
-      <div
-        className={`${styles.heroContent} ${showText ? styles.heroContentVisible : ''}`}
-        style={{
-          opacity: showText ? 1 : 0,
-          visibility: showText ? 'visible' : 'hidden',
-          transform: showText ? 'translateY(0)' : 'translateY(22px)',
-          pointerEvents: showText ? 'auto' : 'none',
-          transition: 'opacity 0.7s ease, transform 0.7s ease, visibility 0.7s ease',
-        }}
-      >
+      <div ref={contentRef} className={styles.heroContent}>
         {/* Left column */}
         <div>
           <div className={styles.heroEyebrow}>
@@ -84,23 +111,23 @@ export default function Hero() {
         </div>
 
         {/* Right column — stats */}
-        <div>
+        <div ref={countUpContainerRef}>
           <div className={styles.heroStats}>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
-                {showText && <CountUp target={1995} delay={200} />}
+                <CountUp target={1995} delay={3200} />
               </div>
               <div className={styles.hstatL}>{t('statFounded')}</div>
             </div>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
-                {showText && <CountUp target={1500} suffix="+" delay={400} />}
+                <CountUp target={1500} suffix="+" delay={3400} />
               </div>
               <div className={styles.hstatL}>{t('statProducts')}</div>
             </div>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
-                {showText && <CountUp target={35} delay={600} />}
+                <CountUp target={35} delay={3600} />
               </div>
               <div className={styles.hstatL}>{t('statVehicles')}</div>
             </div>
