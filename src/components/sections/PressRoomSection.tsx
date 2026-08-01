@@ -12,8 +12,21 @@ interface Props {
 
 export default function PressRoomSection({ apiNews }: Props) {
   const t = useTranslations('pressRoomPage');
+  const tNews = useTranslations('news');
+
+  const terakkiItem: HoldingNewsItem = {
+    id: 'news-terakki',
+    badge: tNews('newsTerakkiDate'),
+    title: tNews('newsTerakkiTitle'),
+    description: tNews('newsTerakkiDesc'),
+    images: ['/images/facility/exterior-front-clean.jpg'],
+    imageLabel: tNews('newsTerakkiTag'),
+    portrait: false,
+    href: 'https://surkit.com.tr/basin-odasi',
+  };
 
   const defaultItems: HoldingNewsItem[] = [
+    terakkiItem,
     {
       id: 'news-1',
       badge: 'Mart 2025',
@@ -38,23 +51,38 @@ export default function PressRoomSection({ apiNews }: Props) {
     },
   ];
 
-  const newsList =
-    apiNews && apiNews.length > 0
-      ? apiNews.map((item, index) => {
-          const rawHref = item.href || `https://surkit.com.tr/basin-odasi#haber-${index}`;
-          const href =
-            typeof window !== 'undefined' && window.location.hostname === 'localhost'
-              ? rawHref.replace('https://surkit.com.tr', 'http://localhost:3001')
-              : rawHref;
+  let rawList: HoldingNewsItem[] = defaultItems;
+  if (apiNews && apiNews.length > 0) {
+    const converted = apiNews.map((item, index) => {
+      const rawHref = item.href || `https://surkit.com.tr/basin-odasi#haber-${index}`;
+      const href =
+        typeof window !== 'undefined' && window.location.hostname === 'localhost'
+          ? rawHref.replace('https://surkit.com.tr', 'http://localhost:3001')
+          : rawHref;
 
-          return {
-            ...item,
-            id: item.id || `news-${index}`,
-            href,
-          };
-        })
-      : defaultItems;
+      return {
+        ...item,
+        id: item.id || `news-${index}`,
+        href,
+      };
+    });
 
+    const terakkiIdx = converted.findIndex((i) =>
+      i.title?.toLowerCase().includes('terakki') ||
+      i.title?.toLowerCase().includes('tərəqqi') ||
+      i.title?.toLowerCase().includes('bizim qida')
+    );
+
+    if (terakkiIdx > -1) {
+      const match = converted[terakkiIdx];
+      const rest = converted.filter((_, idx) => idx !== terakkiIdx);
+      rawList = [match, ...rest];
+    } else {
+      rawList = [terakkiItem, ...converted];
+    }
+  }
+
+  const newsList = rawList;
   const featuredItem = newsList[0];
   const gridItems = newsList.slice(1);
 

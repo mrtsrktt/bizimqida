@@ -30,7 +30,19 @@ export default function NewsGridClient({ apiNews, locale = 'tr' }: Props) {
   const [isSwiping, setIsSwiping] = useState(false);
   const touchStartX = useRef<number | null>(null);
 
+  const terakkiItem = {
+    id: 'news-terakki',
+    tag: t('newsTerakkiTag'),
+    title: t('newsTerakkiTitle'),
+    description: t('newsTerakkiDesc'),
+    date: t('newsTerakkiDate'),
+    image: '/images/facility/exterior-front-clean.jpg',
+    portrait: false,
+    href: `https://surkit.com.tr/${locale}/basin-odasi`,
+  };
+
   const defaultItems = [
+    terakkiItem,
     {
       id: 'news-1',
       tag: t('news1Tag'),
@@ -55,27 +67,41 @@ export default function NewsGridClient({ apiNews, locale = 'tr' }: Props) {
     },
   ];
 
-  const items =
-    apiNews && apiNews.length > 0
-      ? apiNews.map((item, index) => {
-          const rawHref = item.href || `https://surkit.com.tr/${locale}/basin-odasi#haber-${index}`;
-          const href =
-            typeof window !== 'undefined' && window.location.hostname === 'localhost'
-              ? rawHref.replace('https://surkit.com.tr', 'http://localhost:3001')
-              : rawHref;
+  let items = defaultItems;
+  if (apiNews && apiNews.length > 0) {
+    const converted = apiNews.map((item, index) => {
+      const rawHref = item.href || `https://surkit.com.tr/${locale}/basin-odasi#haber-${index}`;
+      const href =
+        typeof window !== 'undefined' && window.location.hostname === 'localhost'
+          ? rawHref.replace('https://surkit.com.tr', 'http://localhost:3001')
+          : rawHref;
 
-          return {
-            id: item.id || `news-${index}`,
-            tag: item.imageLabel || item.badge || 'Sürkit Holding',
-            title: item.title,
-            description: item.description,
-            date: item.badge,
-            image: item.images[0] || '/images/facility/exterior-loading-docks.jpg',
-            portrait: item.portrait || false,
-            href,
-          };
-        })
-      : defaultItems;
+      return {
+        id: item.id || `news-${index}`,
+        tag: item.imageLabel || item.badge || 'Sürkit Holding',
+        title: item.title,
+        description: item.description,
+        date: item.badge,
+        image: item.images[0] || '/images/facility/exterior-loading-docks.jpg',
+        portrait: item.portrait || false,
+        href,
+      };
+    });
+
+    const terakkiIdx = converted.findIndex((i) =>
+      i.title?.toLowerCase().includes('terakki') ||
+      i.title?.toLowerCase().includes('tərəqqi') ||
+      i.title?.toLowerCase().includes('bizim qida')
+    );
+
+    if (terakkiIdx > -1) {
+      const match = converted[terakkiIdx];
+      const rest = converted.filter((_, idx) => idx !== terakkiIdx);
+      items = [match, ...rest];
+    } else {
+      items = [terakkiItem, ...converted];
+    }
+  }
 
   const total = items.length;
 
