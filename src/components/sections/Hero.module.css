@@ -366,35 +366,8 @@
     width: 32px;
   }
 
-  .heroEyebrow span {
-    animation: none !important;
-    opacity: 1;
-  }
-
   .heroH1 {
-    animation: none !important;
-    opacity: 1;
     clip-path: none;
-  }
-
-  .heroH1 em {
-    animation: none !important;
-  }
-
-  .heroP {
-    animation: none !important;
-    opacity: 1;
-    filter: none;
-  }
-
-  .heroActions {
-    animation: none !important;
-    opacity: 1;
-  }
-
-  .hstat {
-    animation: none !important;
-    opacity: 1;
   }
 }
 

@@ -14,26 +14,24 @@ export default function Hero() {
     const video = videoRef.current;
     if (!video) return;
 
-    const onTimeUpdate = () => {
-      const currentTime = video.currentTime;
-      const duration = video.duration && !isNaN(video.duration) ? video.duration : 21.5;
-      const hideTime = Math.max(0, duration - 5.0); // Exactly 5 seconds before video ends
+    const checkTime = () => {
+      const cur = video.currentTime;
+      // Total video length is 21.53 seconds.
+      // Show text at 3.0 seconds.
+      // Hide text at 16.5 seconds (exactly 5 seconds before 21.5s end, for logo sequence).
+      const shouldShow = cur >= 3.0 && cur < 16.5;
 
-      // Show text starting at 3.0s, hide text at hideTime (5s before video ends)
-      const shouldShow = currentTime >= 3.0 && currentTime < hideTime;
-
-      setShowText((prev) => {
-        if (prev !== shouldShow) return shouldShow;
-        return prev;
-      });
+      setShowText(shouldShow);
     };
 
-    video.addEventListener('timeupdate', onTimeUpdate);
-    // Initial check
-    onTimeUpdate();
+    video.addEventListener('timeupdate', checkTime);
+    const interval = setInterval(checkTime, 150); // Fallback ticker every 150ms
+
+    checkTime();
 
     return () => {
-      video.removeEventListener('timeupdate', onTimeUpdate);
+      video.removeEventListener('timeupdate', checkTime);
+      clearInterval(interval);
     };
   }, []);
 
@@ -65,9 +63,10 @@ export default function Hero() {
         className={`${styles.heroContent} ${showText ? styles.heroContentVisible : ''}`}
         style={{
           opacity: showText ? 1 : 0,
+          visibility: showText ? 'visible' : 'hidden',
           transform: showText ? 'translateY(0)' : 'translateY(22px)',
           pointerEvents: showText ? 'auto' : 'none',
-          transition: 'opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1)',
+          transition: 'opacity 0.7s ease, transform 0.7s ease, visibility 0.7s ease',
         }}
       >
         {/* Left column */}
