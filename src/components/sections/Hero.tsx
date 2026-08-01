@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useRef, useCallback } from 'react';
+import { useEffect, useRef, useCallback, useState } from 'react';
 import { useTranslations } from 'next-intl';
 import CountUp from '@/components/animations/CountUp';
 import styles from './Hero.module.css';
@@ -10,7 +10,15 @@ export default function Hero() {
   const videoRef = useRef<HTMLVideoElement>(null);
   const contentRef = useRef<HTMLDivElement>(null);
   const isVisibleRef = useRef(false);
-  const countUpContainerRef = useRef<HTMLDivElement>(null);
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const mql = window.matchMedia('(max-width: 900px)');
+    setIsMobile(mql.matches);
+    const handler = (e: MediaQueryListEvent) => setIsMobile(e.matches);
+    mql.addEventListener('change', handler);
+    return () => mql.removeEventListener('change', handler);
+  }, []);
 
   const updateVisibility = useCallback(() => {
     const video = videoRef.current;
@@ -18,10 +26,11 @@ export default function Hero() {
     if (!video || !content) return;
 
     const cur = video.currentTime;
-    // Video is 21.53s total
-    // Show text: 3.0s <= currentTime < 16.5s
-    // Hide text: currentTime < 3.0s OR currentTime >= 16.5s
-    const shouldShow = cur >= 3.0 && cur < 16.5;
+    // Desktop video: 21.53s → show 3.0s-16.5s
+    // Mobile video:  19.55s → show 3.0s-14.5s
+    const duration = video.duration && !isNaN(video.duration) ? video.duration : 21.5;
+    const hideTime = Math.max(0, duration - 5.0);
+    const shouldShow = cur >= 3.0 && cur < hideTime;
 
     if (shouldShow !== isVisibleRef.current) {
       isVisibleRef.current = shouldShow;
@@ -70,6 +79,20 @@ export default function Hero() {
     };
   }, [updateVisibility]);
 
+  // Re-attach listeners when video source changes (mobile ↔ desktop)
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
+
+    // Update video source based on screen size
+    const newSrc = isMobile ? '/videos/hero-video-mobile.mp4' : '/videos/hero-video.mp4';
+    if (video.getAttribute('src') !== newSrc) {
+      video.src = newSrc;
+      video.load();
+      video.play().catch(() => {});
+    }
+  }, [isMobile]);
+
   return (
     <section className={styles.hero}>
       {/* Background Video */}
@@ -83,10 +106,9 @@ export default function Hero() {
             playsInline
             preload="auto"
             poster="/images/facility/exterior-front-wide.jpg"
+            src="/videos/hero-video.mp4"
             className={styles.heroVideo}
-          >
-            <source src="/videos/hero-video.mp4" type="video/mp4" />
-          </video>
+          />
           <div className={styles.videoOverlay} />
         </div>
       </div>
@@ -111,7 +133,7 @@ export default function Hero() {
         </div>
 
         {/* Right column — stats */}
-        <div ref={countUpContainerRef}>
+        <div>
           <div className={styles.heroStats}>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
