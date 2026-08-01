@@ -51,19 +51,19 @@ export default function Hero() {
           <div className={styles.heroStats}>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
-                <CountUp target={1995} delay={2200} />
+                <CountUp target={1995} delay={5500} />
               </div>
               <div className={styles.hstatL}>{t('statFounded')}</div>
             </div>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
-                <CountUp target={1500} suffix="+" delay={2500} />
+                <CountUp target={1500} suffix="+" delay={5800} />
               </div>
               <div className={styles.hstatL}>{t('statProducts')}</div>
             </div>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
-                <CountUp target={35} delay={2800} />
+                <CountUp target={35} delay={6100} />
               </div>
               <div className={styles.hstatL}>{t('statVehicles')}</div>
             </div>

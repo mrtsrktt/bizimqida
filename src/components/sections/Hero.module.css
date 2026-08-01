@@ -74,21 +74,21 @@
   width: 100%;
   height: 100%;
   overflow: hidden;
-  border-radius: 28px;
-  transform: scale(0.86);
-  opacity: 0.25;
-  box-shadow: 0 35px 120px rgba(0, 0, 0, 0.8), 0 0 0 1px rgba(200, 169, 81, 0.25);
-  animation: heroVideoExpand 2.2s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  border-radius: 36px;
+  transform: scale(0.50);
+  opacity: 0.2;
+  box-shadow: 0 35px 120px rgba(0, 0, 0, 0.85), 0 0 0 1px rgba(200, 169, 81, 0.3);
+  animation: heroVideoExpand 2.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: transform, border-radius, opacity;
 }
 
 @keyframes heroVideoExpand {
   0% {
-    transform: scale(0.86);
-    border-radius: 28px;
-    opacity: 0.25;
+    transform: scale(0.50);
+    border-radius: 36px;
+    opacity: 0.2;
   }
-  35% {
+  30% {
     opacity: 1;
   }
   100% {
@@ -104,14 +104,14 @@
   height: 100%;
   object-fit: cover;
   object-position: center;
-  transform: scale(1.15);
-  animation: heroVideoZoom 2.2s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  transform: scale(1.2);
+  animation: heroVideoZoom 2.8s 0.2s cubic-bezier(0.16, 1, 0.3, 1) forwards;
   will-change: transform;
 }
 
 @keyframes heroVideoZoom {
   0% {
-    transform: scale(1.15);
+    transform: scale(1.2);
   }
   100% {
     transform: scale(1);
@@ -188,7 +188,7 @@
   width: 0;
   height: 1px;
   background: var(--gold);
-  animation: drawLine 1s 0.5s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: drawLine 1s 4.0s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .heroEyebrow span {
@@ -198,7 +198,7 @@
   color: var(--gold);
   font-weight: 500;
   opacity: 0;
-  animation: revealRight 1s 1s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: revealRight 1s 4.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .heroH1 {
@@ -212,7 +212,7 @@
   opacity: 0;
   letter-spacing: -0.02em;
   clip-path: inset(-20px 100% -20px -20px);
-  animation: revealRight 1.4s 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+  animation: revealRight 1.4s 4.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
 .heroH1 em {
@@ -232,7 +232,7 @@
   max-width: 480px;
   margin-bottom: 44px;
   opacity: 0;
-  animation: fadeBlurIn 1.2s 2.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: fadeBlurIn 1.2s 5.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
 
 .heroActions {
@@ -240,7 +240,7 @@
   gap: 14px;
   flex-wrap: wrap;
   opacity: 0;
-  animation: slideUp 1s 3.4s forwards;
+  animation: slideUp 1s 5.5s forwards;
 }
 
 /* Hero stat cards */
@@ -262,9 +262,9 @@
   animation: statReveal 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
 }
 
-.hstat:nth-child(1) { animation-delay: 2.0s; }
-.hstat:nth-child(2) { animation-delay: 2.3s; }
-.hstat:nth-child(3) { animation-delay: 2.6s; }
+.hstat:nth-child(1) { animation-delay: 5.5s; }
+.hstat:nth-child(2) { animation-delay: 5.8s; }
+.hstat:nth-child(3) { animation-delay: 6.1s; }
 
 .hstat:hover {
   background: rgba(255, 255, 255, 0.09);
