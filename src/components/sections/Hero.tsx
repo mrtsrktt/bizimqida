@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useRef } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { useTranslations } from 'next-intl';
 import CountUp from '@/components/animations/CountUp';
 import styles from './Hero.module.css';
@@ -10,23 +10,36 @@ export default function Hero() {
   const [showText, setShowText] = useState(false);
   const videoRef = useRef<HTMLVideoElement>(null);
 
-  const handleTimeUpdate = () => {
-    if (!videoRef.current) return;
-    const currentTime = videoRef.current.currentTime;
+  useEffect(() => {
+    const video = videoRef.current;
+    if (!video) return;
 
-    // Video duration: ~21.5s
-    // Show text 3 seconds after video start (currentTime >= 3.0)
-    // Hide text 5 seconds before video ends (currentTime < 16.5)
-    if (currentTime >= 3.0 && currentTime < 16.5) {
-      setShowText(true);
-    } else {
-      setShowText(false);
-    }
-  };
+    const onTimeUpdate = () => {
+      const currentTime = video.currentTime;
+      const duration = video.duration && !isNaN(video.duration) ? video.duration : 21.5;
+      const hideTime = Math.max(0, duration - 5.0); // Exactly 5 seconds before video ends
+
+      // Show text starting at 3.0s, hide text at hideTime (5s before video ends)
+      const shouldShow = currentTime >= 3.0 && currentTime < hideTime;
+
+      setShowText((prev) => {
+        if (prev !== shouldShow) return shouldShow;
+        return prev;
+      });
+    };
+
+    video.addEventListener('timeupdate', onTimeUpdate);
+    // Initial check
+    onTimeUpdate();
+
+    return () => {
+      video.removeEventListener('timeupdate', onTimeUpdate);
+    };
+  }, []);
 
   return (
     <section className={styles.hero}>
-      {/* Background Video Wrapper with Soft Opening Entrance Animation */}
+      {/* Background Video Wrapper */}
       <div className={styles.videoWrapper}>
         <div className={styles.videoContainer}>
           <video
@@ -37,11 +50,9 @@ export default function Hero() {
             playsInline
             preload="auto"
             poster="/images/facility/exterior-front-wide.jpg"
-            onTimeUpdate={handleTimeUpdate}
+            src="/videos/hero-video.mp4"
             className={styles.heroVideo}
-          >
-            <source src="/videos/hero-video.mp4" type="video/mp4" />
-          </video>
+          />
           <div className={styles.videoOverlay} />
         </div>
       </div>
@@ -50,7 +61,15 @@ export default function Hero() {
       <div className={styles.heroGlow} />
       <div className={styles.heroDiag} />
 
-      <div className={`${styles.heroContent} ${showText ? styles.heroContentVisible : ''}`}>
+      <div
+        className={`${styles.heroContent} ${showText ? styles.heroContentVisible : ''}`}
+        style={{
+          opacity: showText ? 1 : 0,
+          transform: showText ? 'translateY(0)' : 'translateY(22px)',
+          pointerEvents: showText ? 'auto' : 'none',
+          transition: 'opacity 0.85s cubic-bezier(0.16, 1, 0.3, 1), transform 0.85s cubic-bezier(0.16, 1, 0.3, 1)',
+        }}
+      >
         {/* Left column */}
         <div>
           <div className={styles.heroEyebrow}>
@@ -70,19 +89,19 @@ export default function Hero() {
           <div className={styles.heroStats}>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
-                {showText && <CountUp target={1995} delay={300} />}
+                {showText && <CountUp target={1995} delay={200} />}
               </div>
               <div className={styles.hstatL}>{t('statFounded')}</div>
             </div>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
-                {showText && <CountUp target={1500} suffix="+" delay={500} />}
+                {showText && <CountUp target={1500} suffix="+" delay={400} />}
               </div>
               <div className={styles.hstatL}>{t('statProducts')}</div>
             </div>
             <div className={styles.hstat}>
               <div className={styles.hstatN}>
-                {showText && <CountUp target={35} delay={700} />}
+                {showText && <CountUp target={35} delay={600} />}
               </div>
               <div className={styles.hstatL}>{t('statVehicles')}</div>
             </div>
